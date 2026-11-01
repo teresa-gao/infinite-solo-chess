@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import blackBishop from './assets/Chess_bdt60.png'
 import whiteBishop from './assets/Chess_blt60.png'
 import blackKing from './assets/Chess_kdt60.png'
@@ -14,8 +13,6 @@ import whiteRook from './assets/Chess_rlt60.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <img src={blackBishop} className="piece bishop" />
