@@ -8,6 +8,8 @@ especially since I've been meaning to get more practice with TypeScript and Reac
 
 - [ ] Create hello world project.
   - [ ] Set up TypeScript and React.
+    - [x] Upgrade node, npm, and nvm versions.
+    - [ ] Install React/Vite and TypeScript.
   - [ ] Set up minimum project with standard structure.
   - [ ] Figure out how to deploy locally in dev.
   - [ ] Figure out how to deploy to GitHub pages.
