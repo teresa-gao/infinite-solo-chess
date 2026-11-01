@@ -1,5 +1,5 @@
 import { useDraggable } from '@dnd-kit/react'
-import { RANKS, FILES, PLURAL_TYPES, SINGLETON_TYPES } from '../constants'
+import { RANKS, FILES, PLURAL_TYPES, SINGLETON_TYPES } from '../constants.tsx'
 
 export interface PieceData {
     id: string;

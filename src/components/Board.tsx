@@ -5,7 +5,7 @@ import Square from './Square.tsx'
 import { getPieces, getStartPositions, getValidNewSquares, RenderPiece } from './Piece.tsx'
 import type { PieceData } from './Piece.tsx'
 
-import { RANKS, FILES } from '../constants'
+import { RANKS, FILES } from '../constants.tsx'
 
 interface RowProps {
   rank: number;
@@ -39,7 +39,7 @@ function Row({ rank, squares, pieces }: RowProps) {
 }
 
 export default function Board() {
-  const [pieces, setPieces] = useState<PieceData[]>(getPieces(22));
+  const [pieces] = useState<PieceData[]>(getPieces(22));
   const [squares, setSquares] = useState<string[]>(getStartPositions(pieces));
 
   return (
@@ -47,14 +47,12 @@ export default function Board() {
       onDragEnd={(event) => {
         if (event.canceled) return;
 
-        const newSquare = event.operation.target?.id;
+        const newSquare = String(event.operation.target?.id);
         const pieceId = event.operation.source?.id;
-        if (!newSquare || !pieceId) return;
+        if (newSquare === String(null) || !pieceId) return;
 
         const pieceIndex = pieces.findIndex((p) => p.id === pieceId);
         const validNewSquares = getValidNewSquares(pieces[pieceIndex].type, squares[pieceIndex] as string);
-        console.log(validNewSquares);
-        console.log(newSquare);
         if (!validNewSquares.has(newSquare)) return;
 
         const newSquares = [...squares];

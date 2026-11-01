@@ -1,4 +1,3 @@
-import Header from './components/Header.tsx'
 import Board from './components/Board.tsx'
 
 import './App.css'
@@ -6,7 +5,7 @@ import './App.css'
 function App() {
   return (
     <div id="app">
-      <Header />
+      <h1 id="header">Solo Chess</h1>
       <Board />
     </div>
   )
