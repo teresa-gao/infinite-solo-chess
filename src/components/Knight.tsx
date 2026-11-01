@@ -2,12 +2,15 @@ import Piece from './Piece.tsx'
 
 interface KnightProps {
     isWhite: boolean;
+    dragId: string;
 }
 
-export default function Knight({ isWhite }: KnightProps) {
+export default function Knight({ isWhite, dragId }: KnightProps) {
     return (
         <Piece
             abbreviation="n"
-            isWhite={isWhite} />
+            isWhite={isWhite}
+            dragId={dragId}
+        />
     )
 }

@@ -20,13 +20,16 @@ especially since I've been meaning to get more practice with TypeScript and Reac
   - [x] Enable clicking and dragging of pieces (anywhere for now? see https://dndkit.com/react).
 - [ ] Create chessboard.
   - [x] Initialize chessboard squares as droppable (snap to chess grid when pieces are clicked and dragged).
-    - [ ] Add back all pieces.
+    - [x] Add back all pieces.
   - [x] Color chessboard as standard grid.
   - [ ] Initialize pieces on chessboard.
 - [ ] Add chess/puzzle basics.
+  - [ ] Generate multiple copies of the same type of piece.
   - [ ] Enforce piece move rules.
   - [ ] Generate puzzle starting positions.
 - [ ] Gamify!
+  - [ ] Implement captures.
+    - [ ] Prevent pieces from coming "unstacked."
   - [ ] Enforce two-move limit with piece color change.
   - [ ] Count number of solved puzzles (and/or display boxes with green check marks? for bonus dopamine).
   - [ ] Add basic endscreen (as simple as https://www.chess.com/solo-chess's "VICTORY"?)

@@ -10,7 +10,7 @@ export default function Square({ id, isDark, children }: SquareProps) {
   const {ref, isDropTarget} = useDroppable({id});
 
   return (
-    <div ref={ref} className={"square" + (isDark ? " darkSquare" : "") + (isDropTarget ? " active" : "")}>
+    <div ref={ref} className={"square" + (isDark ? " darkSquare" : " lightSquare") + (isDropTarget ? " active" : "")}>
       {children}
     </div>
   );

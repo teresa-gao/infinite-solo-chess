@@ -2,12 +2,15 @@ import Piece from './Piece.tsx'
 
 interface PawnProps {
     isWhite: boolean;
+    dragId: string;
 }
 
-export default function Pawn({ isWhite }: PawnProps) {
+export default function Pawn({ isWhite, dragId }: PawnProps) {
     return (
         <Piece
             abbreviation="p"
-            isWhite={isWhite} />
+            isWhite={isWhite}
+            dragId={dragId}
+        />
     )
 }
