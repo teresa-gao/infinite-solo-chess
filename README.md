@@ -29,7 +29,7 @@ especially since I've been meaning to get more practice with TypeScript and Reac
 ## todo
 
 - [ ] Gamify!
-  - [ ] Generate multiple copies of the same type of piece.
+  - [x] Generate multiple copies of the same type of piece.
   - [ ] Enforce piece move rules.
   - [ ] Generate puzzle starting positions.
   - [ ] Implement captures.

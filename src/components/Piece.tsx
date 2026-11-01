@@ -13,24 +13,46 @@ export interface PieceData {
     isWhite: boolean;
 }
 
-export function getPieces(): PieceData[] {
-    return [
-        { id: 'blackBishop', abbreviation: 'b', isWhite: false },
-        { id: 'whiteBishop', abbreviation: 'b', isWhite: true },
-        { id: 'blackKing', abbreviation: 'k', isWhite: false },
-        { id: 'whiteKing', abbreviation: 'k', isWhite: true },
-        { id: 'blackKnight', abbreviation: 'n', isWhite: false },
-        { id: 'whiteKnight', abbreviation: 'n', isWhite: true },
-        { id: 'blackPawn', abbreviation: 'p', isWhite: false },
-        { id: 'whitePawn', abbreviation: 'p', isWhite: true },
-        { id: 'blackQueen', abbreviation: 'q', isWhite: false },
-        { id: 'whiteQueen', abbreviation: 'q', isWhite: true },
-        { id: 'blackRook', abbreviation: 'r', isWhite: false },
-        { id: 'whiteRook', abbreviation: 'r', isWhite: true },
-    ]
+interface getPiecesArgs {
+    numBishops: number;
+    numKings: number;
+    numKnights: number;
+    numPawns: number;
+    numQueens: number;
+    numRooks: number;
 }
 
-export function RenderPiece({ abbreviation, isWhite, dragId }: { abbreviation: string; isWhite: boolean; dragId: string }) {
+export function getPieces({ numBishops, numKings, numKnights, numPawns, numQueens, numRooks } : getPiecesArgs): PieceData[] {
+    const pieces = [];
+    for (let n = 0; n < numBishops; n++) {
+        pieces.push({ id: `bishop${n}`, abbreviation: 'b', isWhite: true });
+    }
+    for (let n = 0; n < numKings; n++) {
+        pieces.push({ id: `king${n}`, abbreviation: 'k', isWhite: true });
+    }
+    for (let n = 0; n < numKnights; n++) {
+        pieces.push({ id: `knight${n}`, abbreviation: 'n', isWhite: true });
+    }
+    for (let n = 0; n < numPawns; n++) {
+        pieces.push({ id: `pawn${n}`, abbreviation: 'p', isWhite: true });
+    }
+    for (let n = 0; n < numQueens; n++) {
+        pieces.push({ id: `queen${n}`, abbreviation: 'q', isWhite: true });
+    }
+    for (let n = 0; n < numRooks; n++) {
+        pieces.push({ id: `rook${n}`, abbreviation: 'r', isWhite: true });
+    }
+
+    return pieces;
+}
+
+interface RenderPieceProps {
+    abbreviation: string;
+    isWhite: boolean;
+    dragId: string;
+}
+
+export function RenderPiece({ abbreviation, isWhite, dragId }: RenderPieceProps) {
     switch (abbreviation) {
         case 'b': return <Bishop isWhite={isWhite} dragId={dragId} />;
         case 'k': return <King isWhite={isWhite} dragId={dragId} />;

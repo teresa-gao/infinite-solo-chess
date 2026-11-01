@@ -50,7 +50,14 @@ function Row({ rank, squares, pieces }: RowProps) {
 }
 
 export default function Board() {
-  const pieces = getPieces();
+  const pieces = getPieces({
+    numBishops: 3,
+    numKings: 1,
+    numKnights: 3,
+    numPawns: 3,
+    numQueens: 3,
+    numRooks: 3,
+  });
   const [squares, setSquares] = useState<(string | number)[]>(getStartPositions(pieces));
 
   return (
