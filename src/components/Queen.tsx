@@ -8,7 +8,7 @@ interface QueenProps {
 export default function Queen({ isWhite, dragId }: QueenProps) {
     return (
         <Piece
-            abbreviation="q"
+            type="q"
             isWhite={isWhite}
             dragId={dragId}
         />

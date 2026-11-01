@@ -8,7 +8,7 @@ interface BishopProps {
 export default function Bishop({ isWhite, dragId }: BishopProps) {
     return (
         <Piece
-            abbreviation="b"
+            type="b"
             isWhite={isWhite}
             dragId={dragId}
         />

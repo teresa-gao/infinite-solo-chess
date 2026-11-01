@@ -8,7 +8,7 @@ interface RookProps {
 export default function Rook({ isWhite, dragId }: RookProps) {
     return (
         <Piece
-            abbreviation="r"
+            type="r"
             isWhite={isWhite}
             dragId={dragId}
         />

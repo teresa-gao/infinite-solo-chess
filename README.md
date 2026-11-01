@@ -31,13 +31,14 @@ especially since I've been meaning to get more practice with TypeScript and Reac
 - [ ] Gamify!
   - [x] Generate multiple copies of the same type of piece.
   - [ ] Enforce piece move rules.
-  - [ ] Generate puzzle starting positions.
+  - [ ] Generate valid puzzle starting positions.
   - [x] Implement captures.
     - [ ] Prevent pieces from coming "unstacked."
   - [ ] Enforce two-move limit with piece color change.
   - [ ] Count number of solved puzzles (and/or display boxes with green check marks? for bonus dopamine).
   - [ ] Add basic endscreen (as simple as https://www.chess.com/solo-chess's "VICTORY"?)
 - [ ] Improve UI/UX.
+  - [ ] Debug weird piece glitches if not resolved by later refactoring.
   - [ ] Add instructions (with customization built in?).
   - [ ] Add mobile friendliness/responsiveness.
   - [ ] Show valid moves on board?

@@ -8,7 +8,7 @@ interface PawnProps {
 export default function Pawn({ isWhite, dragId }: PawnProps) {
     return (
         <Piece
-            abbreviation="p"
+            type="p"
             isWhite={isWhite}
             dragId={dragId}
         />
