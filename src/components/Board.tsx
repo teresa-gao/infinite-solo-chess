@@ -20,7 +20,7 @@ function getStartPositions(pieces: PieceData[]) {
 
 interface RowProps {
   rank: number;
-  squares: (string | number)[];
+  squares: (string | number | null)[];
   pieces: PieceData[];
 }
 
@@ -58,7 +58,7 @@ export default function Board() {
     numQueens: 3,
     numRooks: 3,
   });
-  const [squares, setSquares] = useState<(string | number)[]>(getStartPositions(pieces));
+  const [squares, setSquares] = useState<(string | number | null)[]>(getStartPositions(pieces));
 
   return (
     <DragDropProvider
@@ -70,22 +70,14 @@ export default function Board() {
         if (!newSquare || !pieceId) return;
 
         const newSquares = [...squares];
-        const pieceIndex = pieces.findIndex((p) => p.id === pieceId);
-        newSquares[pieceIndex] = newSquare;
+        const squareIndex = squares.indexOf(newSquare);
+        if (squareIndex >= 0) {
+          newSquares[squareIndex] = null;
+        }
+        newSquares[pieces.findIndex((p) => p.id === pieceId)] = newSquare;
         setSquares(newSquares);
       }}
     >
-      {pieces.map((piece, index) => (
-        <div key={piece.id} id={String(index)}>
-          {squares[index] ? null : (
-            <RenderPiece
-              abbreviation={piece.abbreviation}
-              isWhite={piece.isWhite}
-              dragId={piece.id}
-            />
-          )}
-        </div>
-      ))}
 
       <div id="board">
         {RANKS.map((rank) => (

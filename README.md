@@ -32,7 +32,7 @@ especially since I've been meaning to get more practice with TypeScript and Reac
   - [x] Generate multiple copies of the same type of piece.
   - [ ] Enforce piece move rules.
   - [ ] Generate puzzle starting positions.
-  - [ ] Implement captures.
+  - [x] Implement captures.
     - [ ] Prevent pieces from coming "unstacked."
   - [ ] Enforce two-move limit with piece color change.
   - [ ] Count number of solved puzzles (and/or display boxes with green check marks? for bonus dopamine).
