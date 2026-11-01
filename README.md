@@ -14,7 +14,22 @@ especially since I've been meaning to get more practice with TypeScript and Reac
       - [x] ~~Figure out how to deploy locally in dev.~~
   - [x] Figure out how to deploy to GitHub pages.
 - [ ] Find images/resources.
-  - [ ] Find chess PNGs (from https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent?).
+  - [x] Find chess PNGs (from https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent?).
+    - [ ] Add licensing information somewhere (separate info tab with MIT license as well? alt text over each piece?):
+      ```
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_bdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_blt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_kdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_klt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_ndt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_nlt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_pdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_plt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_qdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_qlt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_rdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      <a href="https://commons.wikimedia.org/wiki/File:Chess_rlt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+      ```
   - [ ] Find board PNG (or create grid from scratch?).
 - [ ] Create chessboard.
   - [ ] Display pieces on chessboard.
