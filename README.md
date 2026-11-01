@@ -1,2 +1,26 @@
-# solo-chess
-Inspired by https://www.chess.com/solo-chess
+# tasks
+
+- [ ] Create hello world project.
+  - [ ] Set up TypeScript and React.
+  - [ ] Set up minimum project with standard structure.
+  - [ ] Figure out how to deploy locally in dev.
+  - [ ] Figure out how to deploy to GitHub pages.
+- [ ] Find images/resources.
+  - [ ] Find chess PNGs (from https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent?).
+  - [ ] Find board PNG (or create grid from scratch?).
+- [ ] Create chessboard.
+  - [ ] Display pieces on chessboard.
+  - [ ] Enable clicking and dragging of pieces (anywhere for now?).
+  - [ ] Snap to chess grid when pieces are clicked and dragged.
+  - [ ] Enforce piece move rules.
+- [ ] Generate puzzle starting positions.
+- [ ] Gamify!
+  - [ ] Enforce two-move limit with piece color change.
+  - [ ] Count number of solved puzzles (and/or display boxes with green check marks? for bonus dopamine).
+  - [ ] Add basic endscreen (as simple as https://www.chess.com/solo-chess's "VICTORY"?)
+- [ ] Improve UI/UX.
+  - [ ] Add instructions (with customization built in?).
+  - [ ] Add confetti animation upon end/win like Chess.com?
+  - [ ] Customize which and how many starting pieces to use.
+  - [ ] Customize how many moves are possible per piece?
+  - [ ] Customize goal vs. infinite mode?
