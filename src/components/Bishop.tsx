@@ -1,4 +1,4 @@
-import Piece from './Piece.tsx';
+import Piece from './Piece.tsx'
 
 interface BishopProps {
     isWhite: boolean;
