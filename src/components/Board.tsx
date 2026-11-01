@@ -41,7 +41,7 @@ function Row({ rank, squares, pieces }: RowProps) {
                 isWhite={pieces[pieceIndex].isWhite}
                 dragId={pieces[pieceIndex].id}
               />
-            ) : squareId}
+            ) : ''}
           </Square>
         );
       })}

@@ -40,6 +40,7 @@ especially since I've been meaning to get more practice with TypeScript and Reac
 - [ ] Improve UI/UX.
   - [ ] Add instructions (with customization built in?).
   - [ ] Add mobile friendliness/responsiveness.
+  - [ ] Show valid moves on board?
   - [ ] Add confetti animation upon end/win like Chess.com?
   - [ ] Display remaining move count for pieces if greater than two?
   - [ ] Add automatic dark/light mode?
