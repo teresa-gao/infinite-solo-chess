@@ -1,3 +1,12 @@
+* {
+  font-family: Calibri, sans-serif;
+  color: saddlebrown;
+}
+
+body {
+  background-color: darkseagreen;
+}
+
 #board {
   display: flex;
   flex-direction: column;
@@ -7,7 +16,6 @@
 .row {
   display: inline-flex;
   height: 70px;
-  outline: 1px solid black;
 }
 
 .square {
@@ -18,11 +26,14 @@
   text-align: center;
   aspect-ratio: 1 / 1;
   box-sizing: border-box;
-  outline: 1px solid black;
 }
 
 .darkSquare {
-  background: gray;
+  background: burlywood;
+}
+
+.lightSquare {
+  background: antiquewhite;
 }
 
 /*.square.active {
