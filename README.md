@@ -7,11 +7,11 @@ especially since I've been meaning to get more practice with TypeScript and Reac
 # tasks
 
 - [ ] Create hello world project.
-  - [ ] Set up TypeScript and React.
+  - [x] Set up TypeScript and React.
     - [x] Upgrade node, npm, and nvm versions.
-    - [ ] Install React/Vite and TypeScript.
-  - [ ] Set up minimum project with standard structure.
-  - [ ] Figure out how to deploy locally in dev.
+    - [x] Install React/Vite and TypeScript, *whose installation automatically comes with the below (struck through)*.
+      - [x] ~~Set up minimum project with standard structure.~~
+      - [x] ~~Figure out how to deploy locally in dev.~~
   - [ ] Figure out how to deploy to GitHub pages.
 - [ ] Find images/resources.
   - [ ] Find chess PNGs (from https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent?).
