@@ -1,0 +1,27 @@
+#board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row {
+  display: inline-flex;
+  height: 70px;
+  outline: 1px solid black;
+}
+
+.square {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  outline: 1px solid black;
+}
+
+/*.square.active {
+  background-color: #f7f9fb;
+  box-shadow: inset #1eb99d 0 0 0 2px, rgba(0, 0, 0, 0.12) 20px 14px 24px;
+}*/

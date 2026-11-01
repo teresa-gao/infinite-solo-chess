@@ -16,12 +16,11 @@ especially since I've been meaning to get more practice with TypeScript and Reac
 - [x] Find chess PNGs (from https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent?).
   - [x] Display pieces on page.
     - [x] Implement component(s) for pieces.
-  - [ ] Enable clicking and dragging of pieces (anywhere for now? see https://dndkit.com/react).
-    - [x] Add dragging.
-    - [ ] Add dropping.
+  - [x] Enable clicking and dragging of pieces (anywhere for now? see https://dndkit.com/react).
 - [ ] Create chessboard.
-  - [ ] Snap to chess grid when pieces are clicked and dragged.
-  - [ ] Initialize pieces on chess board.
+  - [x] Initialize chessboard squares as droppable (snap to chess grid when pieces are clicked and dragged).
+  - [ ] Color chessboard as standard grid.
+  - [ ] Initialize pieces on chessboard.
 - [ ] Add chess/puzzle basics.
   - [ ] Enforce piece move rules.
   - [ ] Generate puzzle starting positions.
@@ -37,6 +36,7 @@ especially since I've been meaning to get more practice with TypeScript and Reac
   - [ ] Customize how many moves are possible per piece?
   - [ ] Customize goal vs. infinite mode?
 - [ ] Finalize.
+  - [ ] Clean up codebase (e.g., documentation, explicit semicolons, standardized tab size).
   - [ ] Add licensing information somewhere (separate info tab with MIT license as well? alt text over each piece?):
   ```
   <a href="https://commons.wikimedia.org/wiki/File:Chess_bdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
