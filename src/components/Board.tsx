@@ -30,7 +30,7 @@ function Row({ rank, squares, pieces }: RowProps) {
                 isWhite={pieces[pieceIndex].isWhite}
                 dragId={pieces[pieceIndex].id}
               />
-            ) : squareId}
+            ) : ''}
           </Square>
         );
       })}
@@ -39,14 +39,7 @@ function Row({ rank, squares, pieces }: RowProps) {
 }
 
 export default function Board() {
-  const pieces = getPieces({
-    numBishops: 3,
-    numKings: 1,
-    numKnights: 3,
-    numPawns: 3,
-    numQueens: 3,
-    numRooks: 3,
-  });
+  const [pieces, setPieces] = useState<PieceData[]>(getPieces(22));
   const [squares, setSquares] = useState<string[]>(getStartPositions(pieces));
 
   return (

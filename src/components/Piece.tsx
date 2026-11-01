@@ -1,13 +1,5 @@
 import { useDraggable } from '@dnd-kit/react'
-
-import Bishop from './Bishop.tsx'
-import King from './King.tsx'
-import Knight from './Knight.tsx'
-import Pawn from './Pawn.tsx'
-import Queen from './Queen.tsx'
-import Rook from './Rook.tsx'
-
-import { RANKS, FILES } from '../constants'
+import { RANKS, FILES, PLURAL_TYPES, SINGLETON_TYPES } from '../constants'
 
 export interface PieceData {
     id: string;
@@ -15,34 +7,18 @@ export interface PieceData {
     isWhite: boolean;
 }
 
-interface getPiecesArgs {
-    numBishops: number;
-    numKings: number;
-    numKnights: number;
-    numPawns: number;
-    numQueens: number;
-    numRooks: number;
-}
-
-export function getPieces({ numBishops, numKings, numKnights, numPawns, numQueens, numRooks } : getPiecesArgs): PieceData[] {
+export function getPieces(numPieces: number): PieceData[] {
     const pieces = [];
-    for (let n = 0; n < numBishops; n++) {
-        pieces.push({ id: `bishop${n}`, type: 'b', isWhite: true });
+    let n = 0;
+    for (const type of SINGLETON_TYPES) {
+        if (Math.random() > 0.5) {
+            pieces.push({ id: `${type}${n}`, type: type, isWhite: true});
+            n++;
+        }
     }
-    for (let n = 0; n < numKings; n++) {
-        pieces.push({ id: `king${n}`, type: 'k', isWhite: true });
-    }
-    for (let n = 0; n < numKnights; n++) {
-        pieces.push({ id: `knight${n}`, type: 'n', isWhite: true });
-    }
-    for (let n = 0; n < numPawns; n++) {
-        pieces.push({ id: `pawn${n}`, type: 'p', isWhite: true });
-    }
-    for (let n = 0; n < numQueens; n++) {
-        pieces.push({ id: `queen${n}`, type: 'q', isWhite: true });
-    }
-    for (let n = 0; n < numRooks; n++) {
-        pieces.push({ id: `rook${n}`, type: 'r', isWhite: true });
+    for (; n < numPieces; n++) {
+        const type = PLURAL_TYPES[Math.floor(Math.random() * PLURAL_TYPES.length)];
+        pieces.push({ id: `${type}${n}`, type: type, isWhite: true});
     }
 
     return pieces;
@@ -95,14 +71,7 @@ interface RenderPieceProps {
 }
 
 export function RenderPiece({ type, isWhite, dragId }: RenderPieceProps) {
-    switch (type) {
-        case 'b': return <Bishop isWhite={isWhite} dragId={dragId} />;
-        case 'k': return <King isWhite={isWhite} dragId={dragId} />;
-        case 'n': return <Knight isWhite={isWhite} dragId={dragId} />;
-        case 'p': return <Pawn isWhite={isWhite} dragId={dragId} />;
-        case 'q': return <Queen isWhite={isWhite} dragId={dragId} />;
-        case 'r': return <Rook isWhite={isWhite} dragId={dragId} />;
-    }
+    return <Piece type={type} isWhite={isWhite} dragId={dragId} />;
 }
 
 interface PieceProps {
