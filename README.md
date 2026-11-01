@@ -16,7 +16,7 @@ especially since I've been meaning to get more practice with TypeScript and Reac
 - [x] Find chess PNGs (from https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent?).
   - [x] Display pieces on page.
     - [ ] Ipmlement component(s) for pieces.
-  - [ ] Enable clicking and dragging of pieces (anywhere for now).
+  - [ ] Enable clicking and dragging of pieces (anywhere for now? see https://dndkit.com/react).
 - [ ] Create chessboard.
   - [ ] Snap to chess grid when pieces are clicked and dragged.
   - [ ] Initialize pieces on chess board.
