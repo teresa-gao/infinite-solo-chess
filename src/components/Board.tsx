@@ -15,18 +15,19 @@ const draggable = (
 );
 
 interface RowProps {
-  rank: string;
+  rank: number;
   target: string | number | undefined;
 }
 
 function Row({ rank, target }: RowProps) {
-  const files = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+  const files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
   return (
     <div className="row">
-      {files.map((file) => (
+      {files.map((file, index) => (
         <Square
           key={`${file}${rank}`}
-          id={`${file}${rank}`}>
+          id={`${file}${rank}`}
+          isDark={index % 2 != rank % 2}>
           {target === `${file}${rank}` ? draggable : `${file}${rank}`}
         </Square>
       ))}
@@ -35,7 +36,7 @@ function Row({ rank, target }: RowProps) {
 }
 
 export default function Board() {
-  const ranks = ['8', '7', '6', '5', '4', '3', '2', '1'];
+  const ranks = [8, 7, 6, 5, 4, 3, 2, 1];
   const [target, setTarget] = useState<string | number>();
 
   return (
