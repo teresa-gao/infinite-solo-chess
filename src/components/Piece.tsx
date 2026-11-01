@@ -53,7 +53,6 @@ export default function Piece({ abbreviation, isWhite, dragId }: PieceProps) {
 
     const { ref } = useDraggable({
         id: dragId,
-        data: { id: dragId }
     });
 
     return (

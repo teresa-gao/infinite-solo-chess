@@ -5,6 +5,19 @@ import Square from './Square.tsx'
 import { getPieces, RenderPiece } from './Piece.tsx'
 import type { PieceData } from './Piece.tsx'
 
+const RANKS = [8, 7, 6, 5, 4, 3, 2, 1];
+const FILES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+
+function getStartPositions(pieces: PieceData[]) {
+  const startPositions = [];
+  for (let i = 0; i < pieces.length; i++) {
+    const fileIndex = Math.floor(Math.random() * FILES.length);
+    const rankIndex = Math.floor(Math.random() * RANKS.length);
+    startPositions.push(`${FILES[fileIndex]}${RANKS[rankIndex]}`);
+  }
+  return startPositions;
+}
+
 interface RowProps {
   rank: number;
   squares: (string | number)[];
@@ -12,10 +25,9 @@ interface RowProps {
 }
 
 function Row({ rank, squares, pieces }: RowProps) {
-  const files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
   return (
     <div className="row">
-      {files.map((file, index) => {
+      {FILES.map((file, index) => {
         const squareId = `${file}${rank}`;
         const pieceIndex = squares.indexOf(squareId);
         return (
@@ -38,9 +50,8 @@ function Row({ rank, squares, pieces }: RowProps) {
 }
 
 export default function Board() {
-  const ranks = [8, 7, 6, 5, 4, 3, 2, 1];
   const pieces = getPieces();
-  const [squares, setSquares] = useState<(string | number)[]>(Array(pieces.length).fill(null));
+  const [squares, setSquares] = useState<(string | number)[]>(getStartPositions(pieces));
 
   return (
     <DragDropProvider
@@ -48,7 +59,7 @@ export default function Board() {
         if (event.canceled) return;
 
         const newSquare = event.operation.target?.id;
-        const pieceId = event.operation.source?.data?.id
+        const pieceId = event.operation.source?.id;
         if (!newSquare || !pieceId) return;
 
         const newSquares = [...squares];
@@ -70,7 +81,7 @@ export default function Board() {
       ))}
 
       <div id="board">
-        {ranks.map((rank) => (
+        {RANKS.map((rank) => (
           <Row key={rank} rank={rank} squares={squares} pieces={pieces} />
         ))}
       </div>
