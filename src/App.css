@@ -1,9 +1,13 @@
+:root {
+  color-scheme: light dark;
+}
+
 * {
   font-family: Calibri, sans-serif;
 }
 
 body {
-  background-color: darkseagreen;
+  background-color: light-dark(darkseagreen, darkslategray);
 }
 
 #app {
@@ -17,8 +21,8 @@ body {
 }
 
 #header {
-  background-color: white;
-  color: black;
+  background-color: light-dark(white, black);
+  color: light-dark(black, white);
   text-align: center;
   width: fit-content;
   padding: 10px;
@@ -50,11 +54,11 @@ body {
 }
 
 .darkSquare {
-  background: burlywood;
+  background: light-dark(burlywood, darkgoldenrod);
 }
 
 .lightSquare {
-  background: antiquewhite;
+  background: light-dark(antiquewhite, burlywood);
 }
 
 /*.square.active {

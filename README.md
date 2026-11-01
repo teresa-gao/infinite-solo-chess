@@ -43,7 +43,7 @@ especially since I've been meaning to get more practice with TypeScript and Reac
   - [ ] Show valid moves on board?
   - [ ] Add confetti animation upon end/win like Chess.com?
   - [ ] Display remaining move count for pieces if greater than two?
-  - [ ] Add automatic dark/light mode?
+  - [x] Add automatic dark/light mode.
   - [ ] Customize which and how many starting pieces to use.
   - [ ] Customize how many moves are possible per piece?
   - [ ] Customize goal vs. infinite mode?
