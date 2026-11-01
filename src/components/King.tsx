@@ -8,7 +8,7 @@ interface KingProps {
 export default function King({ isWhite, dragId }: KingProps) {
     return (
         <Piece
-            abbreviation="k"
+            type="king"
             isWhite={isWhite}
             dragId={dragId}
         />

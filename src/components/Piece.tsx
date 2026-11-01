@@ -1,4 +1,10 @@
 import { useDraggable } from '@dnd-kit/react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+library.add(fas);
+library.add(far);
 
 import Bishop from './Bishop.tsx'
 import King from './King.tsx'
@@ -9,54 +15,52 @@ import Rook from './Rook.tsx'
 
 export interface PieceData {
     id: string;
-    abbreviation: string;
+    type: string;
     isWhite: boolean;
 }
 
 export function getPieces(): PieceData[] {
     return [
-        { id: 'blackBishop', abbreviation: 'b', isWhite: false },
-        { id: 'whiteBishop', abbreviation: 'b', isWhite: true },
-        { id: 'blackKing', abbreviation: 'k', isWhite: false },
-        { id: 'whiteKing', abbreviation: 'k', isWhite: true },
-        { id: 'blackKnight', abbreviation: 'n', isWhite: false },
-        { id: 'whiteKnight', abbreviation: 'n', isWhite: true },
-        { id: 'blackPawn', abbreviation: 'p', isWhite: false },
-        { id: 'whitePawn', abbreviation: 'p', isWhite: true },
-        { id: 'blackQueen', abbreviation: 'q', isWhite: false },
-        { id: 'whiteQueen', abbreviation: 'q', isWhite: true },
-        { id: 'blackRook', abbreviation: 'r', isWhite: false },
-        { id: 'whiteRook', abbreviation: 'r', isWhite: true },
+        { id: 'blackBishop', type: 'bishop', isWhite: false },
+        { id: 'whiteBishop', type: 'bishop', isWhite: true },
+        { id: 'blackKing', type: 'king', isWhite: false },
+        { id: 'whiteKing', type: 'king', isWhite: true },
+        { id: 'blackKnight', type: 'knight', isWhite: false },
+        { id: 'whiteKnight', type: 'knight', isWhite: true },
+        { id: 'blackPawn', type: 'pawn', isWhite: false },
+        { id: 'whitePawn', type: 'pawn', isWhite: true },
+        { id: 'blackQueen', type: 'queen', isWhite: false },
+        { id: 'whiteQueen', type: 'queen', isWhite: true },
+        { id: 'blackRook', type: 'rook', isWhite: false },
+        { id: 'whiteRook', type: 'rook', isWhite: true },
     ]
 }
 
-export function RenderPiece({ abbreviation, isWhite, dragId }: { abbreviation: string; isWhite: boolean; dragId: string }) {
-    switch (abbreviation) {
-        case 'b': return <Bishop isWhite={isWhite} dragId={dragId} />;
-        case 'k': return <King isWhite={isWhite} dragId={dragId} />;
-        case 'n': return <Knight isWhite={isWhite} dragId={dragId} />;
-        case 'p': return <Pawn isWhite={isWhite} dragId={dragId} />;
-        case 'q': return <Queen isWhite={isWhite} dragId={dragId} />;
-        case 'r': return <Rook isWhite={isWhite} dragId={dragId} />;
+export function RenderPiece({ type, isWhite, dragId }: { type: string; isWhite: boolean; dragId: string }) {
+    switch (type) {
+        case 'bishop': return <Bishop isWhite={isWhite} dragId={dragId} />;
+        case 'king': return <King isWhite={isWhite} dragId={dragId} />;
+        case 'knight': return <Knight isWhite={isWhite} dragId={dragId} />;
+        case 'pawn': return <Pawn isWhite={isWhite} dragId={dragId} />;
+        case 'queen': return <Queen isWhite={isWhite} dragId={dragId} />;
+        case 'rook': return <Rook isWhite={isWhite} dragId={dragId} />;
     }
 }
 
 interface PieceProps {
-    abbreviation: string;
+    type: string;
     isWhite: boolean;
     dragId: string;
 }
 
-export default function Piece({ abbreviation, isWhite, dragId }: PieceProps) {
-    const color: string = isWhite ? "l" : "d";
-    const imgUrl: string = new URL(`../assets/Chess_${abbreviation}${color}t60.png`, import.meta.url).href;
-
+export default function Piece({ type, isWhite, dragId }: PieceProps) {
+    const colorClass = isWhite ? "far" : "fas";
     const { ref } = useDraggable({
         id: dragId,
         data: { id: dragId }
     });
 
     return (
-        <img src={imgUrl} className="piece" ref={ref}/>
+        <FontAwesomeIcon icon={[colorClass, `chess-${type}`]} className="piece" ref={ref} />
     )
 }

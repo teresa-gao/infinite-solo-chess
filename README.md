@@ -14,7 +14,7 @@ especially since I've been meaning to get more practice with TypeScript and Reac
       - [x] ~~Figure out how to deploy locally in dev.~~
   - [x] Figure out how to deploy to GitHub pages.
 - [x] Find chess PNGs (from https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent?).
-  - [ ] Consider using fontawesome chess pieces instead? https://fontawesome.com/v5/icons/categories/classic/solid/chess
+  - [x] Consider using fontawesome chess pieces instead? https://fontawesome.com/v5/icons/categories/classic/solid/chess
   - [x] Display pieces on page.
     - [x] Implement component(s) for pieces.
   - [x] Enable clicking and dragging of pieces (anywhere for now? see https://dndkit.com/react).

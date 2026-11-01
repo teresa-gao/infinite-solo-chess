@@ -8,7 +8,7 @@ interface KnightProps {
 export default function Knight({ isWhite, dragId }: KnightProps) {
     return (
         <Piece
-            abbreviation="n"
+            type="knight"
             isWhite={isWhite}
             dragId={dragId}
         />

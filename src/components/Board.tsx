@@ -37,7 +37,7 @@ function Row({ rank, squares, pieces }: RowProps) {
             isDark={index % 2 !== rank % 2}>
             {pieceIndex >= 0 ? (
               <RenderPiece
-                abbreviation={pieces[pieceIndex].abbreviation}
+                type={pieces[pieceIndex].type}
                 isWhite={pieces[pieceIndex].isWhite}
                 dragId={pieces[pieceIndex].id}
               />
@@ -72,7 +72,7 @@ export default function Board() {
         <div key={piece.id} id={String(index)}>
           {squares[index] ? null : (
             <RenderPiece
-              abbreviation={piece.abbreviation}
+              type={piece.type}
               isWhite={piece.isWhite}
               dragId={piece.id}
             />
