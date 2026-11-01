@@ -18,11 +18,11 @@ especially since I've been meaning to get more practice with TypeScript and Reac
   - [x] Display pieces on page.
     - [x] Implement component(s) for pieces.
   - [x] Enable clicking and dragging of pieces (anywhere for now? see https://dndkit.com/react).
-- [ ] Create chessboard.
+- [x] Create chessboard.
   - [x] Initialize chessboard squares as droppable (snap to chess grid when pieces are clicked and dragged).
     - [x] Add back all pieces.
   - [x] Color chessboard as standard grid.
-  - [ ] Initialize pieces on chessboard.
+  - [x] Initialize pieces on chessboard.
 - [ ] Add chess/puzzle basics.
   - [ ] Generate multiple copies of the same type of piece.
   - [ ] Enforce piece move rules.
