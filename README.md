@@ -15,6 +15,7 @@ especially since I've been meaning to get more practice with TypeScript and Reac
   - [x] Figure out how to deploy to GitHub pages.
 - [ ] Find images/resources.
   - [x] Find chess PNGs (from https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent?).
+    - [x] Display pieces on page.
     - [ ] Add licensing information somewhere (separate info tab with MIT license as well? alt text over each piece?):
       ```
       <a href="https://commons.wikimedia.org/wiki/File:Chess_bdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
@@ -44,6 +45,8 @@ especially since I've been meaning to get more practice with TypeScript and Reac
 - [ ] Improve UI/UX.
   - [ ] Add instructions (with customization built in?).
   - [ ] Add confetti animation upon end/win like Chess.com?
+  - [ ] Prettify the page design.
+  - [ ] Add automatic dark/light mode?
   - [ ] Customize which and how many starting pieces to use.
   - [ ] Customize how many moves are possible per piece?
   - [ ] Customize goal vs. infinite mode?
