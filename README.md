@@ -6,6 +6,8 @@ especially since I've been meaning to get more practice with TypeScript and Reac
 
 # tasks
 
+## done
+
 - [x] Create hello world project.
   - [x] Set up TypeScript and React.
     - [x] Upgrade node, npm, and nvm versions.
@@ -23,11 +25,13 @@ especially since I've been meaning to get more practice with TypeScript and Reac
     - [x] Add back all pieces.
   - [x] Color chessboard as standard grid.
   - [x] Initialize pieces on chessboard.
-- [ ] Add chess/puzzle basics.
+
+## todo
+
+- [ ] Gamify!
   - [ ] Generate multiple copies of the same type of piece.
   - [ ] Enforce piece move rules.
   - [ ] Generate puzzle starting positions.
-- [ ] Gamify!
   - [ ] Implement captures.
     - [ ] Prevent pieces from coming "unstacked."
   - [ ] Enforce two-move limit with piece color change.
@@ -35,6 +39,7 @@ especially since I've been meaning to get more practice with TypeScript and Reac
   - [ ] Add basic endscreen (as simple as https://www.chess.com/solo-chess's "VICTORY"?)
 - [ ] Improve UI/UX.
   - [ ] Add instructions (with customization built in?).
+  - [ ] Add mobile friendliness/responsiveness.
   - [ ] Add confetti animation upon end/win like Chess.com?
   - [ ] Display remaining move count for pieces if greater than two?
   - [ ] Add automatic dark/light mode?
