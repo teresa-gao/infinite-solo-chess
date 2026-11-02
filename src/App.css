@@ -6,8 +6,26 @@
   font-family: Calibri, sans-serif;
 }
 
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100dvh;
+  width: 100dvw;
+}
+
 body {
   background-color: light-dark(darkseagreen, darkslategray);
+}
+
+#disclaimer {
+  background-color: red;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  padding: 5px;
+  margin: 0;
+  width: 100dvw;
 }
 
 #app {

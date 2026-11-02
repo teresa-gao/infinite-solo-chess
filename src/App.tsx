@@ -5,8 +5,9 @@ import './App.css'
 function App() {
   return (
     <div id="app">
-      <h1 id="header">Solo Chess</h1>
-      <Board />
+      <a id="disclaimer" href="https://github.com/teresa-gao/solo-chess">🚧 work in progress! 🚧</a>
+        <h1 id="header">Solo Chess</h1>
+        <Board />
     </div>
   )
 }
