@@ -1,5 +1,5 @@
 import { useDraggable } from '@dnd-kit/react'
-import { RANKS, FILES, PLURAL_TYPES, SINGLETON_TYPES } from '../constants.tsx'
+import { RANKS, FILES, PLURAL_TYPES_TO_DELTAS, SINGLETON_TYPES_TO_DELTAS } from '../constants.tsx'
 
 export interface PieceData {
     id: string;
@@ -10,14 +10,16 @@ export interface PieceData {
 export function getPieces(numPieces: number): PieceData[] {
     const pieces = [];
     let n = 0;
-    for (const type of SINGLETON_TYPES) {
+    for (const type of SINGLETON_TYPES_TO_DELTAS.keys()) {
         if (Math.random() > 0.5) {
             pieces.push({ id: `${type}${n}`, type: type, isWhite: true});
             n++;
         }
     }
+    const pluralTypes = [...PLURAL_TYPES_TO_DELTAS.keys()];
     for (; n < numPieces; n++) {
-        const type = PLURAL_TYPES[Math.floor(Math.random() * PLURAL_TYPES.length)];
+        const typeIndex = Math.floor(Math.random() * pluralTypes.length);
+        const type = pluralTypes[typeIndex];
         pieces.push({ id: `${type}${n}`, type: type, isWhite: true});
     }
 
@@ -41,24 +43,16 @@ export function getValidNewSquares(type: string, start: string) {
     const startFileIndex = FILES.indexOf(splitCoord[0]);
     const startRankIndex = RANKS.indexOf(parseInt(splitCoord[1]));
 
-    switch (type) {
-        case 'b':
-            break;
-        case 'k':
-            for (let fileIndex = Math.max(0, startFileIndex - 1); fileIndex <= Math.min(FILES.length - 1, startFileIndex + 1); fileIndex++) {
-                for (let rankIndex = Math.max(0, startRankIndex - 1); rankIndex <= Math.min(RANKS.length - 1, startRankIndex + 1); rankIndex++) {
-                    validNewSquares.add(`${FILES[fileIndex]}-${RANKS[rankIndex]}`);
-                }
+    const deltasDictionary = SINGLETON_TYPES_TO_DELTAS.has(type) ? SINGLETON_TYPES_TO_DELTAS : PLURAL_TYPES_TO_DELTAS
+    const deltas = deltasDictionary.get(type);
+    if (deltas) {
+        for (const delta of deltas) {
+            const newFileIndex = startFileIndex + delta[0];
+            const newRankIndex = startRankIndex + delta[1];
+            if ((newFileIndex >= 0) && (newFileIndex < FILES.length) && (newRankIndex >= 0) && (newRankIndex < RANKS.length)) {
+                validNewSquares.add(`${FILES[newFileIndex]}-${RANKS[newRankIndex]}`);
             }
-            break;
-        case 'n':
-            break;
-        case 'p':
-            break;
-        case 'q':
-            break;
-        case 'r':
-            break;
+        }
     }
 
     return validNewSquares;
