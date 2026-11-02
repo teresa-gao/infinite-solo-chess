@@ -25,25 +25,28 @@ especially since I've been meaning to get more practice with TypeScript and Reac
     - [x] Add back all pieces.
   - [x] Color chessboard as standard grid.
   - [x] Initialize pieces on chessboard.
+- [x] Add basic move mechanics.
+  - [x] Generate multiple copies of the same type of piece.
+  - [x] Enforce piece move rules.
+  - [x] Implement captures.
+    - [x] Prevent pieces from coming "unstacked."
 
 ## todo
 
-- [ ] Gamify!
-  - [x] Generate multiple copies of the same type of piece.
-  - [x] Enforce piece move rules.
-    - [ ] Prevent non-knights from jumping over other pieces.
+- [ ] Debug:
+  - [ ] Weird flyaway animation(??).
+- [ ] Add more complicated game mechanics.
+  - [ ] Prevent non-knights from jumping over other pieces.
   - [ ] Generate valid puzzle starting positions.
-  - [x] Implement captures.
-    - [x] Prevent pieces from coming "unstacked."
   - [ ] Enforce two-move limit with piece color change.
+- [ ] Add intro/outro elements.
   - [ ] Count number of solved puzzles (and/or display boxes with green check marks? for bonus dopamine).
   - [ ] Add basic endscreen (as simple as https://www.chess.com/solo-chess's "VICTORY"?)
-- [ ] Improve UI/UX.
-  - [ ] Debug weird piece glitches if not resolved by later refactoring.
+    - [ ] Add confetti animation upon end/win like Chess.com?
   - [ ] Add instructions (with customization built in?).
+- [ ] Improve UI/UX.
   - [ ] Add mobile friendliness/responsiveness.
   - [ ] Show valid moves on board?
-  - [ ] Add confetti animation upon end/win like Chess.com?
   - [ ] Display remaining move count for pieces if greater than two?
   - [x] Add automatic dark/light mode.
   - [ ] Customize which and how many starting pieces to use.
