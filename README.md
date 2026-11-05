@@ -1,7 +1,7 @@
 # about
 
 I love [Chess.com's Solo Chess game](https://www.chess.com/solo-chess)
-and thought it'd be fun to make a more customizable version,
+and thought it'd be fun to make my own, infinite version,
 especially since I've been meaning to get more practice with TypeScript and React.
 
 # tasks
