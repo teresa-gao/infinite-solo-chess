@@ -1,42 +1,10 @@
 import { useState } from 'react'
 import { DragDropProvider } from '@dnd-kit/react'
 
-import Square from './Square.tsx'
-import { getPieces, getStartPositions, getValidNewSquares, RenderPiece } from './Piece.tsx'
+import Row from './Row.tsx'
+import { getPieces, getStartPositions, getValidNewSquares } from './Piece.tsx'
 import type { PieceData } from './Piece.tsx'
-
-import { RANKS, FILES } from '../constants.tsx'
-
-interface RowProps {
-  rank: number;
-  squares: string[];
-  pieces: PieceData[];
-}
-
-function Row({ rank, squares, pieces }: RowProps) {
-  return (
-    <div className="row">
-      {FILES.map((file, index) => {
-        const squareId = `${file}-${rank}`;
-        const pieceIndex = squares.indexOf(squareId);
-        return (
-          <Square
-            key={squareId}
-            id={squareId}
-            isDark={index % 2 !== rank % 2}>
-            {pieceIndex >= 0 ? (
-              <RenderPiece
-                type={pieces[pieceIndex].type}
-                isWhite={pieces[pieceIndex].isWhite}
-                dragId={pieces[pieceIndex].id}
-              />
-            ) : ''}
-          </Square>
-        );
-      })}
-    </div>
-  )
-}
+import { RANKS } from '../constants.tsx'
 
 export default function Board() {
   const [pieces] = useState<PieceData[]>(getPieces(22));
@@ -67,7 +35,7 @@ export default function Board() {
 
       <div id="board">
         {RANKS.map((rank) => (
-          <Row key={rank} rank={rank} squares={squares} pieces={pieces} />
+          <Row key={`rank-${rank}`} rank={rank} squares={squares} pieces={pieces} />
         ))}
       </div>
     </DragDropProvider>

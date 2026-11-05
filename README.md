@@ -33,8 +33,9 @@ especially since I've been meaning to get more practice with TypeScript and Reac
 
 ## todo
 
-- [ ] Debug:
-  - [ ] Weird flyaway animation(??).
+- [ ] Debug.
+  - [x] Fix the weird flyaway animation(??).
+  - [ ] Fix the random piece changing/regeneration.
 - [ ] Add more complicated game mechanics.
   - [ ] Prevent non-knights from jumping over other pieces.
   - [ ] Generate valid puzzle starting positions.

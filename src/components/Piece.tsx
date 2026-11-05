@@ -58,16 +58,6 @@ export function getValidNewSquares(type: string, start: string) {
     return validNewSquares;
 }
 
-interface RenderPieceProps {
-    type: string;
-    isWhite: boolean;
-    dragId: string;
-}
-
-export function RenderPiece({ type, isWhite, dragId }: RenderPieceProps) {
-    return <Piece type={type} isWhite={isWhite} dragId={dragId} />;
-}
-
 interface PieceProps {
     type: string;
     isWhite: boolean;
