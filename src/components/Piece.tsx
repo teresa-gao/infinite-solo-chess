@@ -69,6 +69,6 @@ export default function Piece({ type, isWhite, dragId }: PieceProps) {
     });
 
     return (
-        <img src={imgUrl} className="piece" ref={ref}/>
+        <img src={imgUrl} className="cursor-grab" ref={ref}/>
     )
 }

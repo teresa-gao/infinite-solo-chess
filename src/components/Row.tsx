@@ -11,7 +11,7 @@ interface RowProps {
 
 export default function Row({ rank, boardLayout }: RowProps) {
   return (
-    <div className="row">
+    <div className="inline-flex">
       {FILES.map((file, index) => {
         const squareId = `${file}-${rank}`;
         const piece = boardLayout[squareId];

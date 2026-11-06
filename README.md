@@ -2,37 +2,9 @@
 
 I love [Chess.com's Solo Chess game](https://www.chess.com/solo-chess)
 and thought it'd be fun to make my own, infinite version,
-especially since I've been meaning to get more practice with TypeScript and React.
+especially since I've been meaning to get more practice with React, TypeScript, and Tailwind CSS.
 
 # tasks
-
-## done
-
-- [x] Create hello world project.
-  - [x] Set up TypeScript and React.
-    - [x] Upgrade node, npm, and nvm versions.
-    - [x] Install React/Vite and TypeScript, *whose installation automatically comes with the below (struck through)*.
-      - [x] ~~Set up minimum project with standard structure.~~
-      - [x] ~~Figure out how to deploy locally in dev.~~
-  - [x] Figure out how to deploy to GitHub pages.
-- [x] Find chess PNGs (from https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent?).
-  - [x] Consider using fontawesome chess pieces instead? https://fontawesome.com/v5/icons/categories/classic/solid/chess
-  - [x] Display pieces on page.
-    - [x] Implement component(s) for pieces.
-  - [x] Enable clicking and dragging of pieces (anywhere for now? see https://dndkit.com/react).
-- [x] Create chessboard.
-  - [x] Initialize chessboard squares as droppable (snap to chess grid when pieces are clicked and dragged).
-    - [x] Add back all pieces.
-  - [x] Color chessboard as standard grid.
-  - [x] Initialize pieces on chessboard.
-- [x] Add basic move mechanics.
-  - [x] Generate multiple copies of the same type of piece.
-  - [x] Enforce piece move rules.
-  - [x] Implement captures.
-    - [x] Prevent pieces from coming "unstacked."
-- [x] Debug first bugs.
-  - [x] Fix the weird flyaway animation(??).
-  - [x] Fix the random piece changing/regeneration.
 
 ## todo
 
@@ -70,3 +42,31 @@ especially since I've been meaning to get more practice with TypeScript and Reac
   <a href="https://commons.wikimedia.org/wiki/File:Chess_rdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
   <a href="https://commons.wikimedia.org/wiki/File:Chess_rlt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
   ```
+
+## done
+
+- [x] Create hello world project.
+  - [x] Set up TypeScript and React.
+    - [x] Upgrade node, npm, and nvm versions.
+    - [x] Install React/Vite and TypeScript, *whose installation automatically comes with the below (struck through)*.
+      - [x] ~~Set up minimum project with standard structure.~~
+      - [x] ~~Figure out how to deploy locally in dev.~~
+  - [x] Figure out how to deploy to GitHub pages.
+- [x] Find chess PNGs (from https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent?).
+  - [x] Consider using fontawesome chess pieces instead? https://fontawesome.com/v5/icons/categories/classic/solid/chess
+  - [x] Display pieces on page.
+    - [x] Implement component(s) for pieces.
+  - [x] Enable clicking and dragging of pieces (anywhere for now? see https://dndkit.com/react).
+- [x] Create chessboard.
+  - [x] Initialize chessboard squares as droppable (snap to chess grid when pieces are clicked and dragged).
+    - [x] Add back all pieces.
+  - [x] Color chessboard as standard grid.
+  - [x] Initialize pieces on chessboard.
+- [x] Add basic move mechanics.
+  - [x] Generate multiple copies of the same type of piece.
+  - [x] Enforce piece move rules.
+  - [x] Implement captures.
+    - [x] Prevent pieces from coming "unstacked."
+- [x] Debug first bugs.
+  - [x] Fix the weird flyaway animation(??).
+  - [x] Fix the random piece changing/regeneration.

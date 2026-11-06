@@ -33,7 +33,7 @@ export default function Board() {
       }}
     >
 
-      <div id="board">
+      <div id="board" className="rounded-lg overflow-hidden flex flex-col items-center h-fit shadow">
         {RANKS.map((rank) => (
           <Row key={`rank-${rank}`} rank={rank} boardLayout={boardLayout} />
         ))}
