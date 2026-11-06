@@ -1,5 +1,4 @@
 import Square from './Square.tsx'
-import Piece from './Piece.tsx'
 import type { PieceData } from './Piece.tsx'
 
 import { FILES } from '../constants.tsx'
@@ -14,22 +13,14 @@ export default function Row({ rank, boardLayout }: RowProps) {
     <div className="inline-flex">
       {FILES.map((file, index) => {
         const squareId = `${file}-${rank}`;
+        const isDark = index % 2 !== rank % 2;
         const piece = boardLayout[squareId];
-        const squareContents = piece ? (
-          <Piece
-            key={piece.id}
-            type={piece.type}
-            isWhite={piece.isWhite}
-            dragId={piece.id}
-          />
-        ) : null;
-
         return (
           <Square
             key={squareId}
             id={squareId}
-            isDark={index % 2 !== rank % 2}>
-            {squareContents}
+            isDark={isDark}
+            piece={piece}>
           </Square>
         );
       })}
