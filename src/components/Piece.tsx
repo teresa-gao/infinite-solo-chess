@@ -7,55 +7,51 @@ export interface PieceData {
     isWhite: boolean;
 }
 
-export function getPieces(numPieces: number): PieceData[] {
-    const pieces = [];
+// TODO: implement actual logic!
+export function getStartingLayout(numPieces: number) {
+    const boardLayout: Record<string, PieceData> = {};
+
     let n = 0;
     for (const type of SINGLETON_TYPES_TO_DELTAS.keys()) {
         if (Math.random() > 0.5) {
-            pieces.push({ id: `${type}${n}`, type: type, isWhite: true});
+            const fileIndex = Math.floor(Math.random() * FILES.length);
+            const rankIndex = Math.floor(Math.random() * RANKS.length);
+            boardLayout[`${FILES[fileIndex]}-${RANKS[rankIndex]}`] = { id: `${type}${n}`, type: type, isWhite: true};
             n++;
         }
     }
+
     const pluralTypes = [...PLURAL_TYPES_TO_DELTAS.keys()];
     for (; n < numPieces; n++) {
         const typeIndex = Math.floor(Math.random() * pluralTypes.length);
         const type = pluralTypes[typeIndex];
-        pieces.push({ id: `${type}${n}`, type: type, isWhite: true});
+        const fileIndex = Math.floor(Math.random() * FILES.length);
+        const rankIndex = Math.floor(Math.random() * RANKS.length);
+        boardLayout[`${FILES[fileIndex]}-${RANKS[rankIndex]}`] = { id: `${type}${n}`, type: type, isWhite: true};
     }
 
-    return pieces;
+    return boardLayout;
 }
 
-export function getStartPositions(pieces: PieceData[]) {
-  const startPositions = [];
-  for (let i = 0; i < pieces.length; i++) {
-    const fileIndex = Math.floor(Math.random() * FILES.length);
-    const rankIndex = Math.floor(Math.random() * RANKS.length);
-    startPositions.push(`${FILES[fileIndex]}-${RANKS[rankIndex]}`);
-  }
-  return startPositions;
-}
-
-export function getValidNewSquares(type: string, start: string) {
-    const validNewSquares = new Set();
-
-    const splitCoord = start.split('-');
+// TODO: implement more efficient and correct logic!
+export function evaluateNewSquare(pieceType: string, startSquare: string, endSquare: string) {
+    const splitCoord = startSquare.split('-');
     const startFileIndex = FILES.indexOf(splitCoord[0]);
     const startRankIndex = RANKS.indexOf(parseInt(splitCoord[1]));
 
-    const deltasDictionary = SINGLETON_TYPES_TO_DELTAS.has(type) ? SINGLETON_TYPES_TO_DELTAS : PLURAL_TYPES_TO_DELTAS
-    const deltas = deltasDictionary.get(type);
+    const deltasDictionary = SINGLETON_TYPES_TO_DELTAS.has(pieceType) ? SINGLETON_TYPES_TO_DELTAS : PLURAL_TYPES_TO_DELTAS
+    const deltas = deltasDictionary.get(pieceType);
     if (deltas) {
         for (const delta of deltas) {
             const newFileIndex = startFileIndex + delta[0];
             const newRankIndex = startRankIndex + delta[1];
             if ((newFileIndex >= 0) && (newFileIndex < FILES.length) && (newRankIndex >= 0) && (newRankIndex < RANKS.length)) {
-                validNewSquares.add(`${FILES[newFileIndex]}-${RANKS[newRankIndex]}`);
+                if (`${FILES[newFileIndex]}-${RANKS[newRankIndex]}` === endSquare) return true;
             }
         }
     }
 
-    return validNewSquares;
+    return false;
 }
 
 interface PieceProps {

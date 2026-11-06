@@ -2,13 +2,12 @@ import { useState } from 'react'
 import { DragDropProvider } from '@dnd-kit/react'
 
 import Row from './Row.tsx'
-import { getPieces, getStartPositions, getValidNewSquares } from './Piece.tsx'
+import { getStartingLayout, evaluateNewSquare } from './Piece.tsx'
 import type { PieceData } from './Piece.tsx'
 import { RANKS } from '../constants.tsx'
 
 export default function Board() {
-  const [pieces] = useState<PieceData[]>(getPieces(22));
-  const [squares, setSquares] = useState<string[]>(getStartPositions(pieces));
+  const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(getStartingLayout(22));  // TODO: un-hardcode
 
   return (
     <DragDropProvider
@@ -16,26 +15,27 @@ export default function Board() {
         if (event.canceled) return;
 
         const newSquare = String(event.operation.target?.id);
+        if (newSquare == String(undefined)) return;
+
         const pieceId = event.operation.source?.id;
-        if (newSquare === String(null) || !pieceId) return;
+        if (!pieceId) return;
 
-        const pieceIndex = pieces.findIndex((p) => p.id === pieceId);
-        const validNewSquares = getValidNewSquares(pieces[pieceIndex].type, squares[pieceIndex] as string);
-        if (!validNewSquares.has(newSquare)) return;
+        const oldSquare = Object.keys(boardLayout).find(key => boardLayout[key].id === pieceId);
+        if (!oldSquare) return;
 
-        const newSquares = [...squares];
-        const squareIndex = squares.indexOf(newSquare);
-        if (squareIndex >= 0) {
-          newSquares[squareIndex] = '';
-        }
-        newSquares[pieceIndex] = newSquare;
-        setSquares(newSquares);
+        const piece = boardLayout[oldSquare];
+        const isValidNewSquare = evaluateNewSquare(piece.type, oldSquare, newSquare);
+        if (!isValidNewSquare) return;
+
+        const { [oldSquare]: _, ...newBoardLayout } = boardLayout;
+        newBoardLayout[newSquare] = piece;
+        setBoardLayout(newBoardLayout);
       }}
     >
 
       <div id="board">
         {RANKS.map((rank) => (
-          <Row key={`rank-${rank}`} rank={rank} squares={squares} pieces={pieces} />
+          <Row key={`rank-${rank}`} rank={rank} boardLayout={boardLayout} />
         ))}
       </div>
     </DragDropProvider>

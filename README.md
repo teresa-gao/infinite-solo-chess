@@ -30,12 +30,12 @@ especially since I've been meaning to get more practice with TypeScript and Reac
   - [x] Enforce piece move rules.
   - [x] Implement captures.
     - [x] Prevent pieces from coming "unstacked."
+- [x] Debug first bugs.
+  - [x] Fix the weird flyaway animation(??).
+  - [x] Fix the random piece changing/regeneration.
 
 ## todo
 
-- [ ] Debug.
-  - [x] Fix the weird flyaway animation(??).
-  - [ ] Fix the random piece changing/regeneration.
 - [ ] Add more complicated game mechanics.
   - [ ] Prevent non-knights from jumping over other pieces.
   - [ ] Generate valid puzzle starting positions.
