@@ -36,49 +36,83 @@ export function getStartingLayout(numPieces: number) {
             pieceTypes[i++] = pieceType;
         }
 
-        const startRankIndex = Math.floor(Math.random() * RANKS.length);
-        const startFileIndex = Math.floor(Math.random() * FILES.length);
+        const goalRankIndex = Math.floor(Math.random() * RANKS.length);
+        const goalFileIndex = Math.floor(Math.random() * FILES.length);
         const squaresToPieceTypes = new Map<string, string>();
         let boardLayoutIsValid = true;
 
-        for (let pieceTypeIndex = 0; pieceTypeIndex < pieceTypes.length - 1; pieceTypeIndex++) {
+        let pieceTypeIndex = 0;
+        while (pieceTypeIndex < pieceTypes.length - 1) {
             const pieceType = pieceTypes[pieceTypeIndex];
-            let foundSquareForPiece = false;
-
             const deltas = PIECE_TYPE_TO_DELTAS[pieceType];
-            if (deltas) {
-                const validPieceSquares: string[] = [];
-                for (const delta of getRandomizedCopy(deltas)) {
-                    if (!delta) continue;
-                    const [deltaFile, deltaRank, numRepeats] = delta;
+            if (!deltas) {
+                boardLayoutIsValid = false;
+                break;
+            }
 
-                    for (let factor = 1; factor <= numRepeats; factor++) {
-                        const newFileIndex = startFileIndex - deltaFile * factor;
-                        const newRankIndex = startRankIndex - deltaRank * factor;
-                        if ((newFileIndex < 0) || (newFileIndex >= FILES.length) || (newRankIndex < 0) || (newRankIndex >= RANKS.length)) break;
+            const validFirstMoveSquares: string[] = [];
+            const validSecondMoveSquares: string[][] = [];
+            for (const firstMoveDelta of getRandomizedCopy(deltas)) {
+                if (!firstMoveDelta) continue;
+                const [firstMoveDeltaFile, firstMoveDeltaRank, numRepeats] = firstMoveDelta;
 
-                        const newSquare = convertIndicesToSquare(newRankIndex, newFileIndex);
-                        if (squaresToPieceTypes.has(newSquare)) break;
-                        validPieceSquares.push(newSquare);
+                for (let factor = 1; factor <= numRepeats; factor++) {
+                    const firstMoveFileIndex = goalFileIndex - firstMoveDeltaFile * factor;
+                    const firstMoveRankIndex = goalRankIndex - firstMoveDeltaRank * factor;
+
+                    const firstMoveFileOutOfBounds = (firstMoveFileIndex < 0) || (firstMoveFileIndex >= FILES.length);
+                    const firstMoveRankOutOfBounds = (firstMoveRankIndex < 0) || (firstMoveRankIndex >= RANKS.length);
+                    if (firstMoveFileOutOfBounds || firstMoveRankOutOfBounds) break;
+
+                    const firstMoveSquare = convertIndicesToSquare(firstMoveRankIndex, firstMoveFileIndex);
+                    if (squaresToPieceTypes.has(firstMoveSquare)) break;
+
+                    validFirstMoveSquares.push(firstMoveSquare);
+                    validSecondMoveSquares.push([]);
+                    for (const secondMoveDelta of getRandomizedCopy(deltas)) {
+                        if (!secondMoveDelta) continue;
+                        const [secondMoveDeltaFile, secondMoveDeltaRank, numRepeats] = secondMoveDelta;
+
+                        for (let factor = 1; factor <= numRepeats; factor++) {
+                            const secondMoveFileIndex = goalFileIndex - secondMoveDeltaFile * factor;
+                            const secondMoveRankIndex = goalRankIndex - secondMoveDeltaRank * factor;
+
+                            const secondMoveFileOutOfBounds = (secondMoveFileIndex < 0) || (secondMoveFileIndex >= FILES.length);
+                            const secondMoveRankOutOfBounds = (secondMoveRankIndex < 0) || (secondMoveRankIndex >= RANKS.length);
+                            if (secondMoveFileOutOfBounds || secondMoveRankOutOfBounds) break;
+
+                            const secondMoveSquare = convertIndicesToSquare(secondMoveRankIndex, secondMoveFileIndex);
+                            if (squaresToPieceTypes.has(secondMoveSquare)) break;
+
+                            validSecondMoveSquares[validFirstMoveSquares.length - 1].push(secondMoveSquare);
+                        }
                     }
-                }
-
-                if (validPieceSquares.length > 0) {
-                    const newSquare = validPieceSquares[Math.floor(Math.random() * validPieceSquares.length)];
-                    squaresToPieceTypes.set(newSquare, pieceType);
-                    foundSquareForPiece = true;
                 }
             }
 
-            if (!foundSquareForPiece) {
+            if (validFirstMoveSquares.length == 0) {
                 boardLayoutIsValid = false;
                 break;
+            }
+
+            const moveIndex = Math.floor(Math.random() * validFirstMoveSquares.length);
+            const firstMoveSquare = validFirstMoveSquares[moveIndex];
+
+            const secondMoveSquares = validSecondMoveSquares[moveIndex];
+            if (secondMoveSquares.length == 0) {
+                squaresToPieceTypes.set(firstMoveSquare, pieceType);
+                pieceTypeIndex += 1;
+            } else {
+                const secondMoveSquare = secondMoveSquares[Math.floor(Math.random() * secondMoveSquares.length)];
+                squaresToPieceTypes.set(secondMoveSquare, pieceType);
+                squaresToPieceTypes.set(firstMoveSquare, pieceTypes[pieceTypeIndex + 1]);
+                pieceTypeIndex += 2;
             }
         }
 
         if (boardLayoutIsValid) {
             const newSquaresToPieceTypes = new Map<string, string>(squaresToPieceTypes);
-            newSquaresToPieceTypes.set(convertIndicesToSquare(startRankIndex, startFileIndex), pieceTypes.at(-1)!);
+            newSquaresToPieceTypes.set(convertIndicesToSquare(goalRankIndex, goalFileIndex), pieceTypes.at(-1)!);
 
             let pieceNum = 0;
             const boardLayout: Record<string, PieceData> = {};
@@ -94,15 +128,15 @@ export function evaluateEndSquare(piece: PieceData, startSquare: string, endSqua
     if ((!(endSquare in boardLayout)) || (boardLayout[endSquare].type === 'k')) return false;
 
     const pieceType = piece.type;
-    const [startRankIndex, startFileIndex] = convertSquareToIndices(startSquare);
+    const [goalRankIndex, goalFileIndex] = convertSquareToIndices(startSquare);
     const [endRankIndex, endFileIndex] = convertSquareToIndices(endSquare);
 
     const deltas = PIECE_TYPE_TO_DELTAS[pieceType];
     if (deltas) {
         for (const [deltaFile, deltaRank, numRepeats] of deltas) {
             for (let factor = 1; factor <= numRepeats; factor++) {
-                const newFileIndex = startFileIndex + deltaFile * factor;
-                const newRankIndex = startRankIndex + deltaRank * factor;
+                const newFileIndex = goalFileIndex + deltaFile * factor;
+                const newRankIndex = goalRankIndex + deltaRank * factor;
                 if ((newFileIndex < 0) || (newFileIndex >= FILES.length) || (newRankIndex < 0) || (newRankIndex >= RANKS.length)) break;
                 if ((newRankIndex === endRankIndex) && (newFileIndex === endFileIndex)) return true;
                 if (convertIndicesToSquare(newRankIndex, newFileIndex) in boardLayout) break;

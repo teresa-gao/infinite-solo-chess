@@ -12,6 +12,7 @@ especially since I've been meaning to get more practice with React, TypeScript, 
   - [x] Prevent non-knights from jumping over other pieces.
     - [x] Only allow capturing, not moving to blank squares.
   - [x] Generate valid puzzle starting positions.
+    - [x] Require pieces to move twice when possible.
   - [ ] Enforce two-move limit with piece color-change.
     - [ ] Add number indicator for remaining moves?
 - [ ] Add intro/outro elements.
@@ -22,12 +23,15 @@ especially since I've been meaning to get more practice with React, TypeScript, 
   - [ ] Add reset and/or resignation button(s)?
 - [ ] Improve UI/UX.
   - [ ] Add mobile friendliness/responsiveness.
+    - [ ] Enable dragging and dropping on mobile.
+    - [ ] Resize board and buttons to fit on various screen sizes.
   - [ ] Show valid moves on board?
   - [ ] Display remaining move count for pieces if greater than two?
   - [x] Add automatic dark/light mode.
   - [ ] Customize which and how many starting pieces to use.
   - [ ] Customize how many moves are possible per piece?
   - [ ] Customize goal vs. infinite mode?
+  - [ ] Add sound effects and/or other puzzle-success feedback?
 - [ ] Finalize.
   - [ ] Clean up codebase (e.g., documentation, explicit semicolons, standardized tab size).
   - [ ] Add licensing information somewhere (separate info tab with MIT license as well? alt text over each piece?):
