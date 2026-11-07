@@ -27,24 +27,12 @@ export function getStartingLayout(numPieces: number) {
 
         const startRankIndex = Math.floor(Math.random() * RANKS.length);
         const startFileIndex = Math.floor(Math.random() * FILES.length);
-        const stack: [number, Map<string, string>][] = [[0, new Map<string, string>()]];
-        while (stack.length > 0) {
-            const stackItem = stack.pop();
-            if (!stackItem) continue;
-            const [pieceTypeIndex, squaresToPieceTypes] = stackItem;
+        const squaresToPieceTypes = new Map<string, string>();
+        let boardLayoutIsValid = true;
+
+        for (let pieceTypeIndex = 0; pieceTypeIndex < pieceTypes.length - 1; pieceTypeIndex++) {
             const pieceType = pieceTypes[pieceTypeIndex];
-
-            if (pieceTypeIndex === pieceTypes.length - 1) {
-                const newSquaresToPieceTypes = new Map<string, string>(squaresToPieceTypes);
-                newSquaresToPieceTypes.set(convertIndicesToSquare(startRankIndex, startFileIndex), pieceType);
-
-                let pieceNum = 0;
-                const boardLayout: Record<string, PieceData> = {};
-                for (let [square, type] of newSquaresToPieceTypes) {
-                    boardLayout[square] = { id: `${type}${pieceNum++}`, type: type, isWhite: true };
-                }
-                return boardLayout;
-            }
+            let placedPiece = false;
 
             const deltas = PIECE_TYPE_TO_DELTAS[pieceType];
             if (deltas) {
@@ -57,12 +45,31 @@ export function getStartingLayout(numPieces: number) {
                         const newSquare = convertIndicesToSquare(newRankIndex, newFileIndex);
                         if (squaresToPieceTypes.has(newSquare)) break;
 
-                        const newSquaresToPieceTypes = new Map<string, string>(squaresToPieceTypes);
-                        newSquaresToPieceTypes.set(newSquare, pieceType);
-                        stack.push([pieceTypeIndex + 1, newSquaresToPieceTypes])
+                        squaresToPieceTypes.set(newSquare, pieceType);
+                        placedPiece = true;
+                        break;
                     }
+
+                    if (placedPiece) break;
                 }
             }
+
+            if (!placedPiece) {
+                boardLayoutIsValid = false;
+                break;
+            }
+        }
+
+        if (boardLayoutIsValid) {
+            const newSquaresToPieceTypes = new Map<string, string>(squaresToPieceTypes);
+            newSquaresToPieceTypes.set(convertIndicesToSquare(startRankIndex, startFileIndex), pieceTypes.at(-1)!);
+
+            let pieceNum = 0;
+            const boardLayout: Record<string, PieceData> = {};
+            for (let [square, type] of newSquaresToPieceTypes) {
+                boardLayout[square] = { id: `${type}${pieceNum++}`, type: type, isWhite: true };
+            }
+            return boardLayout;
         }
     }
 }
