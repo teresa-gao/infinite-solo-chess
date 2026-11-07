@@ -4,6 +4,7 @@ export interface PieceData {
     id: string;
     type: string;
     isWhite: boolean;
+    numMovesLeft: number;
 }
 
 interface PieceProps {

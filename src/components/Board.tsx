@@ -30,7 +30,9 @@ export default function Board() {
         if (!isValidEndSquare) return;
 
         const { [startSquare]: _, ...newBoardLayout } = boardLayout;
-        newBoardLayout[endSquare] = piece;
+        const numMovesLeft = piece.numMovesLeft - 1;
+        const isWhite = numMovesLeft > 0;
+        newBoardLayout[endSquare] = {...piece, numMovesLeft: numMovesLeft, isWhite: isWhite};
         setBoardLayout(newBoardLayout);
       }}
     >
