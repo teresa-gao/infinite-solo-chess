@@ -8,7 +8,7 @@ import Row from './Row.tsx'
 import type { PieceData } from './Piece.tsx'
 
 export default function Board() {
-  const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(getStartingLayout(22));  // TODO: un-hardcode
+  const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => getStartingLayout(10));  // TODO: un-hardcode piece number
 
   return (
     <DragDropProvider

@@ -11,7 +11,7 @@ especially since I've been meaning to get more practice with React, TypeScript, 
 - [ ] Add more complicated game mechanics.
   - [x] Prevent non-knights from jumping over other pieces.
     - [x] Only allow capturing, not moving to blank squares.
-  - [ ] Generate valid puzzle starting positions.
+  - [x] Generate valid puzzle starting positions.
   - [ ] Enforce two-move limit with piece color-change.
     - [ ] Add number indicator for remaining moves?
 - [ ] Add intro/outro elements.
@@ -19,6 +19,7 @@ especially since I've been meaning to get more practice with React, TypeScript, 
   - [ ] Add basic endscreen (as simple as https://www.chess.com/solo-chess's "VICTORY"?)
     - [ ] Add confetti animation upon end/win like Chess.com?
   - [ ] Add instructions (with customization built in?).
+  - [ ] Add reset and/or resignation button(s)?
 - [ ] Improve UI/UX.
   - [ ] Add mobile friendliness/responsiveness.
   - [ ] Show valid moves on board?
