@@ -3,22 +3,17 @@ import { useDraggable } from '@dnd-kit/react'
 export interface PieceData {
     id: string;
     type: string;
-    isWhite: boolean;
-    numMovesLeft: number;
+    numMoves: number;
 }
 
-interface PieceProps {
-    type: string;
-    isWhite: boolean;
-    dragId: string;
-}
-
-export default function Piece({ type, isWhite, dragId }: PieceProps) {
-    const color: string = isWhite ? "l" : "d";
+export default function Piece({id, type, numMoves}: PieceData) {
+    const canMove = numMoves < 2;
+    const color: string = canMove ? "l" : "d";
     const imgUrl: string = new URL(`../assets/Chess_${type}${color}t60.png`, import.meta.url).href;
 
     const { ref } = useDraggable({
-        id: dragId,
+        id: id,
+        disabled: !canMove,
     });
 
     return (

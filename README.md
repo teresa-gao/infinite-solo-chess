@@ -8,13 +8,6 @@ especially since I've been meaning to get more practice with React, TypeScript, 
 
 ## todo
 
-- [ ] Add more complicated game mechanics.
-  - [x] Prevent non-knights from jumping over other pieces.
-    - [x] Only allow capturing, not moving to blank squares.
-  - [x] Generate valid puzzle starting positions.
-    - [x] Require pieces to move twice when possible.
-  - [ ] Enforce two-move limit with piece color-change.
-    - [ ] Add number indicator for remaining moves?
 - [ ] Add intro/outro elements.
   - [ ] Count number of solved puzzles (and/or display boxes with green check marks? for bonus dopamine).
   - [ ] Add basic endscreen (as simple as https://www.chess.com/solo-chess's "VICTORY"?)
@@ -30,6 +23,7 @@ especially since I've been meaning to get more practice with React, TypeScript, 
   - [x] Add automatic dark/light mode.
   - [ ] Customize which and how many starting pieces to use.
   - [ ] Customize how many moves are possible per piece?
+    - [ ] Add number indicator for remaining moves?
   - [ ] Customize goal vs. infinite mode?
   - [ ] Add sound effects and/or other puzzle-success feedback?
 - [ ] Finalize.
@@ -77,3 +71,9 @@ especially since I've been meaning to get more practice with React, TypeScript, 
 - [x] Debug first bugs.
   - [x] Fix the weird flyaway animation(??).
   - [x] Fix the random piece changing/regeneration.
+- [x] Add more complicated game mechanics.
+  - [x] Prevent non-knights from jumping over other pieces.
+    - [x] Only allow capturing, not moving to blank squares.
+  - [x] Generate valid puzzle starting positions.
+    - [x] Require pieces to move twice when possible.
+  - [x] Enforce two-move limit with piece color-change.

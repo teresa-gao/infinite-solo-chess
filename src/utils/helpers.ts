@@ -117,7 +117,7 @@ export function getStartingLayout(numPieces: number) {
             let pieceNum = 0;
             const boardLayout: Record<string, PieceData> = {};
             for (let [square, type] of newSquaresToPieceTypes) {
-                boardLayout[square] = { id: `${type}${pieceNum++}`, type: type, isWhite: true, numMovesLeft: 2 };
+                boardLayout[square] = { id: `${type}${pieceNum++}`, type: type, numMoves: 0 };
             }
             return boardLayout;
         }
