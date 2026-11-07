@@ -2,6 +2,17 @@ import { RANKS, FILES, PIECE_TYPE_TO_DELTAS } from './constants'
 
 import type { PieceData } from '../components/Piece.tsx'
 
+function getRandomizedCopy(array: number[][]) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = [...shuffled[i]]
+        shuffled[i] = [...shuffled[j]]
+        shuffled[j] = temp
+    }
+    return shuffled;
+}
+
 export function convertIndicesToSquare(rankIndex: number, fileIndex: number) {
   return `${FILES[fileIndex]}-${RANKS[rankIndex]}`;
 }
@@ -32,11 +43,15 @@ export function getStartingLayout(numPieces: number) {
 
         for (let pieceTypeIndex = 0; pieceTypeIndex < pieceTypes.length - 1; pieceTypeIndex++) {
             const pieceType = pieceTypes[pieceTypeIndex];
-            let placedPiece = false;
+            let foundSquareForPiece = false;
 
             const deltas = PIECE_TYPE_TO_DELTAS[pieceType];
             if (deltas) {
-                for (const [deltaFile, deltaRank, numRepeats] of deltas) {
+                const validPieceSquares: string[] = [];
+                for (const delta of getRandomizedCopy(deltas)) {
+                    if (!delta) continue;
+                    const [deltaFile, deltaRank, numRepeats] = delta;
+
                     for (let factor = 1; factor <= numRepeats; factor++) {
                         const newFileIndex = startFileIndex - deltaFile * factor;
                         const newRankIndex = startRankIndex - deltaRank * factor;
@@ -44,17 +59,18 @@ export function getStartingLayout(numPieces: number) {
 
                         const newSquare = convertIndicesToSquare(newRankIndex, newFileIndex);
                         if (squaresToPieceTypes.has(newSquare)) break;
-
-                        squaresToPieceTypes.set(newSquare, pieceType);
-                        placedPiece = true;
-                        break;
+                        validPieceSquares.push(newSquare);
                     }
+                }
 
-                    if (placedPiece) break;
+                if (validPieceSquares.length > 0) {
+                    const newSquare = validPieceSquares[Math.floor(Math.random() * validPieceSquares.length)];
+                    squaresToPieceTypes.set(newSquare, pieceType);
+                    foundSquareForPiece = true;
                 }
             }
 
-            if (!placedPiece) {
+            if (!foundSquareForPiece) {
                 boardLayoutIsValid = false;
                 break;
             }
