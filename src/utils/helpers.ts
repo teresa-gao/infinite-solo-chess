@@ -22,19 +22,27 @@ export function convertSquareToIndices(squareId: string) {
     return [RANKS.indexOf(rankString), FILES.indexOf(fileString)];
 }
 
+function getPieceTypes(numPieces: number) {
+    const pieceTypes: string[] = [];
+    const nonKingTypes = Object.keys(PIECE_TYPE_TO_DELTAS).filter(type => type !== 'k');
+
+    if (Math.random() >= 0.5) {
+        pieceTypes.push('k');
+        numPieces--;
+    }
+
+    while (numPieces > 0) {
+        const pieceType = nonKingTypes[Math.floor(Math.random() * nonKingTypes.length)];
+        pieceTypes.push(pieceType);
+        numPieces--;
+    }
+
+    return pieceTypes;
+}
+
 export function getStartingLayout(numPieces: number) {
     while (true) {
-        const pieceTypes: string[] = new Array(numPieces).fill('');
-        const nonKingTypes = Object.keys(PIECE_TYPE_TO_DELTAS).filter(type => type !== 'k');
-        const containsKing = Math.random() >= 0.5;
-        let i = 0;
-        if (containsKing) {
-            pieceTypes[i++] = 'k';
-        }
-        while (i < numPieces) {
-            const pieceType = nonKingTypes[Math.floor(Math.random() * nonKingTypes.length)];
-            pieceTypes[i++] = pieceType;
-        }
+        const pieceTypes = getPieceTypes(numPieces);
 
         const goalRankIndex = Math.floor(Math.random() * RANKS.length);
         const goalFileIndex = Math.floor(Math.random() * FILES.length);
@@ -56,9 +64,9 @@ export function getStartingLayout(numPieces: number) {
                 if (!firstMoveDelta) continue;
                 const [firstMoveDeltaFile, firstMoveDeltaRank, numRepeats] = firstMoveDelta;
 
-                for (let factor = 1; factor <= numRepeats; factor++) {
-                    const firstMoveFileIndex = goalFileIndex - firstMoveDeltaFile * factor;
-                    const firstMoveRankIndex = goalRankIndex - firstMoveDeltaRank * factor;
+                for (let firstMoveFactor = 1; firstMoveFactor <= numRepeats; firstMoveFactor++) {
+                    const firstMoveFileIndex = goalFileIndex - firstMoveDeltaFile * firstMoveFactor;
+                    const firstMoveRankIndex = goalRankIndex - firstMoveDeltaRank * firstMoveFactor;
 
                     const firstMoveFileOutOfBounds = (firstMoveFileIndex < 0) || (firstMoveFileIndex >= FILES.length);
                     const firstMoveRankOutOfBounds = (firstMoveRankIndex < 0) || (firstMoveRankIndex >= RANKS.length);
@@ -69,13 +77,14 @@ export function getStartingLayout(numPieces: number) {
 
                     validFirstMoveSquares.push(firstMoveSquare);
                     validSecondMoveSquares.push([]);
+                    if (pieceTypeIndex > pieceTypes.length - 3) continue;
                     for (const secondMoveDelta of getRandomizedCopy(deltas)) {
                         if (!secondMoveDelta) continue;
                         const [secondMoveDeltaFile, secondMoveDeltaRank, numRepeats] = secondMoveDelta;
 
-                        for (let factor = 1; factor <= numRepeats; factor++) {
-                            const secondMoveFileIndex = goalFileIndex - secondMoveDeltaFile * factor;
-                            const secondMoveRankIndex = goalRankIndex - secondMoveDeltaRank * factor;
+                        for (let secondMoveFactor = 1; secondMoveFactor <= numRepeats; secondMoveFactor++) {
+                            const secondMoveFileIndex = firstMoveFileIndex - secondMoveDeltaFile * secondMoveFactor;
+                            const secondMoveRankIndex = firstMoveRankIndex - secondMoveDeltaRank * secondMoveFactor;
 
                             const secondMoveFileOutOfBounds = (secondMoveFileIndex < 0) || (secondMoveFileIndex >= FILES.length);
                             const secondMoveRankOutOfBounds = (secondMoveRankIndex < 0) || (secondMoveRankIndex >= RANKS.length);
@@ -84,13 +93,13 @@ export function getStartingLayout(numPieces: number) {
                             const secondMoveSquare = convertIndicesToSquare(secondMoveRankIndex, secondMoveFileIndex);
                             if (squaresToPieceTypes.has(secondMoveSquare)) break;
 
-                            validSecondMoveSquares[validFirstMoveSquares.length - 1].push(secondMoveSquare);
+                            validSecondMoveSquares[validSecondMoveSquares.length - 1].push(secondMoveSquare);
                         }
                     }
                 }
             }
 
-            if (validFirstMoveSquares.length == 0) {
+            if (validFirstMoveSquares.length === 0) {
                 boardLayoutIsValid = false;
                 break;
             }
@@ -99,7 +108,7 @@ export function getStartingLayout(numPieces: number) {
             const firstMoveSquare = validFirstMoveSquares[moveIndex];
 
             const secondMoveSquares = validSecondMoveSquares[moveIndex];
-            if (secondMoveSquares.length == 0) {
+            if (secondMoveSquares.length === 0) {
                 squaresToPieceTypes.set(firstMoveSquare, pieceType);
                 pieceTypeIndex += 1;
             } else {
@@ -117,7 +126,7 @@ export function getStartingLayout(numPieces: number) {
             let pieceNum = 0;
             const boardLayout: Record<string, PieceData> = {};
             for (let [square, type] of newSquaresToPieceTypes) {
-                boardLayout[square] = { id: `${type}${pieceNum++}`, type: type, numMoves: 0 };
+                boardLayout[square] = { id: `${type}${pieceNum++}-level${numPieces}`, type: type, numMoves: 0 };
             }
             return boardLayout;
         }

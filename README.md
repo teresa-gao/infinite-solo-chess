@@ -9,7 +9,8 @@ especially since I've been meaning to get more practice with React, TypeScript, 
 ## todo
 
 - [ ] Add intro/outro elements.
-  - [ ] Count number of solved puzzles (and/or display boxes with green check marks? for bonus dopamine).
+  - [x] Count number of solved puzzles.
+    - [ ] Display boxes with green check marks? (for bonus dopamine)
   - [ ] Add basic endscreen (as simple as https://www.chess.com/solo-chess's "VICTORY"?)
     - [ ] Add confetti animation upon end/win like Chess.com?
   - [ ] Add instructions (with customization built in?).
