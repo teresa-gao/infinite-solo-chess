@@ -9,9 +9,11 @@ especially since I've been meaning to get more practice with React, TypeScript, 
 ## todo
 
 - [ ] Add more complicated game mechanics.
-  - [ ] Prevent non-knights from jumping over other pieces.
+  - [x] Prevent non-knights from jumping over other pieces.
+    - [x] Only allow capturing, not moving to blank squares.
   - [ ] Generate valid puzzle starting positions.
-  - [ ] Enforce two-move limit with piece color change.
+  - [ ] Enforce two-move limit with piece color-change.
+    - [ ] Add number indicator for remaining moves?
 - [ ] Add intro/outro elements.
   - [ ] Count number of solved puzzles (and/or display boxes with green check marks? for bonus dopamine).
   - [ ] Add basic endscreen (as simple as https://www.chess.com/solo-chess's "VICTORY"?)

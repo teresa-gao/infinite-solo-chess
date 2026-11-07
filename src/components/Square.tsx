@@ -6,12 +6,12 @@ import type { PieceData } from './Piece.tsx'
 interface SquareProps {
   id: string;
   isDark: boolean;
-  piece: PieceData | undefined;
+  boardLayout: Record<string, PieceData>;
 }
 
-export default function Square({ id, isDark, piece }: SquareProps) {
+export default function Square({ id, isDark, boardLayout }: SquareProps) {
   const {ref} = useDroppable({id});
-  const colorClass = isDark ? " bg-[burlywood] dark:bg-[darkgoldenrod] " : "bg-[antiquewhite] dark:bg-[burlywood]";
+  const piece = boardLayout[id];
   const contents = piece ? (
     <Piece
       key={piece.id}
@@ -20,6 +20,7 @@ export default function Square({ id, isDark, piece }: SquareProps) {
       dragId={piece.id}
     />
   ) : null;
+  const colorClass = isDark ? " bg-[burlywood] dark:bg-[darkgoldenrod] " : "bg-[antiquewhite] dark:bg-[burlywood]";
 
   return (
     <div ref={ref} className={`${colorClass} flex flex-col items-center justify-center text-center aspect-square box-border text-[saddlebrown] h-[60px] w-[60px]`}>
