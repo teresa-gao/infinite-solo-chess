@@ -4,7 +4,7 @@ import type { DragEndEvent } from '@dnd-kit/react'
 import { getBoardLayout, evaluateEndSquare } from './utils/helpers'
 import Board from './components/Board.tsx'
 import type { PieceData } from './components/Piece.tsx'
-import HelpDialog from './components/HelpDialog.tsx'
+import Dialog from './components/Dialog.tsx'
 
 import './App.css'
 
@@ -13,6 +13,7 @@ export default function App() {
   const [highScore, setHighScore] = useState<number>(Number(localStorage.getItem('highScore')) || level);
   const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => getBoardLayout(level));
   const [isHelpDialogOpen, setHelpDialogOpen] = useState<boolean>(false);
+  const [isAboutDialogOpen, setAboutDialogOpen] = useState<boolean>(false);
 
   const resetGame = () => {
     const newLevel = 1;
@@ -55,11 +56,11 @@ export default function App() {
 
   return (
     <div className="flex flex-col items-center gap-y-6">
-      <a href="https://github.com/teresa-gao/infinite-solo-chess" id="header" className="font-mono text-zinc-950 dark:text-neutral-200 text-center w-fit rounded-lg text-2xl hover:text-white dark:hover:text-black"><h1>Infinite Solo Chess</h1></a>
+      <h1 id="header" className="font-mono text-zinc-950 dark:text-neutral-200 text-center text-2xl">Infinite Solo Chess</h1>
 
       <div id="gameContainer" className="flex">
         <div id="leftIconContainer" className="flex flex-col gap-y-4 h-full justify-between pt-2 pb-2 mr-3">
-          <button onClick={resetGame}><i className="fa fa-refresh text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
+          <button id="resetButton" title="Reset" onClick={resetGame}><i className="fa fa-refresh text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
         </div>
 
         <div id="boardContainer" className="flex flex-col items-center gap-y-6">
@@ -67,9 +68,25 @@ export default function App() {
         </div>
 
         <div id="rightIconContainer" className="flex flex-col gap-y-4 h-full justify-between pt-2 pb-2 ml-2">
-          <button onClick={() => setHelpDialogOpen(true)}><i id="helpButton" className="fa fa-question text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
-          <HelpDialog isOpen={isHelpDialogOpen} onClose={() => {setHelpDialogOpen(false)}} />
-          <i id="infoButton" className="fa fa-info text-zinc-950 dark:text-neutral-200" aria-hidden="true"></i>
+          <button id="helpButton" onClick={() => setHelpDialogOpen(true)}><i className="fa fa-question text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
+          <Dialog title="Help" headerText="How to Play" isOpen={isHelpDialogOpen} onClose={() => {setHelpDialogOpen(false)}}>
+            <div className="space-y-1">
+              <p>Goal: Capture the pieces so that only one remains.</p>
+              <ul className="list-decimal list-disc space-y-1 ml-6">
+                <li>Each piece moves as in a standard chess game.</li>
+                <li>Each piece can capture up to two other pieces, but no piece can capture a king.</li>
+                <li>If you reset the game, you return to Level 1.</li>
+              </ul>
+            </div>
+          </Dialog>
+
+          <button id="infoButton" onClick={() => setAboutDialogOpen(true)}><i className="fa fa-info text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
+          <Dialog title="About" headerText="About This Game" isOpen={isAboutDialogOpen} onClose={() => {setAboutDialogOpen(false)}}>
+            <div className="space-y-3">
+              <p>Infinite Solo Chess was created by Teresa Gao, a software engineer and a fan of the original (non-infinite) version of the game on <a href="https://www.chess.com/solo-chess" className="underline hover:decoration-3">Chess.com</a>.</p>
+              <p>Please feel free to check out the code on <a href="https://github.com/teresa-gao/infinite-solo-chess" className="underline hover:decoration-3">GitHub</a> or say hi on <a href="https://www.linkedin.com/in/teresa-gao/" className="underline hover:decoration-3">LinkedIn</a>!</p>
+            </div>
+          </Dialog>
         </div>
       </div>
 

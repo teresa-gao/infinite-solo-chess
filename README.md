@@ -8,18 +8,13 @@ especially since I've been meaning to get more practice with React, TypeScript, 
 
 ## todo
 
-- [ ] Debug more bugs!
-  - [x] Fix the impossible puzzles.
-  - [ ] Fix the inconsistent starting pieces (still only two pieces on level 2? animation of the king between the first two levels?).
 - [ ] Add basic UI/UX elements.
-  - [ ] Count number of solved puzzles.
-    - [ ] Pause before moving to next puzzle.
-    - [ ] Display some kind of green check mark (for bonus dopamine).
   - [x] Save and show high score.
   - [x] Add reset, help (instructions), and info buttons.
     - [x] Implement reset.
-      - [ ] Add confirmation dialog?
-    - [ ] Add help and info dialogs (or just tooltips?).
+    - [x] Add help and info dialogs (or just tooltips?).
+  - [ ] Pause before moving to next puzzle.
+  - [ ] Display some kind of green check mark (for bonus dopamine).
 - [ ] Improve UI/UX.
   - [x] Add automatic dark/light mode.
   - [ ] Highlight square on hover.
@@ -86,3 +81,5 @@ especially since I've been meaning to get more practice with React, TypeScript, 
     - [x] Require pieces to move twice when possible.
   - [x] Enforce two-move limit with piece color change.
     - [x] Hide "ghost" when dragging black piece.
+- [x] Fix the impossible puzzles.
+
