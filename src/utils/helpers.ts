@@ -62,9 +62,9 @@ export function getStartingLayout(numPieces: number) {
             const validSecondMoveSquares: string[][] = [];
             for (const firstMoveDelta of getRandomizedCopy(deltas)) {
                 if (!firstMoveDelta) continue;
-                const [firstMoveDeltaFile, firstMoveDeltaRank, numRepeats] = firstMoveDelta;
+                const [firstMoveDeltaFile, firstMoveDeltaRank, firstMoveNumRepeats] = firstMoveDelta;
 
-                for (let firstMoveFactor = 1; firstMoveFactor <= numRepeats; firstMoveFactor++) {
+                for (let firstMoveFactor = 1; firstMoveFactor <= firstMoveNumRepeats; firstMoveFactor++) {
                     const firstMoveFileIndex = goalFileIndex - firstMoveDeltaFile * firstMoveFactor;
                     const firstMoveRankIndex = goalRankIndex - firstMoveDeltaRank * firstMoveFactor;
 
@@ -80,11 +80,13 @@ export function getStartingLayout(numPieces: number) {
                     if (pieceTypeIndex > pieceTypes.length - 3) continue;
                     for (const secondMoveDelta of getRandomizedCopy(deltas)) {
                         if (!secondMoveDelta) continue;
-                        const [secondMoveDeltaFile, secondMoveDeltaRank, numRepeats] = secondMoveDelta;
+                        const [secondMoveDeltaFile, secondMoveDeltaRank, secondMoveNumRepeats] = secondMoveDelta;
 
-                        for (let secondMoveFactor = 1; secondMoveFactor <= numRepeats; secondMoveFactor++) {
+                        for (let secondMoveFactor = 1; secondMoveFactor <= secondMoveNumRepeats; secondMoveFactor++) {
                             const secondMoveFileIndex = firstMoveFileIndex - secondMoveDeltaFile * secondMoveFactor;
                             const secondMoveRankIndex = firstMoveRankIndex - secondMoveDeltaRank * secondMoveFactor;
+
+                            if ((secondMoveFileIndex === goalFileIndex) && (secondMoveRankIndex === goalRankIndex)) continue;
 
                             const secondMoveFileOutOfBounds = (secondMoveFileIndex < 0) || (secondMoveFileIndex >= FILES.length);
                             const secondMoveRankOutOfBounds = (secondMoveRankIndex < 0) || (secondMoveRankIndex >= RANKS.length);
@@ -120,12 +122,10 @@ export function getStartingLayout(numPieces: number) {
         }
 
         if (boardLayoutIsValid) {
-            const newSquaresToPieceTypes = new Map<string, string>(squaresToPieceTypes);
-            newSquaresToPieceTypes.set(convertIndicesToSquare(goalRankIndex, goalFileIndex), pieceTypes.at(-1)!);
-
+            squaresToPieceTypes.set(convertIndicesToSquare(goalRankIndex, goalFileIndex), pieceTypes.at(-1)!);
             let pieceNum = 0;
             const boardLayout: Record<string, PieceData> = {};
-            for (let [square, type] of newSquaresToPieceTypes) {
+            for (let [square, type] of squaresToPieceTypes) {
                 boardLayout[square] = { id: `${type}${pieceNum++}-level${numPieces}`, type: type, numMoves: 0 };
             }
             return boardLayout;

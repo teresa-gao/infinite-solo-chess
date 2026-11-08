@@ -10,6 +10,7 @@ especially since I've been meaning to get more practice with React, TypeScript, 
 
 - [ ] Add intro/outro elements.
   - [x] Count number of solved puzzles.
+    - [ ] Pause before moving to next puzzle.
     - [ ] Display boxes with green check marks? (for bonus dopamine)
   - [ ] Add basic endscreen (as simple as https://www.chess.com/solo-chess's "VICTORY"?)
     - [ ] Add confetti animation upon end/win like Chess.com?
@@ -28,6 +29,7 @@ especially since I've been meaning to get more practice with React, TypeScript, 
   - [ ] Customize goal vs. infinite mode?
   - [ ] Add sound effects and/or other puzzle-success feedback?
 - [ ] Finalize.
+  - [ ] Refactor puzzle generation to be as minimal/efficient as possible.
   - [ ] Clean up codebase (e.g., documentation, explicit semicolons, standardized tab size).
   - [ ] Add licensing information somewhere (separate info tab with MIT license as well? alt text over each piece?):
   ```
@@ -77,4 +79,6 @@ especially since I've been meaning to get more practice with React, TypeScript, 
     - [x] Only allow capturing, not moving to blank squares.
   - [x] Generate valid puzzle starting positions.
     - [x] Require pieces to move twice when possible.
-  - [x] Enforce two-move limit with piece color-change.
+  - [x] Enforce two-move limit with piece color change.
+    - [x] Hide "ghost" when dragging black piece.
+- [x] Debug impossible puzzles.

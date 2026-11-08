@@ -17,6 +17,6 @@ export default function Piece({id, type, numMoves}: PieceData) {
     });
 
     return (
-        <img src={imgUrl} className="cursor-grab" ref={ref}/>
+        <img src={imgUrl} className="cursor-grab" draggable="false" ref={ref}/>
     )
 }
