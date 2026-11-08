@@ -17,6 +17,8 @@ especially since I've been meaning to get more practice with React, TypeScript, 
     - [ ] Display some kind of green check mark (for bonus dopamine).
   - [x] Save and show high score.
   - [x] Add reset, help (instructions), and info buttons.
+    - [x] Implement reset.
+      - [ ] Add confirmation dialog?
     - [ ] Add help and info dialogs (or just tooltips?).
 - [ ] Improve UI/UX.
   - [x] Add automatic dark/light mode.
