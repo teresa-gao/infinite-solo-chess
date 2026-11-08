@@ -8,28 +8,31 @@ especially since I've been meaning to get more practice with React, TypeScript, 
 
 ## todo
 
-- [ ] Add intro/outro elements.
-  - [x] Count number of solved puzzles.
+- [ ] Debug more bugs!
+  - [x] Fix the impossible puzzles.
+  - [ ] Fix the inconsistent starting pieces (still only two pieces on level 2? animation of the king between the first two levels?).
+- [ ] Add basic UI/UX elements.
+  - [ ] Count number of solved puzzles.
     - [ ] Pause before moving to next puzzle.
-    - [ ] Display boxes with green check marks? (for bonus dopamine)
-  - [ ] Add basic endscreen (as simple as https://www.chess.com/solo-chess's "VICTORY"?)
-    - [ ] Add confetti animation upon end/win like Chess.com?
-  - [ ] Add instructions (with customization built in?).
-  - [ ] Add reset and/or resignation button(s)?
+    - [ ] Display some kind of green check mark (for bonus dopamine).
+  - [x] Save and show high score.
+  - [x] Add reset, help (instructions), and info buttons.
+    - [ ] Add help and info dialogs (or just tooltips?).
 - [ ] Improve UI/UX.
+  - [x] Add automatic dark/light mode.
+  - [ ] Highlight square on hover.
   - [ ] Add mobile friendliness/responsiveness.
     - [ ] Enable dragging and dropping on mobile.
     - [ ] Resize board and buttons to fit on various screen sizes.
   - [ ] Show valid moves on board?
-  - [ ] Display remaining move count for pieces if greater than two?
-  - [x] Add automatic dark/light mode.
   - [ ] Customize which and how many starting pieces to use.
   - [ ] Customize how many moves are possible per piece?
-    - [ ] Add number indicator for remaining moves?
-  - [ ] Customize goal vs. infinite mode?
+    - [ ] Display remaining move count for pieces if greater than two?
+  - [ ] Customize goal vs. infinite mode? (and/or puzzles per level?)
   - [ ] Add sound effects and/or other puzzle-success feedback?
 - [ ] Finalize.
-  - [ ] Refactor puzzle generation to be as minimal/efficient as possible.
+  - [ ] Optimize puzzle generation to be as minimal/efficient as possible.
+    - [ ] Calculate next puzzle in background? (if it seems likely that someone could make it past level ~35?)
   - [ ] Clean up codebase (e.g., documentation, explicit semicolons, standardized tab size).
   - [ ] Add licensing information somewhere (separate info tab with MIT license as well? alt text over each piece?):
   ```
@@ -81,4 +84,3 @@ especially since I've been meaning to get more practice with React, TypeScript, 
     - [x] Require pieces to move twice when possible.
   - [x] Enforce two-move limit with piece color change.
     - [x] Hide "ghost" when dragging black piece.
-- [x] Debug impossible puzzles.

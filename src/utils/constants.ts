@@ -1,5 +1,5 @@
-export const RANKS: string[] = ['8', '7', '6', '5', '4', '3', '2', '1'];
-export const FILES: string[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+export const RANKS = ['8', '7', '6', '5', '4', '3', '2', '1'];
+export const FILES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 export const PIECE_TYPE_TO_DELTAS: Record<string, [number, number, number][]> = {
     'b': [[1,1,8], [1,-1,8], [-1,-1,8], [-1,1,8]],
     'n': [[1,2,1], [-1,2,1], [-1,-2,1], [1,-2,1], [2,1,1], [-2,1,1], [-2,-1,1], [2,-1,1]],
