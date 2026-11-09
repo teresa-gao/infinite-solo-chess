@@ -18,7 +18,8 @@ especially since I've been meaning to get more practice with React, TypeScript, 
   - [ ] Pause before moving to next puzzle.
 - [ ] Improve UI/UX.
   - [x] Add automatic dark/light mode.
-  - [ ] Highlight square on hover.
+  - [x] Highlight square on hover.
+  - [ ] Add sound effects and/or other puzzle-success feedback?
   - [ ] Add mobile friendliness/responsiveness.
     - [ ] Enable dragging and dropping on mobile.
     - [ ] Resize board and buttons to fit on various screen sizes.
@@ -27,7 +28,7 @@ especially since I've been meaning to get more practice with React, TypeScript, 
   - [ ] Customize how many moves are possible per piece?
     - [ ] Display remaining move count for pieces if greater than two?
   - [ ] Customize goal vs. infinite mode? (and/or puzzles per level?)
-  - [ ] Add sound effects and/or other puzzle-success feedback?
+  - [ ] Add game timer (saved with high score?).
 - [ ] Finalize.
   - [ ] Optimize puzzle generation to be as minimal/efficient as possible.
     - [ ] Calculate next puzzle in background? (if it seems likely that someone could make it past level ~35?)
