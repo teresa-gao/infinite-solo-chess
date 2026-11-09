@@ -16,6 +16,9 @@ especially since I've been meaning to get more practice with React, TypeScript, 
     - [x] Add sublevels.
     - [x] Save and show high score.
   - [ ] Pause before moving to next puzzle.
+- [ ] Debug, round 2!
+  - [ ] Fix all impossible puzzles.
+  - [ ] Debug pieces gliding "between" puzzles.
 - [ ] Improve UI/UX.
   - [x] Add automatic dark/light mode.
   - [x] Highlight square on hover.
@@ -83,5 +86,4 @@ especially since I've been meaning to get more practice with React, TypeScript, 
     - [x] Require pieces to move twice when possible.
   - [x] Enforce two-move limit with piece color change.
     - [x] Hide "ghost" when dragging black piece.
-- [x] Fix the impossible puzzles.
 

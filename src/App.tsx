@@ -98,9 +98,7 @@ export default function App() {
         </div>
 
         <div id="levelContainer" className="w-full flex flex-col gap-y-1 col-start-2 mt-5">
-          <div id="level" className="font-mono text-zinc-950 dark:text-neutral-200 text-lg">Level {level}: {Array.from({ length: NUM_SUBLEVELS_PER_LEVEL - 1 }).map((_, index) => (
-              <span key={`${level}${sublevel}-${index}`}><i className={index < sublevel ? "fa-solid fa-circle" : "fa-regular fa-circle"}></i></span>
-            ))}
+          <div id="level" className="font-mono text-zinc-950 dark:text-neutral-200 text-lg">Level {level} <span key={`${level}-${sublevel}`}><i className={`${sublevel === 0 ? "fa-regular fa-circle" : (sublevel < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i></span>
           </div>
           <div id="highScore" className="font-mono text-zinc-950 dark:text-neutral-200 text-sm">High Score: {highScore}</div>
         </div>
