@@ -31,7 +31,7 @@ export default function Dialog({ title, headerText, isOpen, onClose, children }:
         {children}
       </main>
       <footer>
-        <button onClick={onClose} className="rounded outline-solid p-2 m-1 cursor-pointer hover:bg-zinc-950 hover:text-white hover:outline-zinc-950 dark:outline-neutral-300 dark:hover:text-black dark:hover:bg-neutral-100 dark:hover:outline-neutral-100">Close</button>
+        <button onClick={onClose} className="rounded outline-solid p-2 m-3 cursor-pointer hover:bg-zinc-950 hover:text-white hover:outline-zinc-950 dark:outline-neutral-300 dark:hover:text-black dark:hover:bg-neutral-100 dark:hover:outline-neutral-100">Close</button>
       </footer>
     </dialog>
   );

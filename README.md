@@ -8,13 +8,14 @@ especially since I've been meaning to get more practice with React, TypeScript, 
 
 ## todo
 
-- [ ] Add basic UI/UX elements.
-  - [x] Save and show high score.
+- [ ] Add basic UI/UX for gameplay.
   - [x] Add reset, help (instructions), and info buttons.
     - [x] Implement reset.
     - [x] Add help and info dialogs (or just tooltips?).
+  - [x] Add levels.
+    - [x] Add sublevels.
+    - [x] Save and show high score.
   - [ ] Pause before moving to next puzzle.
-  - [ ] Display some kind of green check mark (for bonus dopamine).
 - [ ] Improve UI/UX.
   - [x] Add automatic dark/light mode.
   - [ ] Highlight square on hover.

@@ -8,3 +8,4 @@ export const PIECE_TYPE_TO_DELTAS: Record<string, [number, number, number][]> = 
     'r': [[1,0,8], [-1,0,8], [0,1,8], [0,-1,8]],
     'k': [[1,0,1], [1,1,1], [0,1,1], [-1,1,1], [-1,0,1], [-1,-1,1], [0,-1,1], [1,-1,1]],
 };
+export const NUM_SUBLEVELS_PER_LEVEL = 4;
