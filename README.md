@@ -24,8 +24,8 @@ especially since I've been meaning to get more practice with React, TypeScript, 
   - [x] Highlight square on hover.
   - [ ] Add sound effects and/or other puzzle-success feedback?
   - [ ] Add mobile friendliness/responsiveness.
-    - [ ] Enable dragging and dropping on mobile.
     - [ ] Resize board and buttons to fit on various screen sizes.
+    - [x] Enable dragging and dropping on mobile within normal amount of delay.
   - [ ] Show valid moves on board?
   - [ ] Customize which and how many starting pieces to use.
   - [ ] Customize how many moves are possible per piece?
