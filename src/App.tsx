@@ -68,7 +68,7 @@ export default function App() {
 
       <div id="gameContainer" className="grid grid-cols-[1fr_max-content_1fr]">
         <div id="leftIconContainer" className="flex flex-col gap-y-4 h-full justify-between py-2 mr-3">
-          <button id="resetButton" title="Reset" onClick={resetGame}><i className="fa fa-refresh text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
+          <button id="resetButton" onClick={resetGame}><i className="fa fa-refresh text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
         </div>
 
         <div id="boardContainer" className="flex flex-col items-center">
@@ -77,7 +77,7 @@ export default function App() {
 
         <div id="rightIconContainer" className="flex flex-col gap-y-4 h-full justify-between py-2 ml-2">
           <button id="helpButton" onClick={() => setHelpDialogOpen(true)}><i className="fa fa-question text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
-          <Dialog title="Help" headerText="How to Play" isOpen={isHelpDialogOpen} onClose={() => {setHelpDialogOpen(false)}}>
+          <Dialog id="Help" headerText="How to Play" isOpen={isHelpDialogOpen} onClose={() => {setHelpDialogOpen(false)}}>
             <div className="space-y-3">
               <p>Goal: Capture the pieces so that only one remains.</p>
               <ul className="list-decimal list-disc space-y-1 ml-6">
@@ -89,7 +89,7 @@ export default function App() {
           </Dialog>
 
           <button id="infoButton" onClick={() => setAboutDialogOpen(true)}><i className="fa fa-info text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
-          <Dialog title="About" headerText="About This Game" isOpen={isAboutDialogOpen} onClose={() => {setAboutDialogOpen(false)}}>
+          <Dialog id="About" headerText="About This Game" isOpen={isAboutDialogOpen} onClose={() => {setAboutDialogOpen(false)}}>
             <div className="space-y-3">
               <p>Infinite Solo Chess was created by Teresa Gao, a software engineer and a fan of the original (non-infinite) version of the game on <a href="https://www.chess.com/solo-chess" className="underline hover:decoration-3">Chess.com</a>.</p>
               <p>Please feel free to say hi on <a href="https://www.linkedin.com/in/teresa-gao/" className="underline hover:decoration-3">LinkedIn</a> or check out the source code on <a href="https://github.com/teresa-gao/infinite-solo-chess" className="underline hover:decoration-3">GitHub</a>!</p>
