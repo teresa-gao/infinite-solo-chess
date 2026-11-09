@@ -4,6 +4,8 @@ I love [Chess.com's Solo Chess game](https://www.chess.com/solo-chess)
 and thought it'd be fun to make my own, infinite version,
 especially since I've been meaning to get more practice with React, TypeScript, and Tailwind CSS.
 
+This is a work in progress!
+
 # tasks
 
 ## todo
@@ -11,7 +13,8 @@ especially since I've been meaning to get more practice with React, TypeScript, 
 - [ ] Add basic UI/UX for gameplay.
   - [x] Add reset, help (instructions), and info buttons.
     - [x] Implement reset.
-    - [x] Add help and info dialogs (or just tooltips?).
+    - [x] Add help and info dialogs ~~(or just tooltips?)~~.
+    - [x] Add piece source image credits.
   - [x] Add levels.
     - [x] Add sublevels.
     - [x] Save and show high score.
@@ -36,21 +39,6 @@ especially since I've been meaning to get more practice with React, TypeScript, 
   - [ ] Optimize puzzle generation to be as minimal/efficient as possible.
     - [ ] Calculate next puzzle in background? (if it seems likely that someone could make it past level ~35?)
   - [ ] Clean up codebase (e.g., documentation, explicit semicolons, standardized tab size).
-  - [ ] Add licensing information somewhere (separate info tab with MIT license as well? alt text over each piece?):
-  ```
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_bdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_blt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_kdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_klt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_ndt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_nlt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_pdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_plt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_qdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_qlt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_rdt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  <a href="https://commons.wikimedia.org/wiki/File:Chess_rlt60.png">en:User:Cburnett</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
-  ```
 
 ## done
 
@@ -86,4 +74,3 @@ especially since I've been meaning to get more practice with React, TypeScript, 
     - [x] Require pieces to move twice when possible.
   - [x] Enforce two-move limit with piece color change.
     - [x] Hide "ghost" when dragging black piece.
-
