@@ -40,7 +40,7 @@ function getPieceTypes(numPieces: number) {
     return pieceTypes;
 }
 
-export function getBoardLayout(level: number) {
+export function getBoardLayout(level: number, sublevel: number) {
     while (true) {
         const pieceTypes = getPieceTypes(level + 1);
 
@@ -126,7 +126,7 @@ export function getBoardLayout(level: number) {
             let pieceNum = 0;
             const boardLayout: Record<string, PieceData> = {};
             for (let [square, type] of squaresToPieceTypes) {
-                boardLayout[square] = { id: `level${level}-${type}${pieceNum++}`, type: type, numMoves: 0 };
+                boardLayout[square] = { id: `${level}-${sublevel}-${type}${pieceNum++}`, type: type, numMoves: 0 };
             }
             return boardLayout;
         }

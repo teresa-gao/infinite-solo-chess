@@ -13,14 +13,13 @@ export default function App() {
   const [level, setLevel] = useState<number>(1);
   const [sublevel, setSublevel] = useState<number>(0);
   const [highScore, setHighScore] = useState<number>(Number(localStorage.getItem('highScore')) || level);
-  const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => getBoardLayout(level));
+  const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => getBoardLayout(level, sublevel));
   const [isInfoDialogOpen, setInfoDialogOpen] = useState<boolean>(false);
 
   const resetGame = () => {
-    const newLevel = 1;
-    setLevel(newLevel);
+    setLevel(1);
     setSublevel(0);
-    setBoardLayout(getBoardLayout(newLevel));
+    setBoardLayout(getBoardLayout(1, 0));
   }
 
   const levelUp = () => {
@@ -31,7 +30,7 @@ export default function App() {
       setHighScore(newLevel);
       localStorage.setItem('highScore', String(newLevel));
     }
-    setBoardLayout(getBoardLayout(newLevel));
+    setBoardLayout(getBoardLayout(newLevel, newSublevel));
     setSublevel(newSublevel);
   }
 

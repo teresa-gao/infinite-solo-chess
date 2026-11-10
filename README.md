@@ -13,7 +13,7 @@ This is a work in progress!
 ## todo
 
 - [ ] Debug, round 2!
-  - [ ] Fix pieces gliding "between" puzzles.
+  - [x] Fix pieces gliding "between" puzzles.
   - [ ] Fix board row generation glitch when leveling up.
 - [ ] Improve UI/UX.
   - [x] Add automatic dark/light mode.
