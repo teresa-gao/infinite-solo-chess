@@ -22,7 +22,7 @@ export default function Board({boardLayout, onPieceMove}: {boardLayout: Record<s
         }),
       ]}
     >
-      <div id="board" className="grid grid-cols-8 rounded overflow-hidden shadow">
+      <div id="board" className="grid grid-cols-8 rounded overflow-hidden shadow touch-none">
         {RANKS.map((_, rankIndex) => (
           FILES.map((_, fileIndex) => {
           const square = convertIndicesToSquare(rankIndex, fileIndex);

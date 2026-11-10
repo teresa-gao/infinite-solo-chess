@@ -29,11 +29,6 @@ This is a work in progress!
   - [x] Add automatic dark/light mode.
   - [x] Highlight square on hover.
   - [ ] Add sound effects and/or other puzzle-success feedback?
-  - [x] Add mobile friendliness/responsiveness.
-    - [x] Resize board and buttons to fit on various screen sizes.
-      - [x] Shrink board to fix on smaller screens.
-      - [x] Redesign layout of buttons etc. for smaller screens.
-    - [x] Enable dragging and dropping on mobile within normal amount of delay.
   - [ ] Show valid moves on board?
   - [ ] Customize which and how many starting pieces to use.
   - [ ] Customize how many moves are possible per piece?
@@ -81,3 +76,8 @@ This is a work in progress!
     - [x] Require pieces to move twice when possible.
   - [x] Enforce two-move limit with piece color change.
     - [x] Hide "ghost" when dragging black piece.
+- [x] Add mobile friendliness/responsiveness.
+  - [x] Resize board and buttons to fit on various screen sizes.
+    - [x] Shrink board to fix on smaller screens.
+    - [x] Redesign layout of buttons etc. for smaller screens.
+  - [x] Enable dragging and dropping on mobile within normal amount of delay.
