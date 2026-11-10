@@ -12,35 +12,27 @@ This is a work in progress!
 
 ## todo
 
-- [ ] Add basic UI/UX for gameplay.
-  - [x] Add reset, help (instructions), and info buttons.
-    - [x] Implement reset.
-    - [x] Add help and info dialogs ~~(or just tooltips?)~~.
-    - [x] Add piece source image credits.
-  - [x] Add levels.
-    - [x] Add sublevels.
-    - [x] Save and show high score.
-  - [ ] Pause before moving to next puzzle.
 - [ ] Debug, round 2!
-  - [ ] Fix all impossible puzzles.
   - [ ] Fix pieces gliding "between" puzzles.
-  - [ ] Fix board generation glitch when leveling up.
+  - [ ] Fix board row generation glitch when leveling up.
 - [ ] Improve UI/UX.
   - [x] Add automatic dark/light mode.
   - [x] Highlight square on hover.
-  - [ ] Add sound effects and/or other puzzle-success feedback?
-  - [ ] Show valid moves on board?
-  - [ ] Customize which and how many starting pieces to use.
-  - [ ] Customize how many moves are possible per piece?
-    - [ ] Display remaining move count for pieces if greater than two?
-  - [ ] Customize goal vs. infinite mode? (and/or puzzles per level?)
-  - [ ] Add game timer (saved with high score?).
+  - [ ] Pause (and animate/blink level icon?) before moving to next puzzle.
 - [ ] Finalize.
   - [ ] Add unique favicon.
     - [ ] Add Open Graph preview image (per https://ogp.me?).
   - [ ] Optimize puzzle generation to be as minimal/efficient as possible.
     - [ ] Calculate next puzzle in background? (if it seems likely that someone could make it past level ~35?)
   - [ ] Clean up codebase (e.g., documentation, explicit semicolons, standardized tab size).
+- [ ] Consider bonus features.
+  - [ ] Add sound effects and/or other puzzle-success feedback?
+  - [ ] Show valid moves on board?
+  - [ ] Customize which and how many starting pieces to use.
+  - [ ] Customize how many moves are possible per piece?
+    - [ ] Display remaining move count for pieces if greater than two?
+  - [ ] Customize goal/start vs. infinite mode? (and/or puzzles per level?)
+  - [ ] Add game timer (saved with high score?).
 
 ## done
 
@@ -76,6 +68,14 @@ This is a work in progress!
     - [x] Require pieces to move twice when possible.
   - [x] Enforce two-move limit with piece color change.
     - [x] Hide "ghost" when dragging black piece.
+- [x] Add basic UI/UX for gameplay.
+  - [x] Add reset, help (instructions), and info buttons.
+    - [x] Implement reset.
+    - [x] Add help and info dialogs ~~(or just tooltips?)~~.
+    - [x] Add piece source image credits.
+  - [x] Add levels.
+    - [x] Add sublevels.
+    - [x] Save and show high score.
 - [x] Add mobile friendliness/responsiveness.
   - [x] Resize board and buttons to fit on various screen sizes.
     - [x] Shrink board to fix on smaller screens.
