@@ -14,10 +14,10 @@ export default function Square({id, isDark, pieceData} : {id: string, isDark: bo
     />
   ) : null;
   const colorClass = isDark ? "bg-[burlywood] dark:bg-[darkgoldenrod]" : "bg-[antiquewhite] dark:bg-[burlywood]";
-  const outlineClass = isDropTarget ? "z-10 overflow-visible outline-solid outline-white" : ""
+  const outlineClass = isDropTarget ? "z-10 ring-2 ring-inset ring-white" : ""
 
   return (
-    <div ref={ref} className={`${colorClass} ${outlineClass} flex flex-col items-center justify-center text-center aspect-square box-border text-[saddlebrown] h-[60px] w-[60px]`}>
+    <div ref={ref} className={`${colorClass} ${outlineClass} flex flex-col items-center justify-center text-center aspect-square box-border text-[saddlebrown]`}>
       {contents}
     </div>
   );

@@ -1,8 +1,9 @@
 import { DragDropProvider, type DragEndEvent } from '@dnd-kit/react'
 import { PointerSensor, PointerActivationConstraints } from '@dnd-kit/dom';
 
-import { RANKS } from '../utils/constants'
-import Row from './Row.tsx'
+import { RANKS, FILES } from '../utils/constants'
+import { convertIndicesToSquare } from '../utils/helpers'
+import Square from './Square.tsx'
 import type { PieceData } from './Piece.tsx'
 
 export default function Board({boardLayout, onPieceMove}: {boardLayout: Record<string, PieceData>, onPieceMove: (event: DragEndEvent) => void}) {
@@ -14,17 +15,27 @@ export default function Board({boardLayout, onPieceMove}: {boardLayout: Record<s
         PointerSensor.configure({
           activationConstraints: [
             new PointerActivationConstraints.Delay({
-              value: 100,
-              tolerance: 10,
+              value: 0,
+              tolerance: 0,
             }),
           ],
         }),
       ]}
     >
-      <div id="board" className="rounded overflow-hidden flex flex-col items-center h-fit shadow">
+      <div id="board" className="grid grid-cols-8 rounded overflow-hidden shadow">
         {RANKS.map((_, rankIndex) => (
-          <Row key={rankIndex} rankIndex={rankIndex} boardLayout={boardLayout}/>
-        ))}
+          FILES.map((_, fileIndex) => {
+          const square = convertIndicesToSquare(rankIndex, fileIndex);
+          const pieceData = boardLayout[square];
+          return (
+            <Square
+              id={square}
+              key={fileIndex}
+              isDark={fileIndex % 2 !== rankIndex % 2}
+              pieceData={pieceData}>
+            </Square>
+          );
+        })))}
       </div>
     </DragDropProvider>
   )

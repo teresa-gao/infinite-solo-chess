@@ -15,7 +15,6 @@ export default function App() {
   const [highScore, setHighScore] = useState<number>(Number(localStorage.getItem('highScore')) || level);
   const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => getBoardLayout(level));
   const [isHelpDialogOpen, setHelpDialogOpen] = useState<boolean>(false);
-  const [isAboutDialogOpen, setAboutDialogOpen] = useState<boolean>(false);
 
   const resetGame = () => {
     const newLevel = 1;
@@ -63,47 +62,48 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-y-6">
-      <h1 id="header" className="font-mono text-zinc-950 dark:text-neutral-200 text-center text-2xl">Infinite Solo Chess</h1>
-
-      <div id="gameContainer" className="grid grid-cols-[1fr_max-content_1fr]">
-        <div id="leftIconContainer" className="flex flex-col gap-y-4 h-full justify-between py-2 mr-3">
-          <button id="resetButton" onClick={resetGame}><i className="fa fa-refresh text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
-        </div>
-
-        <div id="boardContainer" className="flex flex-col items-center">
-          <Board boardLayout={boardLayout} onPieceMove={handlePieceMove} />
-        </div>
-
-        <div id="rightIconContainer" className="flex flex-col gap-y-4 h-full justify-between py-2 ml-2">
-          <button id="helpButton" onClick={() => setHelpDialogOpen(true)}><i className="fa fa-question text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
-          <Dialog id="Help" headerText="How to Play" isOpen={isHelpDialogOpen} onClose={() => {setHelpDialogOpen(false)}}>
-            <div className="space-y-3">
-              <p>Goal: Capture the pieces so that only one remains.</p>
-              <ul className="list-decimal list-disc space-y-1 ml-6">
-                <li>Each piece moves as in a standard chess game.</li>
-                <li>Each piece can capture up to two other pieces, but no piece can capture a king.</li>
-                <li>If you reset the game, you return to Level 1.</li>
-              </ul>
-            </div>
-          </Dialog>
-
-          <button id="infoButton" onClick={() => setAboutDialogOpen(true)}><i className="fa fa-info text-zinc-950 dark:text-neutral-200 cursor-pointer hover:text-white dark:hover:text-black" aria-hidden="true"></i></button>
-          <Dialog id="About" headerText="About This Game" isOpen={isAboutDialogOpen} onClose={() => {setAboutDialogOpen(false)}}>
-            <div className="space-y-3">
-              <p>Infinite Solo Chess was created by Teresa Gao, a software engineer and a fan of the original (non-infinite) version of the game on <a href="https://www.chess.com/solo-chess" className="underline hover:decoration-3">Chess.com</a>.</p>
-              <p>Please feel free to say hi on <a href="https://www.linkedin.com/in/teresa-gao/" className="underline hover:decoration-3">LinkedIn</a> or check out the source code on <a href="https://github.com/teresa-gao/infinite-solo-chess" className="underline hover:decoration-3">GitHub</a>!</p>
-              <p>Piece design credits: <a href="https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent" className="underline hover:decoration-3">Wikimedia Commons</a></p>
-            </div>
-          </Dialog>
-        </div>
-
-        <div id="levelContainer" className="w-full flex flex-col gap-y-1 col-start-2 mt-5">
-          <div id="level" className="font-mono text-zinc-950 dark:text-neutral-200 text-lg">Level {level} <span key={`${level}-${sublevel}`}><i className={`${sublevel === 0 ? "fa-regular fa-circle" : (sublevel < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i></span>
+    <div className="flex flex-col items-center gap-y-6 m-8 font-mono text-zinc-950 dark:text-neutral-200">
+      <div id="gameContainer" className="flex flex-col gap-5 max-w-[480px]">
+        <div id="header" className="grid grid-cols-[1fr_auto_1fr] w-full">
+          <h1 className="text-xl col-start-2 font-semibold">
+            Infinite Solo Chess
+          </h1>
+          <div id="helpButtonContainer" className="flex w-full justify-end">
+            <button id="helpButton" onClick={() => setHelpDialogOpen(true)}><i className="fa fa-question-circle-o cursor-pointer hover:text-white dark:hover:text-black text-lg" aria-hidden="true"></i></button>
+            <Dialog id="Help" headerText="How to Play" isOpen={isHelpDialogOpen} onClose={() => {setHelpDialogOpen(false)}}>
+              <div className="space-y-3">
+                <p>Goal: Capture the pieces so that only one remains.</p>
+                <ul className="list-decimal list-disc space-y-1 ml-6">
+                  <li>Pieces can only move to capture other pieces.</li>
+                  <li>Each piece can capture up to two other pieces, but no piece can capture a king.</li>
+                  <li>If you reset the game, you return to Level 1.</li>
+                </ul>
+              </div>
+            </Dialog>
           </div>
-          <div id="highScore" className="font-mono text-zinc-950 dark:text-neutral-200 text-sm">High Score: {highScore}</div>
         </div>
+
+        <div id="levelContainer" className="w-full flex justify-between items-end">
+          <div id="level" className="flex gap-2">
+            <span key={`${level}-${sublevel}`}><
+              i className={`${sublevel === 0 ? "fa-regular fa-circle" : (sublevel < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
+            </span>
+            Level {level}
+          </div>
+          <div id="highScore">High Score: {highScore}</div>
+        </div>
+
+        <Board boardLayout={boardLayout} onPieceMove={handlePieceMove} />
+
+        <button id="resetButton" onClick={resetGame}><i className="fa fa-refresh cursor-pointer text-xl hover:text-white dark:hover:text-black mt-2 mx-auto" aria-hidden="true"></i></button>
       </div>
+
+      <footer className="space-y-3">
+        <hr className="h-px mt-1 mb-8 border-0 bg-zinc-950 dark:bg-neutral-200" />
+        <p>Infinite Solo Chess was created by Teresa Gao, a software engineer and a fan of the original (non-infinite) version of the game on <a href="https://www.chess.com/solo-chess" className="underline hover:text-white dark:hover:text-black">Chess.com</a>.</p>
+        <p>Please feel free to say hi on <a href="https://www.linkedin.com/in/teresa-gao/" className="underline hover:text-white dark:hover:text-black">LinkedIn</a> or check out the source code on <a href="https://github.com/teresa-gao/infinite-solo-chess" className="underline hover:text-white dark:hover:text-black">GitHub</a>!</p>
+        <p>Piece design credits: <a href="https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent" className="underline hover:text-white dark:hover:text-black">Wikimedia Commons</a></p>
+      </footer>
     </div>
   )
 }

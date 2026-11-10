@@ -4,6 +4,8 @@ I love [Chess.com's Solo Chess game](https://www.chess.com/solo-chess)
 and thought it'd be fun to make my own, infinite version,
 especially since I've been meaning to get more practice with React, TypeScript, and Tailwind CSS.
 
+Play here: https://teresa-gao.github.io/infinite-solo-chess.
+
 This is a work in progress!
 
 # tasks
@@ -21,13 +23,16 @@ This is a work in progress!
   - [ ] Pause before moving to next puzzle.
 - [ ] Debug, round 2!
   - [ ] Fix all impossible puzzles.
-  - [ ] Debug pieces gliding "between" puzzles.
+  - [ ] Fix pieces gliding "between" puzzles.
+  - [ ] Fix board generation glitch when leveling up.
 - [ ] Improve UI/UX.
   - [x] Add automatic dark/light mode.
   - [x] Highlight square on hover.
   - [ ] Add sound effects and/or other puzzle-success feedback?
-  - [ ] Add mobile friendliness/responsiveness.
-    - [ ] Resize board and buttons to fit on various screen sizes.
+  - [x] Add mobile friendliness/responsiveness.
+    - [x] Resize board and buttons to fit on various screen sizes.
+      - [x] Shrink board to fix on smaller screens.
+      - [x] Redesign layout of buttons etc. for smaller screens.
     - [x] Enable dragging and dropping on mobile within normal amount of delay.
   - [ ] Show valid moves on board?
   - [ ] Customize which and how many starting pieces to use.
@@ -36,6 +41,8 @@ This is a work in progress!
   - [ ] Customize goal vs. infinite mode? (and/or puzzles per level?)
   - [ ] Add game timer (saved with high score?).
 - [ ] Finalize.
+  - [ ] Add unique favicon.
+    - [ ] Add Open Graph preview image (per https://ogp.me?).
   - [ ] Optimize puzzle generation to be as minimal/efficient as possible.
     - [ ] Calculate next puzzle in background? (if it seems likely that someone could make it past level ~35?)
   - [ ] Clean up codebase (e.g., documentation, explicit semicolons, standardized tab size).

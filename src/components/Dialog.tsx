@@ -23,7 +23,7 @@ export default function Dialog({ id, headerText, isOpen, onClose, children }: {i
   };
 
   return (
-    <dialog id={id} ref={dialogRef} onKeyDown={handleKeyDown} onClick={handleBackdropClick} className="font-mono m-auto rounded-md p-5 open:flex flex-col items-center gap-4 backdrop:backdrop-brightness-75 dark:bg-zinc-900 dark:text-neutral-200 max-w-[33rem]">
+    <dialog id={id} ref={dialogRef} onKeyDown={handleKeyDown} onClick={handleBackdropClick} className="m-auto rounded-md p-5 open:flex flex-col items-center gap-4 backdrop:backdrop-brightness-75 dark:bg-zinc-900 dark:text-neutral-200 w-[90dvw] max-w-xl">
       <header className="w-full flex">
         <h2 className="text-xl text-center grow">{headerText}</h2>
       </header>
@@ -31,7 +31,7 @@ export default function Dialog({ id, headerText, isOpen, onClose, children }: {i
         {children}
       </main>
       <footer>
-        <button onClick={onClose} className="rounded outline-solid p-2 m-3 cursor-pointer hover:bg-zinc-950 hover:text-white hover:outline-zinc-950 dark:outline-neutral-300 dark:hover:text-black dark:hover:bg-neutral-100 dark:hover:outline-neutral-100">Close</button>
+        <button onClick={onClose} className="rounded outline-solid p-2 m-2 cursor-pointer hover:bg-zinc-950 hover:text-white hover:outline-zinc-950 dark:outline-neutral-300 dark:hover:text-black dark:hover:bg-neutral-100 dark:hover:outline-neutral-100">Close</button>
       </footer>
     </dialog>
   );
