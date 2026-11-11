@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+@theme {
+  --animate-blinking: pulse 0.5s step-end 3;
+}

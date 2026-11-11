@@ -88,11 +88,11 @@ export default function App() {
         <div id="boardBottomContainer" className="w-full flex justify-between items-end">
           <div id="level" className="flex gap-2">
             <span key={`${level}-${sublevel}`}><
-              i className={`${sublevel === 0 ? "fa-regular fa-circle" : (sublevel < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
+              i className={`animate-blinking ${sublevel === 0 ? "fa-regular fa-circle" : (sublevel < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
             </span>
-            Level {level}
+            <span key={level} className="animate-blinking">Level {level}</span>
           </div>
-          <div id="highScore">High Score: {highScore}</div>
+          <div key={highScore} id="highScore" className="animate-blinking">High Score: {highScore}</div>
         </div>
 
       <div id="instructions" className="space-y-3">

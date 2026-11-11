@@ -15,16 +15,12 @@ This is a work in progress!
 - [ ] Debug, round 2!
   - [x] Fix pieces gliding "between" puzzles.
   - [ ] Fix board row generation glitch when leveling up.
-- [ ] Improve UI/UX.
-  - [x] Add automatic dark/light mode.
-  - [x] Highlight square on hover.
-  - [ ] Pause (and animate/blink level icon?) before moving to next puzzle.
 - [ ] Finalize.
   - [ ] Add unique favicon.
     - [ ] Add Open Graph preview image (per https://ogp.me?).
   - [ ] Optimize puzzle generation to be as minimal/efficient as possible.
     - [ ] Calculate next puzzle in background? (if it seems likely that someone could make it past level ~35?)
-  - [ ] Clean up codebase (e.g., documentation, explicit semicolons, standardized tab size).
+  - [ ] Clean up codebase (e.g., documentation, explicit semicolons, header/body/footer, standardized tab size).
 - [ ] Consider bonus features.
   - [ ] Add sound effects and/or other puzzle-success feedback?
   - [ ] Show valid moves on board?
@@ -81,3 +77,7 @@ This is a work in progress!
     - [x] Shrink board to fix on smaller screens.
     - [x] Redesign layout of buttons etc. for smaller screens.
   - [x] Enable dragging and dropping on mobile within normal amount of delay.
+- [x] Improve UI/UX.
+  - [x] Add automatic dark/light mode.
+  - [x] Highlight square on hover.
+  - [x] Pause (and animate/blink level icon?) before moving to next puzzle.
