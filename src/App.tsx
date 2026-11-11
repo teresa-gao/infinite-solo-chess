@@ -11,7 +11,6 @@ import './App.css'
 
 export default function App() {
   const [sublevel, setSublevel] = useState<number>(0);
-  const [highScore, setHighScore] = useState<number>(Number(localStorage.getItem('highScore')) || convertSublevelToLevel(sublevel));
   const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => getBoardLayout(sublevel));
   const [isInfoDialogOpen, setInfoDialogOpen] = useState<boolean>(false);
   const [isBoardFrozen, setBoardFrozen] = useState<boolean>(false);
@@ -24,11 +23,6 @@ export default function App() {
 
   const levelUp = () => {
     setSublevel((sublevel) => sublevel + 1);
-    const level = convertSublevelToLevel(sublevel);
-    if (level > highScore) {
-      setHighScore(level);
-      localStorage.setItem('highScore', String(level));
-    }
 
     if (delayTimerRef.current) {
       clearTimeout(delayTimerRef.current);
@@ -65,6 +59,12 @@ export default function App() {
     }
   }
 
+  const level = convertSublevelToLevel(sublevel);
+  const highScore = Math.max(Number(localStorage.getItem('highScore')), level);
+  if (highScore > Number(localStorage.getItem('highScore'))) {
+    localStorage.setItem('highScore', String(highScore));
+  }
+
   return (
     <div className="flex flex-col items-center gap-y-7 mx-4 my-10 font-mono text-zinc-950 dark:text-neutral-200">
       <header className="grid grid-cols-[1fr_auto_1fr] w-full">
@@ -88,21 +88,20 @@ export default function App() {
           </div>
         </header>
 
-        <main className="flex flex-col gap-6">
+        <main className="flex flex-col gap-7">
           <Board boardLayout={boardLayout} onPieceMove={handlePieceMove} isBoardFrozen={isBoardFrozen} />
 
           <div id="boardBottomContainer" className="w-full flex justify-between items-end">
             <p id="level">
-              <span key={`${sublevel}`}><
-                i className={`animate-blinking ${sublevel % NUM_SUBLEVELS_PER_LEVEL === 0 ? "fa-regular fa-circle" : (sublevel % NUM_SUBLEVELS_PER_LEVEL < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
-              </span> <span className="animate-blinking">Level {convertSublevelToLevel(sublevel)}</span>
+              <span key={`${level}-${sublevel}`}><i className={`animate-blinking ${sublevel % NUM_SUBLEVELS_PER_LEVEL === 0 ? "fa-regular fa-circle" : (sublevel % NUM_SUBLEVELS_PER_LEVEL < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
+              </span> <span key={level} className="animate-blinking">Level {level}</span>
             </p>
             <div key={highScore} id="highScore" className="animate-blinking">High Score: {highScore}</div>
           </div>
         </main>
 
       <footer id="instructions" className="space-y-3">
-        <hr className="h-px mt-3 mb-8 border-0 bg-zinc-950 dark:bg-neutral-200" />
+        <hr className="h-px mt-1 mb-8 border-0 bg-zinc-950 dark:bg-neutral-200" />
         <h2 className="text-lg font-bold text-center">How to Play</h2>
         <div id="rules" className="space-y-3">
           <p>Goal: Capture the pieces so that only one remains.</p>
