@@ -23,7 +23,7 @@ export default function Dialog({ id, headerText, isOpen, onClose, children }: {i
   };
 
   return (
-    <dialog id={id} ref={dialogRef} onKeyDown={handleKeyDown} onClick={handleBackdropClick} className="m-auto rounded-lg px-6 pt-6 pb-8 open:flex flex-col items-center gap-4 backdrop:backdrop-brightness-75 dark:bg-zinc-900 dark:text-neutral-200 w-[90dvw] max-w-md">
+    <dialog id={id} ref={dialogRef} onKeyDown={handleKeyDown} onClick={handleBackdropClick} className="m-auto rounded-lg px-6 pt-6 pb-8 open:flex flex-col items-center gap-4 backdrop:backdrop-brightness-75 dark:bg-zinc-900 dark:text-neutral-200 w-9/10 max-w-md">
       <header className="w-full grid grid-cols-[1fr_max-content_1fr]">
         <h2 className="text-lg font-bold col-start-2">{headerText}</h2>
         <div className="flex flex-row-reverse">
