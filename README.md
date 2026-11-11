@@ -13,7 +13,7 @@ This is a work in progress!
 ## todo
 
 - [ ] Finalize.
-  - [ ] Show valid moves on board.
+  - [x] Show valid moves on board.
   - [ ] Add unique favicon.
     - [ ] Add Open Graph preview image (per https://ogp.me?).
   - [ ] Clean up codebase (e.g., documentation, explicit semicolons, header/body/footer, standardized tab size).

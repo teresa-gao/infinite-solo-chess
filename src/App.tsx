@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react'
-import type { DragEndEvent } from '@dnd-kit/react'
+import type { DragStartEvent, DragEndEvent } from '@dnd-kit/react'
 
 import { NUM_SUBLEVELS_PER_LEVEL } from './utils/constants'
-import { getBoardLayout, evaluateEndSquare, convertSublevelToLevel } from './utils/helpers'
+import { getBoardLayout, getSquaresOfInterest, convertSublevelToLevel } from './utils/helpers'
 import Board from './components/Board.tsx'
 import type { PieceData } from './components/Piece.tsx'
 import Dialog from './components/Dialog.tsx'
@@ -12,6 +12,8 @@ import './App.css'
 export default function App() {
   const [sublevel, setSublevel] = useState<number>(0);
   const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => getBoardLayout(sublevel));
+  const [inBetweenSquares, setInBetweenSquares] = useState<Set<string>>(() => new Set());
+  const [capturableSquares, setCapturableSquares] = useState<Set<string>>(() => new Set());
   const [isInfoDialogOpen, setInfoDialogOpen] = useState<boolean>(false);
   const [isBoardFrozen, setBoardFrozen] = useState<boolean>(false);
   const delayTimerRef = useRef<number>(null);
@@ -34,7 +36,24 @@ export default function App() {
     }, 1500);
   }
 
-  const handlePieceMove = (event: DragEndEvent) => {
+  const onDragStart = (event: DragStartEvent) => {
+    const pieceId = event.operation.source?.id;
+    if (!pieceId) return;
+
+    const startSquare = Object.keys(boardLayout).find(key => boardLayout[key].id === pieceId);
+    if (!startSquare) return false;
+
+    const pieceType = boardLayout[startSquare].type;
+    const [capturableSquares, inBetweenSquares] = getSquaresOfInterest(pieceType, startSquare, boardLayout);
+    setCapturableSquares(capturableSquares);
+    setInBetweenSquares(inBetweenSquares);
+  }
+
+  const onDragEnd = (event: DragEndEvent) => {
+    const oldCapturableSquares = capturableSquares;
+    setCapturableSquares(new Set());
+    setInBetweenSquares(new Set());
+
     if (event.canceled) return;
 
     const endSquare = String(event.operation.target?.id);
@@ -48,11 +67,11 @@ export default function App() {
 
     const piece = boardLayout[startSquare];
 
-    const isValidEndSquare = evaluateEndSquare(piece, startSquare, endSquare, boardLayout);
-    if (!isValidEndSquare) return;
+    const isCapturable = (endSquare in boardLayout) && (oldCapturableSquares.has(endSquare))
+    if (!isCapturable) return;
 
     const { [startSquare]: _, ...newBoardLayout } = boardLayout;
-    newBoardLayout[endSquare] = {id: piece.id + 'x', type: piece.type, numMoves: piece.numMoves + 1};
+    newBoardLayout[endSquare] = {id: piece.id + 'x', type: piece.type, isFrozen: false, numMoves: piece.numMoves + 1};
     setBoardLayout(newBoardLayout);
     if (Object.keys(newBoardLayout).length === 1) {
       levelUp()
@@ -89,7 +108,7 @@ export default function App() {
         </header>
 
         <main className="flex flex-col gap-7">
-          <Board boardLayout={boardLayout} onPieceMove={handlePieceMove} isBoardFrozen={isBoardFrozen} />
+          <Board boardLayout={boardLayout} inBetweenSquares={inBetweenSquares} capturableSquares={capturableSquares} onDragStart={onDragStart} onDragEnd={onDragEnd} isBoardFrozen={isBoardFrozen} />
 
           <div id="boardBottomContainer" className="w-full flex justify-between items-end">
             <p id="level">

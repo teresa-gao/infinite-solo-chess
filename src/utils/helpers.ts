@@ -131,32 +131,40 @@ export function getBoardLayout(sublevel: number) {
             let pieceNum = 0;
             const boardLayout: Record<string, PieceData> = {};
             for (let [square, type] of squaresToPieceTypes) {
-                boardLayout[square] = { id: `${sublevel}-${type}${pieceNum++}`, type: type, numMoves: 0 };
+                boardLayout[square] = { id: `${sublevel}-${type}${pieceNum++}`, type: type, numMoves: 0, isFrozen: false };
             }
             return boardLayout;
         }
     }
 }
 
-export function evaluateEndSquare(piece: PieceData, startSquare: string, endSquare: string, boardLayout: Record<string, PieceData>) {
-    if ((!(endSquare in boardLayout)) || (boardLayout[endSquare].type === 'k')) return false;
+export function getSquaresOfInterest(pieceType: string, startSquare: string, boardLayout: Record<string, PieceData>) {
+    const capturableSquares = new Set<string>();
+    const inBetweenSquares = new Set<string>();
 
-    const pieceType = piece.type;
-    const [goalRankIndex, goalFileIndex] = convertSquareToIndices(startSquare);
-    const [endRankIndex, endFileIndex] = convertSquareToIndices(endSquare);
-
+    const [startRankIndex, startFileIndex] = convertSquareToIndices(startSquare);
     const deltas = PIECE_TYPE_TO_DELTAS[pieceType];
+
     if (deltas) {
         for (const [deltaFile, deltaRank, numRepeats] of deltas) {
+            const possibleInBetweenSquares: string[] = [];
             for (let factor = 1; factor <= numRepeats; factor++) {
-                const newFileIndex = goalFileIndex + deltaFile * factor;
-                const newRankIndex = goalRankIndex + deltaRank * factor;
+                const newFileIndex = startFileIndex + deltaFile * factor;
+                const newRankIndex = startRankIndex + deltaRank * factor;
                 if ((newFileIndex < 0) || (newFileIndex >= FILES.length) || (newRankIndex < 0) || (newRankIndex >= RANKS.length)) break;
-                if ((newRankIndex === endRankIndex) && (newFileIndex === endFileIndex)) return true;
-                if (convertIndicesToSquare(newRankIndex, newFileIndex) in boardLayout) break;
+
+                const newSquare = convertIndicesToSquare(newRankIndex, newFileIndex)
+                if (newSquare in boardLayout) {
+                    if (boardLayout[newSquare].type === 'k') break;
+                    capturableSquares.add(newSquare);
+                    possibleInBetweenSquares.forEach((square) => inBetweenSquares.add(square));
+                    break
+                } else {
+                    possibleInBetweenSquares.push(newSquare);
+                }
             }
         }
     }
 
-    return false;
+    return [capturableSquares, inBetweenSquares];
 }
