@@ -91,7 +91,7 @@ export function getBoardLayout(sublevel: number) {
                             const secondMoveFileIndex = firstMoveFileIndex - secondMoveDeltaFile * secondMoveFactor;
                             const secondMoveRankIndex = firstMoveRankIndex - secondMoveDeltaRank * secondMoveFactor;
 
-                            if ((secondMoveFileIndex === goalFileIndex) && (secondMoveRankIndex === goalRankIndex)) continue;
+                            if ((secondMoveFileIndex === goalFileIndex) && (secondMoveRankIndex === goalRankIndex)) break;
 
                             const secondMoveFileOutOfBounds = (secondMoveFileIndex < 0) || (secondMoveFileIndex >= FILES.length);
                             const secondMoveRankOutOfBounds = (secondMoveRankIndex < 0) || (secondMoveRankIndex >= RANKS.length);

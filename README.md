@@ -13,7 +13,7 @@ This is a work in progress!
 ## todo
 
 - [ ] Debug, round 3!
-  - [ ] Fix occasional impossible puzzles (wrong piece rendered?).
+  - [x] Fix occasional impossible puzzles.
   - [ ] Disable initial blinking of level and high score.
 - [ ] Finalize.
   - [x] Show valid moves on board.
