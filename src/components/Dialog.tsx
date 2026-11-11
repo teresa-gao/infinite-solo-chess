@@ -25,7 +25,7 @@ export default function Dialog({ id, headerText, isOpen, onClose, children }: {i
   return (
     <dialog id={id} ref={dialogRef} onKeyDown={handleKeyDown} onClick={handleBackdropClick} className="m-auto rounded-lg p-6 open:flex flex-col items-center gap-4 backdrop:backdrop-brightness-75 dark:bg-zinc-900 dark:text-neutral-200 w-[90dvw] max-w-xl">
       <header className="w-full flex">
-        <h2 className="text-lg font-semibold text-center grow">{headerText}</h2>
+        <h2 className="text-lg font-bold text-center grow">{headerText}</h2>
       </header>
       <main>
         {children}
