@@ -14,21 +14,22 @@ This is a work in progress!
 
 - [ ] Debug, round 2!
   - [x] Fix pieces gliding "between" puzzles.
-  - [ ] Fix board row generation glitch when leveling up.
+  - [ ] Fix FOUC when leveling up.
 - [ ] Finalize.
   - [ ] Add unique favicon.
     - [ ] Add Open Graph preview image (per https://ogp.me?).
-  - [ ] Optimize puzzle generation to be as minimal/efficient as possible.
-    - [ ] Calculate next puzzle in background? (if it seems likely that someone could make it past level ~35?)
   - [ ] Clean up codebase (e.g., documentation, explicit semicolons, header/body/footer, standardized tab size).
 - [ ] Consider bonus features.
-  - [ ] Add sound effects and/or other puzzle-success feedback?
-  - [ ] Show valid moves on board?
+  - [ ] Add sound effects and/or other puzzle-success feedback.
+  - [ ] Show valid moves on board.
   - [ ] Customize which and how many starting pieces to use.
-  - [ ] Customize how many moves are possible per piece?
-    - [ ] Display remaining move count for pieces if greater than two?
-  - [ ] Customize goal/start vs. infinite mode? (and/or puzzles per level?)
+  - [ ] Calculate next puzzle in background? (if it seems likely that someone could make it past level ~35?)
+  - [ ] Customize how many moves are possible per piece.
+    - [ ] Display remaining move count for pieces if greater than two.
+  - [ ] Customize goal/start vs. infinite mode?(and/or puzzles per level).
   - [ ] Add game timer (saved with high score?).
+  - [ ] Add board coordinates.
+    - [ ] Allow keyboard input of moves.
 
 ## done
 
