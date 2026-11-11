@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import type { DragEndEvent } from '@dnd-kit/react'
 
 import { NUM_SUBLEVELS_PER_LEVEL } from './utils/constants'
-import { getBoardLayout, evaluateEndSquare } from './utils/helpers'
+import { getBoardLayout, evaluateEndSquare, convertSublevelToLevel } from './utils/helpers'
 import Board from './components/Board.tsx'
 import type { PieceData } from './components/Piece.tsx'
 import Dialog from './components/Dialog.tsx'
@@ -10,28 +10,34 @@ import Dialog from './components/Dialog.tsx'
 import './App.css'
 
 export default function App() {
-  const [level, setLevel] = useState<number>(1);
   const [sublevel, setSublevel] = useState<number>(0);
-  const [highScore, setHighScore] = useState<number>(Number(localStorage.getItem('highScore')) || level);
-  const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => getBoardLayout(level, sublevel));
+  const [highScore, setHighScore] = useState<number>(Number(localStorage.getItem('highScore')) || convertSublevelToLevel(sublevel));
+  const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => getBoardLayout(sublevel));
   const [isInfoDialogOpen, setInfoDialogOpen] = useState<boolean>(false);
+  const [isBoardFrozen, setBoardFrozen] = useState<boolean>(false);
+  const delayTimerRef = useRef<number>(null);
 
   const resetGame = () => {
-    setLevel(1);
     setSublevel(0);
-    setBoardLayout(getBoardLayout(1, 0));
+    setBoardLayout(getBoardLayout(0));
   }
 
   const levelUp = () => {
-    const newSublevel = (sublevel + 1) % NUM_SUBLEVELS_PER_LEVEL;
-    const newLevel = newSublevel > 0 ? level : level + 1;
-    setLevel(newLevel);
-    if (newLevel > highScore) {
-      setHighScore(newLevel);
-      localStorage.setItem('highScore', String(newLevel));
+    setSublevel((sublevel) => sublevel + 1);
+    const level = convertSublevelToLevel(sublevel);
+    if (level > highScore) {
+      setHighScore(level);
+      localStorage.setItem('highScore', String(level));
     }
-    setBoardLayout(getBoardLayout(newLevel, newSublevel));
-    setSublevel(newSublevel);
+
+    if (delayTimerRef.current) {
+      clearTimeout(delayTimerRef.current);
+    }
+    setBoardFrozen(true);
+    delayTimerRef.current = setTimeout(() => {
+      setBoardLayout(getBoardLayout(sublevel));
+      setBoardFrozen(false);
+    }, 1500);
   }
 
   const handlePieceMove = (event: DragEndEvent) => {
@@ -52,11 +58,10 @@ export default function App() {
     if (!isValidEndSquare) return;
 
     const { [startSquare]: _, ...newBoardLayout } = boardLayout;
+    newBoardLayout[endSquare] = {id: piece.id + 'x', type: piece.type, numMoves: piece.numMoves + 1};
+    setBoardLayout(newBoardLayout);
     if (Object.keys(newBoardLayout).length === 1) {
       levelUp()
-    } else {
-      newBoardLayout[endSquare] = {id: piece.id + 'x', type: piece.type, numMoves: piece.numMoves + 1};
-      setBoardLayout(newBoardLayout);
     }
   }
 
@@ -84,13 +89,13 @@ export default function App() {
         </header>
 
         <main className="flex flex-col gap-6">
-          <Board boardLayout={boardLayout} onPieceMove={handlePieceMove} />
+          <Board boardLayout={boardLayout} onPieceMove={handlePieceMove} isBoardFrozen={isBoardFrozen} />
 
           <div id="boardBottomContainer" className="w-full flex justify-between items-end">
             <p id="level">
-              <span key={`${level}-${sublevel}`}><
-                i className={`animate-blinking ${sublevel === 0 ? "fa-regular fa-circle" : (sublevel < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
-              </span> <span key={level} className="animate-blinking">Level {level}</span>
+              <span key={`${sublevel}`}><
+                i className={`animate-blinking ${sublevel % NUM_SUBLEVELS_PER_LEVEL === 0 ? "fa-regular fa-circle" : (sublevel % NUM_SUBLEVELS_PER_LEVEL < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
+              </span> <span className="animate-blinking">Level {convertSublevelToLevel(sublevel)}</span>
             </p>
             <div key={highScore} id="highScore" className="animate-blinking">High Score: {highScore}</div>
           </div>

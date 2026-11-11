@@ -6,7 +6,7 @@ import { convertIndicesToSquare } from '../utils/helpers'
 import Square from './Square.tsx'
 import type { PieceData } from './Piece.tsx'
 
-export default function Board({boardLayout, onPieceMove}: {boardLayout: Record<string, PieceData>, onPieceMove: (event: DragEndEvent) => void}) {
+export default function Board({boardLayout, onPieceMove, isBoardFrozen}: {boardLayout: Record<string, PieceData>, onPieceMove: (event: DragEndEvent) => void, isBoardFrozen: boolean}) {
   return (
     <DragDropProvider
       onDragEnd={onPieceMove}
@@ -32,7 +32,8 @@ export default function Board({boardLayout, onPieceMove}: {boardLayout: Record<s
               id={square}
               key={fileIndex}
               isDark={fileIndex % 2 !== rankIndex % 2}
-              pieceData={pieceData}>
+              pieceData={pieceData}
+              isBoardFrozen={isBoardFrozen}>
             </Square>
           );
         })))}

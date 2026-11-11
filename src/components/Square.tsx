@@ -3,7 +3,7 @@ import { useDroppable } from '@dnd-kit/react'
 import Piece from './Piece.tsx'
 import type { PieceData } from './Piece.tsx'
 
-export default function Square({id, isDark, pieceData} : {id: string, isDark: boolean, pieceData: PieceData}) {
+export default function Square({id, isDark, pieceData, isBoardFrozen} : {id: string, isDark: boolean, pieceData: PieceData, isBoardFrozen: boolean}) {
   const {isDropTarget, ref} = useDroppable({id});
   const contents = pieceData ? (
     <Piece
@@ -11,6 +11,7 @@ export default function Square({id, isDark, pieceData} : {id: string, isDark: bo
       id={pieceData.id}
       type={pieceData.type}
       numMoves={pieceData.numMoves}
+      isBoardFrozen={isBoardFrozen}
     />
   ) : null;
   const colorClass = isDark ? "bg-[burlywood] dark:bg-[darkgoldenrod]" : "bg-[antiquewhite] dark:bg-[burlywood]";

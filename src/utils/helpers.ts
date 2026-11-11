@@ -1,4 +1,4 @@
-import { RANKS, FILES, PIECE_TYPE_TO_DELTAS } from './constants'
+import { RANKS, FILES, PIECE_TYPE_TO_DELTAS, NUM_SUBLEVELS_PER_LEVEL } from './constants'
 
 import type { PieceData } from '../components/Piece.tsx'
 
@@ -11,6 +11,10 @@ function getRandomizedCopy(array: number[][]) {
         shuffled[j] = temp
     }
     return shuffled;
+}
+
+export function convertSublevelToLevel(sublevel: number) {
+    return Math.trunc((sublevel - (sublevel) % NUM_SUBLEVELS_PER_LEVEL) / NUM_SUBLEVELS_PER_LEVEL) + 1
 }
 
 export function convertIndicesToSquare(rankIndex: number, fileIndex: number) {
@@ -40,7 +44,8 @@ function getPieceTypes(numPieces: number) {
     return pieceTypes;
 }
 
-export function getBoardLayout(level: number, sublevel: number) {
+export function getBoardLayout(sublevel: number) {
+    const level = convertSublevelToLevel(sublevel);
     while (true) {
         const pieceTypes = getPieceTypes(level + 1);
 
@@ -126,7 +131,7 @@ export function getBoardLayout(level: number, sublevel: number) {
             let pieceNum = 0;
             const boardLayout: Record<string, PieceData> = {};
             for (let [square, type] of squaresToPieceTypes) {
-                boardLayout[square] = { id: `${level}-${sublevel}-${type}${pieceNum++}`, type: type, numMoves: 0 };
+                boardLayout[square] = { id: `${sublevel}-${type}${pieceNum++}`, type: type, numMoves: 0 };
             }
             return boardLayout;
         }
