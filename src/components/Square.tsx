@@ -17,7 +17,7 @@ export default function Square({id, isDark, pieceData} : {id: string, isDark: bo
   const outlineClass = isDropTarget ? "z-10 ring-2 ring-inset ring-white" : ""
 
   return (
-    <div ref={ref} className={`${colorClass} ${outlineClass} flex flex-col items-center justify-center text-center aspect-square box-border text-[saddlebrown]`}>
+    <div ref={ref} className={`${colorClass} ${outlineClass} h-full w-full flex flex-col items-center justify-center text-center aspect-square box-border text-[saddlebrown]`}>
       {contents}
     </div>
   );

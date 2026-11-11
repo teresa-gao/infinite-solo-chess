@@ -61,8 +61,8 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-y-6 mx-4 my-10 font-mono text-zinc-950 dark:text-neutral-200">
-      <div id="boardTopContaciner" className="grid grid-cols-[1fr_auto_1fr] w-full">
+    <div className="flex flex-col items-center gap-y-7 mx-4 my-10 font-mono text-zinc-950 dark:text-neutral-200">
+      <header className="grid grid-cols-[1fr_auto_1fr] w-full">
         <div id="resetButtonContainer" className="flex flex-row">
           <button id="resetButton" onClick={resetGame}><i className="fa fa-refresh cursor-pointer hover:opacity-60" aria-hidden="true"></i></button>
         </div>
@@ -81,21 +81,22 @@ export default function App() {
               </div>
             </Dialog>
           </div>
-        </div>
+        </header>
 
-        <Board boardLayout={boardLayout} onPieceMove={handlePieceMove} />
+        <main className="flex flex-col gap-6">
+          <Board boardLayout={boardLayout} onPieceMove={handlePieceMove} />
 
-        <div id="boardBottomContainer" className="w-full flex justify-between items-end">
-          <div id="level" className="flex gap-2">
-            <span key={`${level}-${sublevel}`}><
-              i className={`animate-blinking ${sublevel === 0 ? "fa-regular fa-circle" : (sublevel < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
-            </span>
-            <span key={level} className="animate-blinking">Level {level}</span>
+          <div id="boardBottomContainer" className="w-full flex justify-between items-end">
+            <p id="level">
+              <span key={`${level}-${sublevel}`}><
+                i className={`animate-blinking ${sublevel === 0 ? "fa-regular fa-circle" : (sublevel < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
+              </span> <span key={level} className="animate-blinking">Level {level}</span>
+            </p>
+            <div key={highScore} id="highScore" className="animate-blinking">High Score: {highScore}</div>
           </div>
-          <div key={highScore} id="highScore" className="animate-blinking">High Score: {highScore}</div>
-        </div>
+        </main>
 
-      <div id="instructions" className="space-y-3">
+      <footer id="instructions" className="space-y-3">
         <hr className="h-px mt-3 mb-8 border-0 bg-zinc-950 dark:bg-neutral-200" />
         <h2 className="text-lg font-bold text-center">How to Play</h2>
         <div id="rules" className="space-y-3">
@@ -107,7 +108,7 @@ export default function App() {
             <li>If you reset the game, you return to Level 1.</li>
           </ul>
           </div>
-      </div>
+      </footer>
     </div>
   )
 }
