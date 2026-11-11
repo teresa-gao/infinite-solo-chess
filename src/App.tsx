@@ -69,7 +69,7 @@ export default function App() {
     <div className="flex flex-col items-center gap-y-7 mx-4 my-10 font-mono text-zinc-950 dark:text-neutral-200">
       <header className="grid grid-cols-[1fr_auto_1fr] w-full">
         <div id="resetButtonContainer" className="flex flex-row">
-          <button id="resetButton" onClick={resetGame}><i className="fa fa-refresh cursor-pointer hover:opacity-60" aria-hidden="true"></i></button>
+          <button id="resetButton" onClick={resetGame}><i className="fa fa-refresh cursor-pointer hover:opacity-30 dark:hover:opacity-60" aria-hidden="true"></i></button>
         </div>
 
         <h1 className="text-xl font-bold">
@@ -77,12 +77,12 @@ export default function App() {
         </h1>
 
         <div id="infoButtonContainer" className="flex flex-row-reverse">
-          <button id="infoButton" onClick={() => setInfoDialogOpen(true)}><i className="fa fa-info-circle cursor-pointer hover:opacity-60 text-lg" aria-hidden="true"></i></button>
+          <button id="infoButton" onClick={() => setInfoDialogOpen(true)}><i className="fa fa-info-circle cursor-pointer hover:opacity-30 dark:hover:opacity-60 text-lg" aria-hidden="true"></i></button>
             <Dialog id="Info" headerText="About This Game" isOpen={isInfoDialogOpen} onClose={() => {setInfoDialogOpen(false)}}>
               <div className="space-y-4">
-                <p>Infinite Solo Chess was created by Teresa Gao, a software engineer and a fan of the original (non-infinite) version of the game on <a href="https://www.chess.com/solo-chess" className="underline hover:opacity-60">Chess.com</a>.</p>
-                <p>Please feel free to say hi on <a href="https://www.linkedin.com/in/teresa-gao/" className="underline hover:opacity-60">LinkedIn</a> or check out the source code on <a href="https://github.com/teresa-gao/infinite-solo-chess" className="underline hover:opacity-60">GitHub</a>!</p>
-                <p>Piece design credits: <a href="https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent" className="underline hover:opacity-60">Wikimedia Commons</a></p>
+                <p>Infinite Solo Chess was created by Teresa Gao, a software engineer and a fan of the original (non-infinite) version of the game on <a href="https://www.chess.com/solo-chess" className="underline hover:opacity-30 dark:hover:opacity-60">Chess.com</a>.</p>
+                <p>Please feel free to say hi on <a href="https://www.linkedin.com/in/teresa-gao/" className="underline hover:opacity-30 dark:hover:opacity-60">LinkedIn</a> or check out the source code on <a href="https://github.com/teresa-gao/infinite-solo-chess" className="underline hover:opacity-30 dark:hover:opacity-60">GitHub</a>!</p>
+                <p>Piece design credits: <a href="https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent" className="underline hover:opacity-30 dark:hover:opacity-60">Wikimedia Commons</a></p>
               </div>
             </Dialog>
           </div>

@@ -27,7 +27,7 @@ export default function Dialog({ id, headerText, isOpen, onClose, children }: {i
       <header className="w-full grid grid-cols-[1fr_max-content_1fr]">
         <h2 className="text-lg font-bold col-start-2">{headerText}</h2>
         <div className="flex flex-row-reverse">
-          <button onClick={onClose} className="cursor-pointer hover:opacity-60">
+          <button onClick={onClose} className="cursor-pointer hover:opacity-30 dark:hover:opacity-60">
             <i className="fa-solid fa-xmark"></i>
           </button>
         </div>
