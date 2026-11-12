@@ -17,6 +17,7 @@ export default function App() {
   const [isInfoDialogOpen, setInfoDialogOpen] = useState<boolean>(false);
   const [isBoardFrozen, setBoardFrozen] = useState<boolean>(false);
   const delayTimerRef = useRef<number>(null);
+  const highScoreRef = useRef<number>(null);
 
   const resetGame = () => {
     setSublevel(0);
@@ -78,10 +79,13 @@ export default function App() {
     }
   }
 
+  const isNewSublevel = delayTimerRef.current !== null;
   const level = convertSublevelToLevel(sublevel);
-  const highScore = Math.max(Number(localStorage.getItem('highScore')), level);
-  if (highScore > Number(localStorage.getItem('highScore'))) {
-    localStorage.setItem('highScore', String(highScore));
+  const isNewLevel = isNewSublevel && (level != convertSublevelToLevel(sublevel - 1));
+  const highScore = highScoreRef.current || Number(localStorage.getItem('highScore'));
+  if (level > highScore) {
+    localStorage.setItem('highScore', String(level));
+    highScoreRef.current = level;
   }
 
   return (
@@ -112,10 +116,10 @@ export default function App() {
 
           <div id="boardBottomContainer" className="w-full flex justify-between items-end">
             <p id="level">
-              <span key={`${level}-${sublevel}`}><i className={`animate-blinking ${sublevel % NUM_SUBLEVELS_PER_LEVEL === 0 ? "fa-regular fa-circle" : (sublevel % NUM_SUBLEVELS_PER_LEVEL < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
-              </span> <span key={level} className="animate-blinking">Level {level}</span>
+              <span key={`${level}-${sublevel}`}><i className={`${isNewSublevel ? "animate-blinking" : ""} ${sublevel % NUM_SUBLEVELS_PER_LEVEL === 0 ? "fa-regular fa-circle" : (sublevel % NUM_SUBLEVELS_PER_LEVEL < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
+              </span> <span key={level} className={`${isNewLevel ? "animate-blinking" : ""}`}>Level {level}</span>
             </p>
-            <div key={highScore} id="highScore" className="animate-blinking">High Score: {highScore}</div>
+            <div key={highScore} id="highScore" className={`${isNewLevel && (highScoreRef.current !== null) ? "animate-blinking" : ""}`}>High Score: {highScore}</div>
           </div>
         </main>
 

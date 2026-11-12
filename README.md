@@ -12,14 +12,11 @@ This is a work in progress!
 
 ## todo
 
-- [ ] Debug, round 3!
-  - [x] Fix occasional impossible puzzles.
-  - [ ] Disable initial blinking of level and high score.
 - [ ] Finalize.
   - [x] Show valid moves on board.
   - [ ] Add unique favicon.
     - [ ] Add Open Graph preview image (per https://ogp.me?).
-  - [ ] Clean up codebase (e.g., documentation, explicit semicolons, header/body/footer, standardized tab size).
+  - [ ] Clean up codebase (e.g., documentation, [consistent semicolons](https://prettier.io), header/body/footer, standardized tab size).
 - [ ] Consider bonus features.
   - [ ] Add sound effects.
   - [ ] Allow clicking start and end squares in addition to dragging pieces.
@@ -86,3 +83,6 @@ This is a work in progress!
 - [x] Debug, round 2!
   - [x] Fix pieces gliding "between" puzzles.
   - [x] Fix FOUC when leveling up.
+- [x] Debug, round 3!
+  - [x] Fix occasional impossible puzzles.
+  - [x] Disable initial blinking of level and high score.
