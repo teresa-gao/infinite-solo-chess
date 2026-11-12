@@ -16,10 +16,21 @@ export default function App() {
   const [capturableSquares, setCapturableSquares] = useState<Set<string>>(() => new Set());
   const [isInfoDialogOpen, setInfoDialogOpen] = useState<boolean>(false);
   const [isBoardFrozen, setBoardFrozen] = useState<boolean>(false);
+
   const delayTimerRef = useRef<number>(null);
-  const highScoreRef = useRef<number>(null);
+  const savedHighScoreRef = useRef<number>(Number(localStorage.getItem('highScore')) || 1);
+
+  const isNewSublevel = delayTimerRef.current !== null;
+  const level = convertSublevelToLevel(sublevel);
+  const isNewLevel = isNewSublevel && ((level != convertSublevelToLevel(sublevel - 1)) || (sublevel === 0));
+  const isNewHighScore = isNewLevel && (level > savedHighScoreRef.current);
+  const highScore = Math.max(level, savedHighScoreRef.current);
+  if (isNewHighScore) {
+    localStorage.setItem('highScore', String(highScore));
+  }
 
   const resetGame = () => {
+    savedHighScoreRef.current = highScore;
     setSublevel(0);
     setBoardLayout(getBoardLayout(0));
   }
@@ -80,20 +91,11 @@ export default function App() {
     }
   }
 
-  const isNewSublevel = delayTimerRef.current !== null;
-  const level = convertSublevelToLevel(sublevel);
-  const isNewLevel = isNewSublevel && (level != convertSublevelToLevel(sublevel - 1));
-  const highScore = highScoreRef.current || Number(localStorage.getItem('highScore'));
-  if (level > highScore) {
-    localStorage.setItem('highScore', String(level));
-    highScoreRef.current = level;
-  }
-
   return (
     <div className="flex flex-col items-center gap-y-7 mx-4 my-10 font-mono text-zinc-950 dark:text-neutral-200">
       <header className="grid grid-cols-[1fr_auto_1fr] w-full">
         <div id="resetButtonContainer" className="flex flex-row">
-          <button id="resetButton" onClick={resetGame}><i className="fa fa-refresh cursor-pointer hover:opacity-30 dark:hover:opacity-60" aria-hidden="true"></i></button>
+          <button id="resetButton" onClick={resetGame} disabled={isBoardFrozen} className="cursor-pointer enabled:hover:opacity-30 enabled:dark:hover:opacity-60 disabled:cursor-not-allowed disabled:opacity-100"><i className="fa fa-refresh" aria-hidden="true"></i></button>
         </div>
 
         <h1 className="text-xl font-bold">
@@ -120,7 +122,7 @@ export default function App() {
               <span key={`${level}-${sublevel}`}><i className={`${isNewSublevel ? "animate-blinking" : ""} ${sublevel % NUM_SUBLEVELS_PER_LEVEL === 0 ? "fa-regular fa-circle" : (sublevel % NUM_SUBLEVELS_PER_LEVEL < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
               </span> <span key={level} className={`${isNewLevel ? "animate-blinking" : ""}`}>Level {level}</span>
             </p>
-            <div key={highScore} id="highScore" className={`${isNewLevel && (highScoreRef.current !== null) ? "animate-blinking" : ""}`}>High Score: {highScore}</div>
+            <div key={highScore} id="highScore" className={`${isNewHighScore ? "animate-blinking" : ""}`}>High Score: {highScore}</div>
           </div>
         </main>
 
