@@ -14,7 +14,7 @@ function getRandomizedCopy(array: number[][]) {
 }
 
 export function convertSublevelToLevel(sublevel: number) {
-    return Math.trunc((sublevel - (sublevel) % NUM_SUBLEVELS_PER_LEVEL) / NUM_SUBLEVELS_PER_LEVEL) + 1
+    return Math.trunc(sublevel / NUM_SUBLEVELS_PER_LEVEL) + 1
 }
 
 export function convertIndicesToSquare(rankIndex: number, fileIndex: number) {

@@ -25,14 +25,15 @@ export default function App() {
   }
 
   const levelUp = () => {
-    setSublevel((sublevel) => sublevel + 1);
+    const newSublevel = sublevel + 1;
+    setSublevel(newSublevel);
 
     if (delayTimerRef.current) {
       clearTimeout(delayTimerRef.current);
     }
     setBoardFrozen(true);
     delayTimerRef.current = setTimeout(() => {
-      setBoardLayout(getBoardLayout(sublevel));
+      setBoardLayout(getBoardLayout(newSublevel));
       setBoardFrozen(false);
     }, 1500);
   }
