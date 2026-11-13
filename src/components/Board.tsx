@@ -23,7 +23,7 @@ export default function Board({boardLayout, capturableSquares, inBetweenSquares,
         }),
       ]}
     >
-      <div id="board" className="grid grid-cols-8 rounded overflow-hidden shadow touch-none">
+      <div id="board" className="grid grid-cols-8 rounded overflow-hidden shadow touch-none max-w-[480px] max-h-[480px]">
         {RANKS.map((_, rankIndex) => (
           FILES.map((_, fileIndex) => {
           const square = convertIndicesToSquare(rankIndex, fileIndex);

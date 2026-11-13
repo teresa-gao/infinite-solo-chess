@@ -1,4 +1,4 @@
-import { RANKS, FILES, PIECE_TYPE_TO_DELTAS, NUM_SUBLEVELS_PER_LEVEL } from './constants'
+import { type PieceType, RANKS, FILES, PIECE_TYPE_TO_DELTAS, NUM_SUBLEVELS_PER_LEVEL } from './constants'
 
 import type { PieceData } from '../components/Piece.tsx'
 
@@ -27,11 +27,13 @@ export function convertSquareToIndices(squareId: string) {
 }
 
 function getPieceTypes(numPieces: number) {
-    const pieceTypes: string[] = [];
-    const nonKingTypes = Object.keys(PIECE_TYPE_TO_DELTAS).filter(type => type !== 'k');
+    const pieceTypes: PieceType[] = [];
+    const nonKingTypes: PieceType[] = Object.keys(PIECE_TYPE_TO_DELTAS).filter(
+        (type): type is PieceType => type !== 'king'
+    );
 
     if (Math.random() >= 0.5) {
-        pieceTypes.push('k');
+        pieceTypes.push('king');
         numPieces--;
     }
 
@@ -51,7 +53,7 @@ export function getBoardLayout(sublevel: number) {
 
         const goalRankIndex = Math.floor(Math.random() * RANKS.length);
         const goalFileIndex = Math.floor(Math.random() * FILES.length);
-        const squaresToPieceTypes = new Map<string, string>();
+        const squaresToPieceTypes = new Map<string, PieceType>();
         let boardLayoutIsValid = true;
 
         let pieceTypeIndex = 0;
@@ -138,7 +140,7 @@ export function getBoardLayout(sublevel: number) {
     }
 }
 
-export function getSquaresOfInterest(pieceType: string, startSquare: string, boardLayout: Record<string, PieceData>) {
+export function getSquaresOfInterest(pieceType: PieceType, startSquare: string, boardLayout: Record<string, PieceData>) {
     const capturableSquares = new Set<string>();
     const inBetweenSquares = new Set<string>();
 
@@ -155,7 +157,7 @@ export function getSquaresOfInterest(pieceType: string, startSquare: string, boa
 
                 const newSquare = convertIndicesToSquare(newRankIndex, newFileIndex)
                 if (newSquare in boardLayout) {
-                    if (boardLayout[newSquare].type === 'k') break;
+                    if (boardLayout[newSquare].type === 'king') break;
                     capturableSquares.add(newSquare);
                     possibleInBetweenSquares.forEach((square) => inBetweenSquares.add(square));
                     break

@@ -1,16 +1,17 @@
 import { useDraggable } from '@dnd-kit/react'
 
+import type { PieceType } from '../utils/constants'
+
 export interface PieceData {
     id: string;
-    type: string;
+    type: PieceType;
     numMoves: number;
     isFrozen: boolean;
 }
 
 export default function Piece({id, type, numMoves, isFrozen}: PieceData) {
     const canMove = numMoves < 2;
-    const color: string = canMove ? "l" : "d";
-    const imgUrl: string = new URL(`../assets/Chess_${type}${color}t60.png`, import.meta.url).href;
+    const imgUrl: string = new URL(`../assets/${type}_${canMove ? 'white' : 'black'}.png`, import.meta.url).href;
 
     const { ref } = useDraggable({
         id: id,
@@ -18,6 +19,6 @@ export default function Piece({id, type, numMoves, isFrozen}: PieceData) {
     });
 
     return (
-        <img id={id} src={imgUrl} className={`${isFrozen ? "" : "cursor-grab"} max-w-full`} draggable="false" ref={ref}/>
+        <img id={id} src={imgUrl} className={`${isFrozen ? "" : "cursor-grab"} w-full h-full`} draggable="false" ref={ref}/>
     )
 }
