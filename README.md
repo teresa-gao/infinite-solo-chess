@@ -14,6 +14,7 @@ This is a work in progress!
 
 - [ ] Finalize.
   - [x] Show valid moves on board.
+  - [x] Prevent board/score reset on page refresh.
   - [ ] Add unique favicon.
     - [ ] Add Open Graph preview image (per https://ogp.me?).
   - [ ] Clean up codebase (e.g., documentation, [consistent semicolons](https://prettier.io), header/body/footer, standardized tab size).

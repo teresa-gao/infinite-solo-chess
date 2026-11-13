@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import type { DragStartEvent, DragEndEvent } from '@dnd-kit/react'
 
 import { NUM_SUBLEVELS_PER_LEVEL } from './utils/constants'
@@ -10,8 +10,20 @@ import Dialog from './components/Dialog.tsx'
 import './App.css'
 
 export default function App() {
-  const [sublevel, setSublevel] = useState<number>(0);
-  const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => getBoardLayout(sublevel));
+  const [sublevel, setSublevel] = useState<number>(Number(localStorage.getItem('sublevel')) || 0);
+  const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => {
+    try {
+      const savedBoardLayout = localStorage.getItem('boardLayout');
+      if (savedBoardLayout) {
+        return JSON.parse(savedBoardLayout) as Record<string, PieceData>;
+      } else {}
+    } catch (error) {
+      console.log('Error loading saved board layout:')
+      console.log(error);
+    }
+    return getBoardLayout(sublevel);
+  });
+
   const [inBetweenSquares, setInBetweenSquares] = useState<Set<string>>(() => new Set());
   const [capturableSquares, setCapturableSquares] = useState<Set<string>>(() => new Set());
   const [isInfoDialogOpen, setInfoDialogOpen] = useState<boolean>(false);
@@ -25,13 +37,17 @@ export default function App() {
   const isNewLevel = isNewSublevel && ((level != convertSublevelToLevel(sublevel - 1)) || (sublevel === 0));
   const isNewHighScore = isNewLevel && (level > savedHighScoreRef.current);
   const highScore = Math.max(level, savedHighScoreRef.current);
-  if (isNewHighScore) {
-    localStorage.setItem('highScore', String(highScore));
-  }
+
+  useEffect(() => {
+    if (!isBoardFrozen) {
+      localStorage.setItem('boardLayout', JSON.stringify(boardLayout))
+    }
+  }, [boardLayout])
 
   const resetGame = () => {
     savedHighScoreRef.current = highScore;
     setSublevel(0);
+    localStorage.setItem('sublevel', String(0));
     setBoardLayout(getBoardLayout(0));
   }
 
@@ -44,8 +60,11 @@ export default function App() {
     }
     setBoardFrozen(true);
     delayTimerRef.current = setTimeout(() => {
-      setBoardLayout(getBoardLayout(newSublevel));
       setBoardFrozen(false);
+      setBoardLayout(getBoardLayout(newSublevel));
+
+      localStorage.setItem('sublevel', String(newSublevel));
+      localStorage.setItem('highScore', String(highScore));
     }, 1500);
   }
 
