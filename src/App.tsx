@@ -1,6 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import type { DragStartEvent, DragEndEvent } from '@dnd-kit/react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRotateLeft, faCircleInfo, faCircleHalfStroke, faCircle as faCircleSolid } from '@fortawesome/free-solid-svg-icons'
+import { faCircle as faCircleRegular } from '@fortawesome/free-regular-svg-icons'
+
 import { NUM_SUBLEVELS_PER_LEVEL } from './utils/constants'
 import { getBoardLayout, getSquaresOfInterest, convertSublevelToLevel } from './utils/helpers'
 import Board from './components/Board.tsx'
@@ -114,7 +118,7 @@ export default function App() {
     <div className="flex flex-col items-center gap-y-7 mx-4 my-10 font-mono text-zinc-950 dark:text-neutral-200">
       <header className="grid grid-cols-[1fr_auto_1fr] w-full">
         <div id="resetButtonContainer" className="flex flex-row">
-          <button id="resetButton" onClick={resetGame} disabled={isBoardFrozen} className="cursor-pointer enabled:hover:opacity-30 enabled:dark:hover:opacity-60 disabled:cursor-not-allowed disabled:opacity-100"><i className="fa fa-refresh" aria-hidden="true"></i></button>
+          <button id="resetButton" onClick={resetGame} disabled={isBoardFrozen} className="cursor-pointer enabled:hover:opacity-30 enabled:dark:hover:opacity-60 disabled:cursor-not-allowed disabled:opacity-100"><FontAwesomeIcon icon={faArrowRotateLeft} /></button>
         </div>
 
         <h1 className="text-xl font-bold">
@@ -122,7 +126,7 @@ export default function App() {
         </h1>
 
         <div id="infoButtonContainer" className="flex flex-row-reverse">
-          <button id="infoButton" onClick={() => setInfoDialogOpen(true)}><i className="fa fa-info-circle cursor-pointer hover:opacity-30 dark:hover:opacity-60 text-lg" aria-hidden="true"></i></button>
+          <button id="infoButton" onClick={() => setInfoDialogOpen(true)} className="cursor-pointer hover:opacity-30 dark:hover:opacity-60 text-lg"><FontAwesomeIcon icon={faCircleInfo} /></button>
             <Dialog id="Info" headerText="About This Game" isOpen={isInfoDialogOpen} onClose={() => {setInfoDialogOpen(false)}}>
               <div className="space-y-4">
                 <p>Infinite Solo Chess was created by Teresa Gao, a software engineer and a fan of the original (non-infinite) version of the game on <a href="https://www.chess.com/solo-chess" className="underline hover:opacity-30 dark:hover:opacity-60">Chess.com</a>.</p>
@@ -138,8 +142,8 @@ export default function App() {
 
           <div id="boardBottomContainer" className="w-full flex justify-between items-end">
             <p id="level">
-              <span key={`${level}-${sublevel}`}><i className={`${isNewSublevel ? "animate-blinking" : ""} ${sublevel % NUM_SUBLEVELS_PER_LEVEL === 0 ? "fa-regular fa-circle" : (sublevel % NUM_SUBLEVELS_PER_LEVEL < NUM_SUBLEVELS_PER_LEVEL - 1 ? "fa-solid fa-circle-half-stroke" : "fa-solid fa-circle")}`}></i>
-              </span> <span key={level} className={`${isNewLevel ? "animate-blinking" : ""}`}>Level {level}</span>
+              <span key={`${level}-${sublevel}`}><FontAwesomeIcon className={`${isNewSublevel ? "animate-blinking" : ""}`} icon={sublevel % NUM_SUBLEVELS_PER_LEVEL === 0 ? faCircleRegular : (sublevel % NUM_SUBLEVELS_PER_LEVEL < NUM_SUBLEVELS_PER_LEVEL - 1 ? faCircleHalfStroke : faCircleSolid)} />
+              </span> <span key={level} className={`${isNewLevel ? "animate-blinking" : ""}`} >Level {level}</span>
             </p>
             <div key={highScore} id="highScore" className={`${isNewHighScore ? "animate-blinking" : ""}`}>High Score: {highScore}</div>
           </div>

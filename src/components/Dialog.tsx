@@ -1,5 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+
 export default function Dialog({ id, headerText, isOpen, onClose, children }: {id: string, headerText: string, isOpen: boolean, onClose: () => void, children: React.ReactNode}) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -28,7 +31,7 @@ export default function Dialog({ id, headerText, isOpen, onClose, children }: {i
         <h2 className="text-lg font-bold col-start-2">{headerText}</h2>
         <div className="flex flex-row-reverse">
           <button onClick={onClose} className="cursor-pointer hover:opacity-30 dark:hover:opacity-60">
-            <i className="fa-solid fa-xmark"></i>
+            <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
       </header>

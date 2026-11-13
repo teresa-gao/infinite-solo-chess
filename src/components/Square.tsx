@@ -1,5 +1,8 @@
 import { useDroppable } from '@dnd-kit/react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircle } from '@fortawesome/free-solid-svg-icons'
+
 import Piece from './Piece.tsx'
 import type { PieceData } from './Piece.tsx'
 
@@ -13,7 +16,7 @@ export default function Square({id, isDark, isCapturable, isInBetweenSquare, pie
       numMoves={pieceData.numMoves}
       isFrozen={isBoardFrozen}
     />
-  ) : (isInBetweenSquare ? <span><i className="fa-solid fa-circle"></i></span> : null);
+  ) : (isInBetweenSquare ? <FontAwesomeIcon icon={faCircle} /> : null);
   const colorClass = isDark ? "bg-[burlywood] dark:bg-[darkgoldenrod]" : "bg-[antiquewhite] dark:bg-[burlywood]";
   const outlineClass = isDropTarget ? "z-10 ring-2 ring-inset ring-white" : ""
 
