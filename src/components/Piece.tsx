@@ -19,6 +19,6 @@ export default function Piece({id, type, numMoves, isFrozen}: PieceData) {
     });
 
     return (
-        <img id={id} src={imgUrl} className={`${isFrozen ? "" : "cursor-grab"} w-full h-full`} draggable="false" ref={ref}/>
+        <img id={id} src={imgUrl} className={`${(isFrozen || !canMove) ? "" : "cursor-grab"} w-full h-full`} draggable="false" ref={ref}/>
     )
 }
