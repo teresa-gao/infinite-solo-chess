@@ -115,7 +115,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-y-7 mx-4 my-10 font-mono text-zinc-950 dark:text-neutral-200">
+    <div className="flex flex-col items-center gap-y-7 mx-4 my-10 font-mono text-gray-950 dark:text-gray-200">
       <header className="grid grid-cols-[1fr_auto_1fr] w-full">
         <div id="resetButtonContainer" className="flex flex-row">
           <button id="resetButton" onClick={resetGame} disabled={isBoardFrozen} className="cursor-pointer enabled:hover:opacity-30 enabled:dark:hover:opacity-60 disabled:cursor-not-allowed disabled:opacity-100"><FontAwesomeIcon icon={faArrowRotateLeft} /></button>
