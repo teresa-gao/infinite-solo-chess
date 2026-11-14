@@ -17,7 +17,7 @@ export default function Square({id, isDark, isCapturable, isInBetweenSquare, pie
       isFrozen={isBoardFrozen}
     />
   ) : (isInBetweenSquare ? <FontAwesomeIcon icon={faCircle} /> : null);
-  const colorClass = isDark ? "bg-[burlywood] dark:bg-[darkgoldenrod]" : "bg-[antiquewhite] dark:bg-[burlywood]";
+  const colorClass = isDark ? "bg-[#d4975c] dark:bg-[sienna]" : "bg-[#fad7a8] dark:bg-[#ca9363]";
   const outlineClass = isDropTarget ? "z-10 ring-2 ring-inset ring-white" : ""
 
   return (
