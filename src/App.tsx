@@ -137,7 +137,7 @@ export default function App() {
           </div>
         </header>
 
-        <main className="flex flex-col gap-7">
+        <main className="flex flex-col gap-7 w-full">
           <Board boardLayout={boardLayout} inBetweenSquares={inBetweenSquares} capturableSquares={capturableSquares} onDragStart={onDragStart} onDragEnd={onDragEnd} isBoardFrozen={isBoardFrozen} />
 
           <div id="boardBottomContainer" className="w-full flex justify-between items-end">
