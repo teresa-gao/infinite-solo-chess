@@ -20,7 +20,7 @@ This is a work in progress!
   - [x] Add sound effects.
   - [ ] Clean up codebase.
     - [x] Set up [Prettier](https://prettier.io) for consistent semicolons, tab size, etc.
-    - [ ] Move logic to/from components/functions as is most sensible.
+    - [x] Move logic to/from components/functions as is most sensible.
     - [ ] Add documentation to README.
 - [ ] Consider bonus features.
   - [ ] Add settings page to mute/unmute sound, customize theme/borders (for acccessibility), etc.

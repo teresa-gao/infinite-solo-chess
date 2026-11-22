@@ -9,7 +9,12 @@ export interface PieceData {
   isFrozen: boolean;
 }
 
-export default function Piece({ id, type, numMoves, isFrozen }: PieceData) {
+export default function Piece({
+  id,
+  type,
+  numMoves = 0,
+  isFrozen = false,
+}: PieceData) {
   const canMove = numMoves < 2;
   const imgUrl: string = new URL(
     `../assets/images/${type}_${canMove ? "white" : "black"}.png`,

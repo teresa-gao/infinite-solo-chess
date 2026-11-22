@@ -246,7 +246,7 @@ export default function App() {
           className="w-full flex justify-between items-end"
         >
           <p id="level">
-            <span key={`${level}-${sublevel}`}>
+            <span id="levelIndicator" key={`${level}-${sublevel}`}>
               <FontAwesomeIcon
                 className={`${isNewSublevel ? "animate-blinking" : ""}`}
                 icon={
