@@ -19,7 +19,7 @@ This is a work in progress!
     - [x] Add Open Graph preview image (per https://ogp.me).
   - [x] Add sound effects.
   - [ ] Clean up codebase.
-    - [ ] Set up [Prettier](https://prettier.io) for consistent semicolons, tab size, etc.
+    - [x] Set up [Prettier](https://prettier.io) for consistent semicolons, tab size, etc.
     - [ ] Move logic to/from components/functions as is most sensible.
     - [ ] Add documentation to README.
 - [ ] Consider bonus features.
@@ -39,7 +39,7 @@ This is a work in progress!
 - [x] Create hello world project.
   - [x] Set up TypeScript and React.
     - [x] Upgrade node, npm, and nvm versions.
-    - [x] Install React/Vite and TypeScript, *whose installation automatically comes with the below (struck through)*.
+    - [x] Install React/Vite and TypeScript, _whose installation automatically comes with the below (struck through)_.
       - [x] ~~Set up minimum project with standard structure.~~
       - [x] ~~Figure out how to deploy locally in dev.~~
   - [x] Figure out how to deploy to GitHub pages.
