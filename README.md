@@ -1,27 +1,41 @@
-# about
+# Infinite Solo Chess
 
 I love [Chess.com's Solo Chess game](https://www.chess.com/solo-chess)
 and thought it'd be fun to make my own, infinite version,
-especially since I've been meaning to get more practice with React, TypeScript, and Tailwind CSS.
+especially as I've been meaning to get more practice with React, TypeScript, and Tailwind CSS.
+
+
+## how to play
 
 Play here: https://teresa-gao.github.io/infinite-solo-chess.
 
-This is a work in progress!
+The website includes the game as well as instructions.
 
-# tasks
 
-## todo
+## how to develop
 
-- [ ] Finalize.
-  - [x] Show valid moves on board.
-  - [x] Prevent board/score reset on page refresh.
-  - [x] Add unique favicon.
-    - [x] Add Open Graph preview image (per https://ogp.me).
-  - [x] Add sound effects.
-  - [ ] Clean up codebase.
-    - [x] Set up [Prettier](https://prettier.io) for consistent semicolons, tab size, etc.
-    - [x] Move logic to/from components/functions as is most sensible.
-    - [ ] Add documentation to README.
+Install npm and set up a local development server (http://localhost:5173):
+
+```
+npm install
+npm run dev
+```
+
+(Optional) helpful Git pre-commit hooks (contents of `.git/hooks/pre-commit`) for TypeScript syntax-checking and Prettier formatting:
+
+```
+#!/bin/sh
+npx tsc -b
+npx prettier --write .
+```
+
+The main entrypoint for the app is `App.tsx`, which links to various assets and components that are also in the `src/` subdirectory.
+
+
+## Teresa's tasks
+
+### todo
+
 - [ ] Consider bonus features.
   - [ ] Add settings page to mute/unmute sound, customize theme/borders (for acccessibility), etc.
   - [ ] Allow clicking start and end squares in addition to dragging pieces.
@@ -34,7 +48,8 @@ This is a work in progress!
   - [ ] Add board coordinates.
     - [ ] Allow keyboard input of moves.
 
-## done
+
+### done
 
 - [x] Create hello world project.
   - [x] Set up TypeScript and React.
@@ -91,3 +106,13 @@ This is a work in progress!
 - [x] Debug, round 3!
   - [x] Fix occasional impossible puzzles.
   - [x] Disable initial blinking of level and high score.
+- [x] Finalize.
+  - [x] Show valid moves on board.
+  - [x] Prevent board/score reset on page refresh.
+  - [x] Add unique favicon.
+    - [x] Add Open Graph preview image (per https://ogp.me).
+  - [x] Add sound effects.
+  - [x] Clean up codebase.
+    - [x] Set up [Prettier](https://prettier.io) for consistent semicolons, tab size, etc.
+    - [x] Move logic to/from components/functions as is most sensible.
+    - [x] Add documentation to README.
