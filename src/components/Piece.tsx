@@ -11,7 +11,7 @@ export interface PieceData {
 
 export default function Piece({id, type, numMoves, isFrozen}: PieceData) {
     const canMove = numMoves < 2;
-    const imgUrl: string = new URL(`../assets/${type}_${canMove ? 'white' : 'black'}.png`, import.meta.url).href;
+    const imgUrl: string = new URL(`../assets/images/${type}_${canMove ? 'white' : 'black'}.png`, import.meta.url).href;
 
     const { ref } = useDraggable({
         id: id,
