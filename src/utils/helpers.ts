@@ -213,7 +213,7 @@ export function getBoardLayout(sublevel: number) {
         break;
       }
 
-      const canCalculateSecondMove = pieceTypeIndex > pieceTypes.length - 3;
+      const canCalculateSecondMove = pieceTypeIndex <= pieceTypes.length - 3;
       const [validFirstMoveSquares, validSecondMoveSquares] =
         getValidMoveSquares(
           goalRankIndex,
