@@ -25,6 +25,7 @@ import {
 import Board from "./components/Board.tsx";
 import type { PieceData } from "./components/Piece.tsx";
 import Dialog from "./components/Dialog.tsx";
+import Hyperlink from "./components/Hyperlink.tsx";
 
 import "./App.css";
 
@@ -210,39 +211,25 @@ export default function App() {
                 Infinite Solo Chess was created by Teresa Gao, a software
                 engineer and a fan of the original (non-infinite) version of the
                 game on{" "}
-                <a
-                  href="https://www.chess.com/solo-chess"
-                  className="underline hover:opacity-30 dark:hover:opacity-60"
-                >
+                <Hyperlink href="https://www.chess.com/solo-chess">
                   Chess.com
-                </a>
+                </Hyperlink>
                 .
               </p>
               <p>
                 The sound effects were composed using{" "}
-                <a
-                  href="https://musescore.org"
-                  className="underline hover:opacity-30 dark:hover:opacity-60"
-                >
-                  MuseScore
-                </a>
-                , and the pieces were designed by Pat Gao.
+                <Hyperlink href="https://musescore.org">MuseScore</Hyperlink>,
+                and the pieces were designed by Pat Gao.
               </p>
               <p>
                 Please feel free to say hi on{" "}
-                <a
-                  href="https://www.linkedin.com/in/teresa-gao/"
-                  className="underline hover:opacity-30 dark:hover:opacity-60"
-                >
+                <Hyperlink href="https://www.linkedin.com/in/teresa-gao/">
                   LinkedIn
-                </a>{" "}
+                </Hyperlink>{" "}
                 or check out the source code on{" "}
-                <a
-                  href="https://github.com/teresa-gao/infinite-solo-chess"
-                  className="underline hover:opacity-30 dark:hover:opacity-60"
-                >
+                <Hyperlink href="https://github.com/teresa-gao/infinite-solo-chess">
                   GitHub
-                </a>
+                </Hyperlink>
                 !
               </p>
             </div>
