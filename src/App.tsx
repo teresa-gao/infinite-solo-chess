@@ -6,6 +6,7 @@ import { faArrowRotateLeft, faCircleInfo, faCircleHalfStroke, faCircle as faCirc
 import { faCircle as faCircleRegular } from '@fortawesome/free-regular-svg-icons'
 
 import useSound from 'use-sound';
+import resetSound from './assets/sounds/reset.mp3'
 import captureSound from './assets/sounds/capture.mp3'
 import newSublevelSound from './assets/sounds/new-sublevel.mp3'
 import newLevelSound from './assets/sounds/new-level.mp3';
@@ -19,6 +20,7 @@ import Dialog from './components/Dialog.tsx'
 import './App.css'
 
 export default function App() {
+  const [playResetSound] = useSound(resetSound);
   const [playCaptureSound] = useSound(captureSound);
   const [playNewSublevelSound] = useSound(newSublevelSound);
   const [playNewLevelSound] = useSound(newLevelSound);
@@ -47,7 +49,7 @@ export default function App() {
 
   const isNewSublevel = delayTimerRef.current !== null;
   const level = convertSublevelToLevel(sublevel);
-  const isNewLevel = isNewSublevel && ((level != convertSublevelToLevel(sublevel - 1)) || (sublevel === 0));
+  const isNewLevel = isNewSublevel && (level != convertSublevelToLevel(sublevel - 1));
 
   const isNewHighScore = isNewLevel && (level > savedHighScoreRef.current);
   const highScore = Math.max(level, savedHighScoreRef.current);
@@ -61,6 +63,8 @@ export default function App() {
   useEffect(() => {
     if (isNewLevel) {
       playNewLevelSound();
+    } else if (sublevel === 0) {
+      playResetSound();
     } else {
       playNewSublevelSound();
     }
@@ -162,7 +166,7 @@ export default function App() {
           <div id="boardBottomContainer" className="w-full flex justify-between items-end">
             <p id="level">
               <span key={`${level}-${sublevel}`}><FontAwesomeIcon className={`${isNewSublevel ? "animate-blinking" : ""}`} icon={sublevel % NUM_SUBLEVELS_PER_LEVEL === 0 ? faCircleRegular : (sublevel % NUM_SUBLEVELS_PER_LEVEL < NUM_SUBLEVELS_PER_LEVEL - 1 ? faCircleHalfStroke : faCircleSolid)} />
-              </span> <span key={level} className={`${isNewLevel ? "animate-blinking" : ""}`} >Level {level}</span>
+              </span> <span key={level} className={`${isNewLevel || (sublevel === 0) ? "animate-blinking" : ""}`} >Level {level}</span>
             </p>
             <div key={highScore} id="highScore" className={`${isNewHighScore ? "animate-blinking" : ""}`}>High Score: {highScore}</div>
           </div>
