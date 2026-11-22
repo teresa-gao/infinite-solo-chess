@@ -18,7 +18,10 @@ This is a work in progress!
   - [x] Add unique favicon.
     - [x] Add Open Graph preview image (per https://ogp.me).
   - [x] Add sound effects.
-  - [ ] Clean up codebase (e.g., documentation, [consistent semicolons](https://prettier.io), header/body/footer, standardized tab size).
+  - [ ] Clean up codebase.
+    - [ ] Set up [Prettier](https://prettier.io) for consistent semicolons, tab size, etc.
+    - [ ] Move logic to/from components/functions as is most sensible.
+    - [ ] Add documentation to README.
 - [ ] Consider bonus features.
   - [ ] Add settings page to mute/unmute sound, customize theme/borders (for acccessibility), etc.
   - [ ] Allow clicking start and end squares in addition to dragging pieces.
