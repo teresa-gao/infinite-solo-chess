@@ -189,7 +189,6 @@ export default function App() {
         <div id="infoButtonContainer" className="flex flex-row-reverse">
           <IconButton
             onClick={() => setInfoDialogOpen(true)}
-            disabled={false}
             icon={faCircleInfo}
           />
           <Dialog

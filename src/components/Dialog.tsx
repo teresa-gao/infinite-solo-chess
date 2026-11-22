@@ -1,11 +1,12 @@
 import React, { useRef, useEffect } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import useSound from "use-sound";
 import dialogOpenSound from "../assets/sounds/dialog-open.mp3";
 import dialogCloseSound from "../assets/sounds/dialog-close.mp3";
+
+import IconButton from "../components/IconButton.tsx";
 
 export default function Dialog({
   id,
@@ -60,12 +61,7 @@ export default function Dialog({
       <header className="w-full grid grid-cols-[1fr_max-content_1fr]">
         <h2 className="text-lg font-bold col-start-2">{headerText}</h2>
         <div className="flex flex-row-reverse">
-          <button
-            onClick={onClose}
-            className="cursor-pointer hover:opacity-30 dark:hover:opacity-60"
-          >
-            <FontAwesomeIcon icon={faXmark} />
-          </button>
+          <IconButton onClick={onClose} icon={faXmark} />
         </div>
       </header>
       <main>{children}</main>

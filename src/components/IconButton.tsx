@@ -3,18 +3,18 @@ import { type IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export default function IconButton({
   onClick,
-  disabled,
   icon,
+  disabled = false,
 }: {
   onClick: () => void;
-  disabled: boolean;
+  disabled?: boolean;
   icon: IconDefinition;
 }) {
   return (
     <button
       onClick={onClick}
       disabled={disabled}
-      className="cursor-pointer enabled:hover:opacity-30 enabled:dark:hover:opacity-60 disabled:cursor-not-allowed disabled:opacity-100"
+      className="cursor-pointer enabled:hover:opacity-60 enabled:dark:hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-100"
     >
       <FontAwesomeIcon icon={icon} />
     </button>
