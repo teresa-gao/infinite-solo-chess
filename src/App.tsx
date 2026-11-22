@@ -24,10 +24,9 @@ import {
 } from "./utils/helpers";
 import Board from "./components/Board.tsx";
 import type { PieceData } from "./components/Piece.tsx";
+import IconButton from "./components/IconButton.tsx";
 import Dialog from "./components/Dialog.tsx";
 import Hyperlink from "./components/Hyperlink.tsx";
-
-import "./App.css";
 
 export default function App() {
   const [playResetSound] = useSound(resetSound);
@@ -178,26 +177,21 @@ export default function App() {
     <div className="flex flex-col items-center gap-y-7 mx-4 my-10 font-mono text-gray-950 dark:text-gray-200">
       <header className="grid grid-cols-[1fr_auto_1fr] w-full">
         <div id="resetButtonContainer" className="flex flex-row">
-          <button
-            id="resetButton"
+          <IconButton
             onClick={resetGame}
             disabled={sublevel === 0 || isBoardFrozen}
-            className="cursor-pointer enabled:hover:opacity-30 enabled:dark:hover:opacity-60 disabled:cursor-not-allowed disabled:opacity-100"
-          >
-            <FontAwesomeIcon icon={faArrowRotateLeft} />
-          </button>
+            icon={faArrowRotateLeft}
+          />
         </div>
 
         <h1 className="text-xl font-bold">Infinite Solo Chess</h1>
 
         <div id="infoButtonContainer" className="flex flex-row-reverse">
-          <button
-            id="infoButton"
+          <IconButton
             onClick={() => setInfoDialogOpen(true)}
-            className="cursor-pointer hover:opacity-30 dark:hover:opacity-60 text-lg"
-          >
-            <FontAwesomeIcon icon={faCircleInfo} />
-          </button>
+            disabled={false}
+            icon={faCircleInfo}
+          />
           <Dialog
             id="Info"
             headerText="About This Game"
@@ -280,21 +274,26 @@ export default function App() {
             High Score: {highScore}
           </div>
         </div>
-      </main>
 
-      <footer id="instructions" className="space-y-3">
-        <hr className="h-px mt-1 mb-8 border-0 bg-zinc-950 dark:bg-neutral-200" />
-        <h2 className="text-lg font-bold text-center">How to Play</h2>
-        <div id="rules" className="space-y-3">
-          <p>Goal: Capture the pieces so that only one remains.</p>
-          <ul className="list-decimal list-disc space-y-2 ml-6">
-            <li>Pieces can only move to capture other pieces.</li>
-            <li>Each piece can capture up to two other pieces.</li>
-            <li>No piece can capture a king.</li>
-            <li>If you reset the game, you return to Level 1.</li>
-          </ul>
+        <hr className="h-px my-1 border-0 bg-zinc-950 dark:bg-neutral-200" />
+
+        <div id="instructions" className="space-y-3">
+          <header>
+            <h2 className="text-lg font-bold text-center">How to Play</h2>
+          </header>
+          <main>
+            <div id="rules" className="space-y-3">
+              <p>Goal: Capture the pieces so that only one remains.</p>
+              <ul className="list-decimal list-disc space-y-2 ml-6">
+                <li>Pieces can only move to capture other pieces.</li>
+                <li>Each piece can capture up to two other pieces.</li>
+                <li>No piece can capture a king.</li>
+                <li>If you reset the game, you return to Level 1.</li>
+              </ul>
+            </div>
+          </main>
         </div>
-      </footer>
+      </main>
     </div>
   );
 }
