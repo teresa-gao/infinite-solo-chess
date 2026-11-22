@@ -153,8 +153,8 @@ export default function App() {
             <Dialog id="Info" headerText="About This Game" isOpen={isInfoDialogOpen} onClose={() => {setInfoDialogOpen(false)}}>
               <div className="space-y-4">
                 <p>Infinite Solo Chess was created by Teresa Gao, a software engineer and a fan of the original (non-infinite) version of the game on <a href="https://www.chess.com/solo-chess" className="underline hover:opacity-30 dark:hover:opacity-60">Chess.com</a>.</p>
+                <p>The sound effects were composed using <a href="https://musescore.org" className="underline hover:opacity-30 dark:hover:opacity-60">MuseScore</a>, and the pieces were designed by Pat Gao.</p>
                 <p>Please feel free to say hi on <a href="https://www.linkedin.com/in/teresa-gao/" className="underline hover:opacity-30 dark:hover:opacity-60">LinkedIn</a> or check out the source code on <a href="https://github.com/teresa-gao/infinite-solo-chess" className="underline hover:opacity-30 dark:hover:opacity-60">GitHub</a>!</p>
-                <p>The pieces were designed by Pat Gao.</p>
               </div>
             </Dialog>
           </div>

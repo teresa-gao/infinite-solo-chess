@@ -20,6 +20,7 @@ This is a work in progress!
   - [x] Add sound effects.
   - [ ] Clean up codebase (e.g., documentation, [consistent semicolons](https://prettier.io), header/body/footer, standardized tab size).
 - [ ] Consider bonus features.
+  - [ ] Add settings page to mute/unmute sound, customize theme/borders (for acccessibility), etc.
   - [ ] Allow clicking start and end squares in addition to dragging pieces.
   - [ ] Customize which and how many starting pieces to use.
   - [ ] Calculate next puzzle in background (if it seems likely that someone could make it past level ~35?).
