@@ -5,6 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRotateLeft, faCircleInfo, faCircleHalfStroke, faCircle as faCircleSolid } from '@fortawesome/free-solid-svg-icons'
 import { faCircle as faCircleRegular } from '@fortawesome/free-regular-svg-icons'
 
+import useSound from 'use-sound';
+import captureSound from './assets/sounds/capture.mp3'
+import newSublevelSound from './assets/sounds/new-sublevel.mp3'
+import newLevelSound from './assets/sounds/new-level.mp3';
+
 import { NUM_SUBLEVELS_PER_LEVEL } from './utils/constants'
 import { getBoardLayout, getSquaresOfInterest, convertSublevelToLevel } from './utils/helpers'
 import Board from './components/Board.tsx'
@@ -14,6 +19,10 @@ import Dialog from './components/Dialog.tsx'
 import './App.css'
 
 export default function App() {
+  const [playCaptureSound] = useSound(captureSound);
+  const [playNewSublevelSound] = useSound(newSublevelSound);
+  const [playNewLevelSound] = useSound(newLevelSound);
+
   const [sublevel, setSublevel] = useState<number>(Number(localStorage.getItem('sublevel')) || 0);
   const [boardLayout, setBoardLayout] = useState<Record<string, PieceData>>(() => {
     try {
@@ -39,6 +48,7 @@ export default function App() {
   const isNewSublevel = delayTimerRef.current !== null;
   const level = convertSublevelToLevel(sublevel);
   const isNewLevel = isNewSublevel && ((level != convertSublevelToLevel(sublevel - 1)) || (sublevel === 0));
+
   const isNewHighScore = isNewLevel && (level > savedHighScoreRef.current);
   const highScore = Math.max(level, savedHighScoreRef.current);
 
@@ -47,6 +57,14 @@ export default function App() {
       localStorage.setItem('boardLayout', JSON.stringify(boardLayout))
     }
   }, [boardLayout])
+
+  useEffect(() => {
+    if (isNewLevel) {
+      playNewLevelSound();
+    } else {
+      playNewSublevelSound();
+    }
+  }, [sublevel])
 
   const resetGame = () => {
     savedHighScoreRef.current = highScore;
@@ -109,6 +127,7 @@ export default function App() {
     const { [startSquare]: _, ...newBoardLayout } = boardLayout;
     newBoardLayout[endSquare] = {id: piece.id + 'x', type: piece.type, isFrozen: false, numMoves: piece.numMoves + 1};
     setBoardLayout(newBoardLayout);
+    playCaptureSound();
     if (Object.keys(newBoardLayout).length === 1) {
       levelUp()
     }

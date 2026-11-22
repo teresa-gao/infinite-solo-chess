@@ -17,7 +17,7 @@ This is a work in progress!
   - [x] Prevent board/score reset on page refresh.
   - [x] Add unique favicon.
     - [x] Add Open Graph preview image (per https://ogp.me).
-  - [ ] Add sound effects.
+  - [x] Add sound effects.
   - [ ] Clean up codebase (e.g., documentation, [consistent semicolons](https://prettier.io), header/body/footer, standardized tab size).
 - [ ] Consider bonus features.
   - [ ] Allow clicking start and end squares in addition to dragging pieces.
