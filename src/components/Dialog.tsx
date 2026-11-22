@@ -3,13 +3,25 @@ import React, { useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
+import useSound from 'use-sound';
+import dialogOpenSound from '../assets/sounds/dialog-open.mp3'
+import dialogCloseSound from '../assets/sounds/dialog-close.mp3'
+
 export default function Dialog({ id, headerText, isOpen, onClose, children }: {id: string, headerText: string, isOpen: boolean, onClose: () => void, children: React.ReactNode}) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const [playDialogOpenSound] = useSound(dialogOpenSound);
+  const [playDialogCloseSound] = useSound(dialogCloseSound);
 
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
-    isOpen && !dialog.open ? dialog.showModal() : dialog.close();
+    if (isOpen && !dialog.open) {
+      playDialogOpenSound();
+      dialog.showModal()
+    } else {
+      playDialogCloseSound();
+      dialog.close();
+    }
   }, [isOpen]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDialogElement>) => {
