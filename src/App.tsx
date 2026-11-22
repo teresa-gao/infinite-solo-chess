@@ -83,12 +83,10 @@ export default function App() {
   }, [boardLayout]);
 
   useEffect(() => {
-    if (isNewLevel) {
-      if (sublevel === 0) {
-        playResetSound();
-      } else {
-        playNewLevelSound();
-      }
+    if (sublevel === 0) {
+      playResetSound();
+    } else if (isNewLevel) {
+      playNewLevelSound();
     } else {
       playNewSublevelSound();
     }
