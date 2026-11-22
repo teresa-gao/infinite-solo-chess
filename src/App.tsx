@@ -175,7 +175,7 @@ export default function App() {
 
   return (
     <div className="flex flex-col items-center gap-y-7 mx-4 my-10 font-mono text-gray-950 dark:text-gray-200">
-      <header className="grid grid-cols-[1fr_auto_1fr] w-full">
+      <header className="grid grid-cols-[1fr_auto_1fr] w-full items-end">
         <div id="resetButtonContainer" className="flex flex-row">
           <IconButton
             onClick={resetGame}
@@ -184,7 +184,11 @@ export default function App() {
           />
         </div>
 
-        <h1 className="text-xl font-bold">Infinite Solo Chess</h1>
+        <h1 className="text-2xl text-center font-bold">
+          Infinite
+          <br />
+          Solo Chess
+        </h1>
 
         <div id="infoButtonContainer" className="flex flex-row-reverse">
           <IconButton
