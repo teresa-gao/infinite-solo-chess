@@ -173,7 +173,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-y-7 mx-4 my-10 font-mono text-gray-950 dark:text-gray-200">
+    <div className="flex flex-col items-center gap-y-7 w-full max-w-[480px] px-4 my-10 font-mono text-gray-950 dark:text-gray-200">
       <header className="grid grid-cols-[1fr_auto_1fr] w-full items-end">
         <div id="resetButtonContainer" className="flex flex-row">
           <IconButton

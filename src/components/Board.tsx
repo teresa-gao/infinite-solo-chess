@@ -43,7 +43,7 @@ export default function Board({
     >
       <div
         id="board"
-        className="grid grid-cols-8 rounded overflow-hidden shadow touch-none w-full sm:max-w-[480px] aspect-square"
+        className="grid grid-cols-8 grid-rows-8 rounded overflow-hidden shadow touch-none w-full sm:max-w-[480px] aspect-square"
       >
         {RANKS.map((_, rankIndex) =>
           FILES.map((_, fileIndex) => {
