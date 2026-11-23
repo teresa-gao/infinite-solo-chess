@@ -4,7 +4,7 @@ import type { DragStartEvent, DragEndEvent } from "@dnd-kit/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRotateLeft,
-  faCircleInfo,
+  faCircleQuestion,
   faCircleHalfStroke,
   faCircle as faCircleSolid,
 } from "@fortawesome/free-solid-svg-icons";
@@ -26,7 +26,6 @@ import Board from "./components/Board.tsx";
 import type { PieceData } from "./components/Piece.tsx";
 import IconButton from "./components/IconButton.tsx";
 import Dialog from "./components/Dialog.tsx";
-import Hyperlink from "./components/Hyperlink.tsx";
 
 export default function App() {
   const [playResetSound] = useSound(resetSound);
@@ -174,7 +173,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-y-7 mx-4 my-10 font-mono text-gray-950 dark:text-gray-200">
+    <div className="flex flex-col items-center justify-center gap-y-7 mx-4 my-10 font-mono text-gray-950 dark:text-gray-200">
       <header className="grid grid-cols-[1fr_auto_1fr] w-full items-end">
         <div id="resetButtonContainer" className="flex flex-row">
           <IconButton
@@ -193,44 +192,14 @@ export default function App() {
         <div id="infoButtonContainer" className="flex flex-row-reverse">
           <IconButton
             onClick={() => setInfoDialogOpen(true)}
-            icon={faCircleInfo}
+            icon={faCircleQuestion}
           />
           <Dialog
-            id="Info"
-            headerText="About This Game"
             isOpen={isInfoDialogOpen}
             onClose={() => {
               setInfoDialogOpen(false);
             }}
-          >
-            <div className="space-y-4">
-              <p>
-                Infinite Solo Chess was created by Teresa Gao, a software
-                engineer and a fan of the original (non-infinite) version of the
-                game on{" "}
-                <Hyperlink href="https://www.chess.com/solo-chess">
-                  Chess.com
-                </Hyperlink>
-                .
-              </p>
-              <p>
-                The sound effects were composed using{" "}
-                <Hyperlink href="https://musescore.org">MuseScore</Hyperlink>,
-                and the pieces were designed by Pat Gao.
-              </p>
-              <p>
-                Please feel free to say hi on{" "}
-                <Hyperlink href="https://www.linkedin.com/in/teresa-gao/">
-                  LinkedIn
-                </Hyperlink>{" "}
-                or check out the source code on{" "}
-                <Hyperlink href="https://github.com/teresa-gao/infinite-solo-chess">
-                  GitHub
-                </Hyperlink>
-                !
-              </p>
-            </div>
-          </Dialog>
+          />
         </div>
       </header>
 
@@ -276,25 +245,6 @@ export default function App() {
           >
             High Score: {highScore}
           </div>
-        </div>
-
-        <hr className="h-px my-1 border-0 bg-zinc-950 dark:bg-neutral-200" />
-
-        <div id="instructions" className="space-y-3">
-          <header>
-            <h2 className="text-lg font-bold text-center">How to Play</h2>
-          </header>
-          <main>
-            <div id="rules" className="space-y-3">
-              <p>Goal: Capture the pieces so that only one remains.</p>
-              <ul className="list-decimal list-disc space-y-2 ml-6">
-                <li>Pieces can only move to capture other pieces.</li>
-                <li>Each piece can capture up to two other pieces.</li>
-                <li>No piece can capture a king.</li>
-                <li>If you reset the game, you return to Level 1.</li>
-              </ul>
-            </div>
-          </main>
         </div>
       </main>
     </div>
